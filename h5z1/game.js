@@ -46,6 +46,8 @@ game = (function() {
         loader.onComplete = function() {
             var player, level;
 
+            console.log(assets);
+
             spinner.stop();
 
             _.each(onloads, function(onload) {
