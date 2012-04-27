@@ -12,7 +12,7 @@
         level = JSON.parse(assets['level-1']);
         _.each(level.objects, function(object) {
             var type = game.types[object.type];
-            if (type) helpers.defaults(object, type);
+            if (type) helpers.deepDefaults(object, type);
             if (object.name) game[object.name] = object;
         });
         _.extend(game, level);
