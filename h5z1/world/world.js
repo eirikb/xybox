@@ -6,15 +6,14 @@
     game.manifest('world/box.png', 'box');
 
     game.preOnload(function(assets) {
-        var world, level;
-
-        world = JSON.parse(assets.world);
+        var level;
 
         // Load the first level
         level = JSON.parse(assets['level-1']);
         _.each(level.objects, function(object) {
-            var type = world.types[object.type];
+            var type = game.types[object.type];
             if (type) helpers.defaults(object, type);
+            if (object.name) game[object.name] = object;
         });
         _.extend(game, level);
     });

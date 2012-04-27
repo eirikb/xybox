@@ -26,17 +26,19 @@ graphics = (function() {
             var g, w, h, shape, graphics;
 
             graphics = assets[object.graphics];
-            w = object.body.width * scale;
-            h = object.body.height * scale;
+            if (graphics) {
+                w = object.body.width * scale;
+                h = object.body.height * scale;
 
-            shape = new Shape();
-            g = shape.graphics;
-            g.beginBitmapFill(graphics);
-            g.drawRect(0, 0, w, h);
-            shape.regX = w / 2;
-            shape.regY = h / 2;
-            object.graphics = shape;
-            stage.addChild(shape);
+                shape = new Shape();
+                g = shape.graphics;
+                g.beginBitmapFill(graphics);
+                g.drawRect(0, 0, w, h);
+                shape.regX = w / 2;
+                shape.regY = h / 2;
+                object.graphics = shape;
+                stage.addChild(shape);
+            }
         });
 
         /*

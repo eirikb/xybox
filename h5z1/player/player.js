@@ -1,6 +1,7 @@
 (function() {
-    var player, keys;
+    var way, keys;
 
+    way = 0;
     keys = {
         left: ['a', 'left'],
         up: ['w', 'up'],
@@ -8,39 +9,28 @@
     };
 
     game.manifest('player/player.png');
-    game.manifest({
-        src: 'player/player.json',
-        id: 'player'
-    });
-
-    game.onload(function(assets) {
-        player = JSON.parse(assets.player);
-        player.body.x = 10;
-        player.body.y = 10;
-        player.body = trolley.build(player.body).create()[0];
-        player.way = 0;
-    });
+    game.manifest('player/player.json');
 
     game.tick(function() {
-        var v = player.body.GetLinearVelocity();
-        v.Set(player.way * player.speed, v.y);
+        var v = game.player.body.GetLinearVelocity();
+        v.Set(way * game.player.speed, v.y);
     });
 
     game.keys.down(keys.left, function() {
-        player.way = - 1;
+        way = - 1;
     }).up(keys.left, function() {
-        if (player.way === - 1) player.way = 0;
+        if (way === - 1) way = 0;
     });
 
     game.keys.down(keys.right, function() {
-        player.way = 1;
+        way = 1;
     }).up(keys.right, function() {
-        if (player.way === 1) player.way = 0;
+        if (way === 1) way = 0;
     });
 
     game.keys.down(keys.up, function() {
-        var v = player.body.GetLinearVelocity();
-        v.Set(v.x, player.speed);
+        var v = game.player.body.GetLinearVelocity();
+        v.Set(v.x, game.player.speed);
     });
 })();
 

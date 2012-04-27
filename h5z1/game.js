@@ -7,6 +7,7 @@ game = (function() {
     // Keyboard input using kibo ( https://github.com/marquete/kibo )
     self.keys = new Kibo();
     self.objects = [];
+    self.types = {};
 
     manifest = [];
     onloads = [];
@@ -51,9 +52,14 @@ game = (function() {
         };
 
         loader.onComplete = function() {
-            var player, level;
-
             spinner.stop();
+
+            _.chain(assets).filter(function(a) {
+                return a.src.match(/json$/);
+            }).each(function(a) {
+                a = JSON.parse(a.result);
+                _.extend(self.types, a.types);
+            });
 
             _.each(assets, function(asset) {
                 assets[asset.id] = asset.result;

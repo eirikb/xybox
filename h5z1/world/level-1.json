@@ -1,10 +1,13 @@
 {
     "bg": "bg",
-    "player": {
-        "x": 10,
-        "y": 10
-    },
     "objects": [{
+        "name": "player",
+        "type": "player",
+        "body": {
+            "x": 10,
+            "y": 10
+        }
+    }, {
         "type": "ground",
         "body": {
             "boxes": [{

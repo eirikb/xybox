@@ -1,6 +1,6 @@
 // Physics using trolley ( https://github.com/eirikb/trolley )
 physics = (function() {
-    var self, playerBody, lastUpdate, velocityIterationsPerSecond, positionIterationsPerSecond;
+    var self, lastUpdate, velocityIterationsPerSecond, positionIterationsPerSecond;
 
     self = {};
     lastUpdate = Date.now();
