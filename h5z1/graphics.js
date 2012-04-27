@@ -1,6 +1,8 @@
 // Graphics using EaselJS ( https://github.com/CreateJS/EaselJS/ )
 graphics = (function() {
-    var stage, width, height, self = {},
+    var self, scale, stage, width, height;
+    
+    self = {};
     scale = 15;
 
     function pos(body) {
