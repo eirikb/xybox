@@ -8,13 +8,15 @@
                     "fixedRotation": true
                 },
                 "circles": [{
+                    "size": 1.5,
                     "options": {
                         "friction": 0
                     }
                 }],
                 "boxes": [{
-                    "y": 0.5,
-                    "height": 1.5,
+                    "y": 1,
+                    "width": 1.5,
+                    "height": 1.25,
                     "options": {
                         "density": 1,
                         "friction": 0
@@ -22,24 +24,31 @@
                 }]
             },
             "graphics": [{
-                "name": "top",
-                "frames": {
-                    "width": 30,
-                    "numFrames": 22,
-                    "height": 30
-                },
-                "animations": {"right": [0, 0]},
-                "images": ["img/player2.png"]
-            }, 
-            {
                 "name":"bottom",
+                "paddX": -4,
+                "paddY": 4,
                 "frames": {
                     "width": 30,
                     "numFrames": 22,
                     "height": 30
                 },
-                "animations": {"right": [9, 15], "left": [16, 22]},
-                "images": ["img/player2.png"]
+                "animations": {
+                    "default": 8,
+                    "right": [9, 14, true, 8],
+                    "left": [16, 21, true, 8]
+                },
+                "images": ["player/player.png"]
+            }, {
+                "name": "top",
+                "paddX": 2,
+                "paddY": -14,
+                "frames": {
+                    "width": 30,
+                    "numFrames": 22,
+                    "height": 30
+                },
+                "animations": {"default": [0], "right": [0, 0]},
+                "images": ["player/player.png"]
             }]
         }
     }

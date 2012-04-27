@@ -25,24 +25,33 @@ graphics = (function() {
         stage.addChild(bg);
 
         _.each(game.objects, function(object) {
-            object.graphics = _.map(object.graphics, function(graphics) {
-                var g, w, h, shape;
+            var newGraphics = [];
 
-                if (graphics.id) graphics = assets[graphics.id];
+            _.each(object.graphics, function(graphics) {
+                var g, w, h, shape, sheet;
 
                 w = object.body.width * scale;
                 h = object.body.height * scale;
-
-                shape = new Shape();
-                g = shape.graphics;
-                g.beginBitmapFill(graphics);
-                g.drawRect(0, 0, w, h);
+                if (graphics.id) {
+                    shape = new Shape();
+                    graphics = assets[graphics.id];
+                    g = shape.graphics;
+                    g.beginBitmapFill(graphics);
+                    g.drawRect(0, 0, w, h);
+                } else {
+                    sheet = new SpriteSheet(graphics);
+                    shape = new BitmapAnimation(sheet);
+                    shape.gotoAndStop('default');
+                }
+                shape.paddX = graphics.paddX;
+                shape.paddY = graphics.paddY;
                 shape.regX = w / 2;
                 shape.regY = h / 2;
                 stage.addChild(shape);
-
-                return shape;
+                newGraphics.push(shape);
+                if (graphics.name) newGraphics[graphics.name] = shape;
             });
+            object.graphics = newGraphics;
         });
     });
 
@@ -52,6 +61,8 @@ graphics = (function() {
             _.each(object.graphics, function(graphics) {
                 graphics.x = p.x + graphics.regX;
                 graphics.y = p.y + graphics.regY;
+                if (graphics.paddX) graphics.x += graphics.paddX;
+                if (graphics.paddY) graphics.y += graphics.paddY;
                 graphics.rotation = - (object.body.GetAngle() * 180 / Math.PI);
             });
         });
