@@ -1,13 +1,17 @@
 {
     "types": {
         "ground": {
-            "graphics": "ground",
+            "graphics": [{
+                "id": "ground"
+            }],
             "body": {
                 "isStatic": true
             }
         }, 
         "box": {
-            "graphics": "box",
+            "graphics": [{
+                "id": "box"
+            }],
             "body": {
                 "boxes": [{
                     "width": 2,

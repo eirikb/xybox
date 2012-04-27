@@ -1,7 +1,7 @@
 // Graphics using EaselJS ( https://github.com/CreateJS/EaselJS/ )
 graphics = (function() {
     var self, scale, stage, width, height;
-    
+
     self = {};
     scale = 15;
 
@@ -25,10 +25,11 @@ graphics = (function() {
         stage.addChild(bg);
 
         _.each(game.objects, function(object) {
-            var g, w, h, shape, graphics;
+            object.graphics = _.map(object.graphics, function(graphics) {
+                var g, w, h, shape;
 
-            graphics = assets[object.graphics];
-            if (graphics) {
+                if (graphics.id) graphics = assets[graphics.id];
+
                 w = object.body.width * scale;
                 h = object.body.height * scale;
 
@@ -38,18 +39,21 @@ graphics = (function() {
                 g.drawRect(0, 0, w, h);
                 shape.regX = w / 2;
                 shape.regY = h / 2;
-                object.graphics = shape;
                 stage.addChild(shape);
-            }
+
+                return shape;
+            });
         });
     });
 
     game.tick(function() {
         _.each(game.objects, function(object) {
             var p = pos(object.body);
-            object.graphics.x = p.x + object.graphics.regX;
-            object.graphics.y = p.y + object.graphics.regY;
-            object.graphics.rotation = - (object.body.GetAngle() * 180 / Math.PI);
+            _.each(object.graphics, function(graphics) {
+                graphics.x = p.x + graphics.regX;
+                graphics.y = p.y + graphics.regY;
+                graphics.rotation = - (object.body.GetAngle() * 180 / Math.PI);
+            });
         });
 
         stage.update();

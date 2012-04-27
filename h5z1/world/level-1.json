@@ -16,7 +16,9 @@
             }]
         }
     }, {
-        "graphics": "box",
+        "graphics": [{
+            "id": "box"
+        }],
         "body": {
             "x": 10,
             "y": 20,
