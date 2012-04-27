@@ -1,0 +1,44 @@
+{
+    "player": {
+        "x": 10,
+        "y": 10
+    },
+    "world": {
+        "bg": "bg",
+        "objects": [{
+            "graphics": "ground",
+            "body": {
+                "x": 0,
+                "y": 0,
+                "isStatic": true,
+                "boxes": [{
+                    "width": 40,
+                    "height": 6
+                }]
+            }
+        }, {
+            "graphics": "box",
+            "body": {
+                "x": 10,
+                "y": 20,
+                "boxes": [{
+                    "width": 2,
+                    "height": 2,
+                    "options": {
+                        "friction": 1
+                    }
+                }]
+            }
+        }, {
+            "graphics": "box",
+            "body": {
+                "x": 11,
+                "y": 10,
+                "boxes": [{
+                    "width": 2,
+                    "height": 2
+                }]
+            }
+        }]
+    }
+}

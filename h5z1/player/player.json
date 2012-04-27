@@ -1,0 +1,43 @@
+{
+    "speed": 10,
+    "body": {
+        "options": {
+            "allowSleep": false,
+            "fixedRotation": true
+        },
+        "circles": [{
+            "options": {
+                "friction": 0
+            }
+        }],
+        "boxes": [{
+            "y": 0.5,
+            "height": 1.5,
+            "options": {
+                "density": 1,
+                "friction": 0
+            }
+        }]
+    }
+    ,
+    "graphics": {
+        "top": {
+            "frames": {
+                "width": 30,
+                "numFrames": 22,
+                "height": 30
+            },
+            "animations": {"right": [0, 0]},
+            "images": ["img/player2.png"]
+        }, 
+        "bottom": {
+            "frames": {
+                "width": 30,
+                "numFrames": 22,
+                "height": 30
+            },
+            "animations": {"right": [9, 15], "left": [16, 22]},
+            "images": ["img/player2.png"]
+        }
+    }
+}
