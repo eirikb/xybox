@@ -7,16 +7,14 @@
         right: ['d', 'right']
     };
 
-    game.manifest('player/player2.png');
+    game.manifest('player/player.png');
     game.manifest({
         src: 'player/player.json',
         id: 'player'
     });
 
     game.onload(function(assets) {
-        player = JSON.parse(_.first(_.filter(assets, function(a) {
-            return a.id === 'player';
-        })).result);
+        player = JSON.parse(assets.player);
         player.body.x = 10;
         player.body.y = 10;
         player.body = trolley.build(player.body).create()[0];
@@ -44,7 +42,5 @@
         var v = player.body.GetLinearVelocity();
         v.Set(v.x, player.speed);
     });
-
-    return self;
 })();
 

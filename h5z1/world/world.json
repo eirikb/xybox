@@ -1,0 +1,22 @@
+{
+    "types": {
+        "ground": {
+            "graphics": "ground",
+            "body": {
+                "isStatic": true
+            }
+        }, 
+        "box": {
+            "graphics": "box",
+            "body": {
+                "boxes": [{
+                    "width": 2,
+                    "height": 2,
+                    "options": {
+                        "friction": 1
+                    }
+                }]
+            }
+        }
+    }
+}

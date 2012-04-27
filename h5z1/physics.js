@@ -18,9 +18,9 @@ physics = (function() {
     });
 
     game.tick(function() {
-        var time,delta;
-        
-        time= new Date().getTime();
+        var time, delta;
+
+        time = new Date().getTime();
         delta = (time - lastUpdate) / 1000;
         lastUpdate = time;
 
@@ -31,8 +31,6 @@ physics = (function() {
     });
 
     function step(w, delta) {
-        delta = (typeof delta === 'undefined') ? 1 / game.fps: delta;
-
         w.Step(delta, delta * velocityIterationsPerSecond, delta * positionIterationsPerSecond);
     }
 

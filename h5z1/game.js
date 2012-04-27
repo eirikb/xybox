@@ -12,8 +12,15 @@ game = (function() {
     onloads = [];
     ticks = [];
 
-    self.manifest = function(m) {
-        manifest.push(m);
+    self.manifest = function(src, id) {
+        if (id) {
+            manifest.push({
+                src: src,
+                id: id
+            });
+        } else {
+            manifest.push(src);
+        }
     };
     self.preOnload = function(onload) {
         onloads.unshift(onload);
@@ -46,9 +53,11 @@ game = (function() {
         loader.onComplete = function() {
             var player, level;
 
-            console.log(assets);
-
             spinner.stop();
+
+            _.each(assets, function(asset) {
+                assets[asset.id] = asset.result;
+            });
 
             _.each(onloads, function(onload) {
                 onload(assets);

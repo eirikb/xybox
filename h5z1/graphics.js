@@ -18,22 +18,20 @@ graphics = (function() {
         stage = new Stage(canvas);
         stage.autoClear = false;
 
-        bg = _.first(_.filter(assets, function(a) {
-            return a.src.match(game.bg);
-        }));
-        bg = new Shape(new Graphics().beginBitmapFill(bg.result).drawRect(0, 0, width, height));
+        bg = assets.bg;
+        bg = new Shape(new Graphics().beginBitmapFill(bg).drawRect(0, 0, width, height));
         stage.addChild(bg);
 
         _.each(game.objects, function(object) {
-            var g, shape, graphics = _.first(_.filter(assets, function(a) {
-                return a.src.match(object.graphics)
-            })),
-            w = object.body.width * scale,
+            var g, w, h, shape, graphics;
+
+            graphics = assets[object.graphics];
+            w = object.body.width * scale;
             h = object.body.height * scale;
 
             shape = new Shape();
             g = shape.graphics;
-            g.beginBitmapFill(graphics.result);
+            g.beginBitmapFill(graphics);
             g.drawRect(0, 0, w, h);
             shape.regX = w / 2;
             shape.regY = h / 2;
