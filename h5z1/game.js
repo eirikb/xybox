@@ -13,6 +13,19 @@ game = (function() {
     onloads = [];
     ticks = [];
 
+    function loadLevel(number) {
+        self.manifest('levels/level-' + number + '.json', 'level-' + number);
+        self.preOnload(function(assets) {
+            var level = JSON.parse(assets['level-' + number]);
+            _.each(level.objects, function(object) {
+                var type = game.types[object.type];
+                if (type) helpers.deepDefaults(object, type);
+                if (object.name) game[object.name] = object;
+            });
+            _.extend(game, level);
+        });
+    }
+
     self.manifest = function(src, id) {
         if (id) {
             manifest.push({
@@ -38,6 +51,8 @@ game = (function() {
 
     window.onload = function() {
         var loader, assets, spinner;
+
+        loadLevel(1);
 
         loader = new PreloadJS();
         assets = [];

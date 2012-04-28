@@ -1,18 +1,20 @@
 {
-    "bg": "bg",
     "objects": [{
-        "name": "player",
-        "type": "player",
-        "body": {
-            "x": 10,
-            "y": 10
-        }
-    }, {
         "type": "ground",
         "body": {
             "boxes": [{
                 "width": 40,
                 "height": 6
+            }]
+        }
+    }, {
+        "type": "ground",
+        "body": {
+            "x": 20,
+            "y": 5,
+            "boxes": [{
+                "width": 2,
+                "height": 2
             }]
         }
     }, {
@@ -34,14 +36,11 @@
             "y": 10
         }
     }, {
-        "type": "ground",
+        "name": "player",
+        "type": "player",
         "body": {
-            "x": 20,
-            "y": 5,
-            "boxes": [{
-                "width": 2,
-                "height": 2
-            }]
+            "x": 10,
+            "y": 10
         }
     }]
 }

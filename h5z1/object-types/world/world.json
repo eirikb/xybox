@@ -2,7 +2,8 @@
     "types": {
         "ground": {
             "graphics": [{
-                "id": "ground"
+                "id": "ground",
+                "paddY": -4
             }],
             "body": {
                 "isStatic": true

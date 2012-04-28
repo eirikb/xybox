@@ -12,11 +12,9 @@
                     "options": {
                         "friction": 0
                     }
-                }],
-                "boxes": [{
+                },{
                     "y": 1,
-                    "width": 1.5,
-                    "height": 1.25,
+                    "size": 1.5,
                     "options": {
                         "density": 1,
                         "friction": 0
@@ -26,7 +24,7 @@
             "graphics": [{
                 "name":"bottom",
                 "paddX": -4,
-                "paddY": 4,
+                "paddY": 7,
                 "frames": {
                     "width": 30,
                     "numFrames": 22,
@@ -37,18 +35,18 @@
                     "right": [9, 14, true, 8],
                     "left": [16, 21, true, 8]
                 },
-                "images": ["player/player.png"]
+                "images": ["object-types/player/player.png"]
             }, {
                 "name": "top",
                 "paddX": 2,
-                "paddY": -14,
+                "paddY": -12,
                 "frames": {
                     "width": 30,
                     "numFrames": 22,
                     "height": 30
                 },
                 "animations": {"default": [0], "right": [0, 0]},
-                "images": ["player/player.png"]
+                "images": ["object-types/player/player.png"]
             }]
         }
     }

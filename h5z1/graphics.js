@@ -1,28 +1,30 @@
 // Graphics using EaselJS ( https://github.com/CreateJS/EaselJS/ )
 graphics = (function() {
-    var self, scale, stage, width, height;
+    var self;
 
     self = {};
-    scale = 15;
+    self.scale = 15;
 
-    function pos(body) {
+    self.pos = function(body) {
         var pos = trolley.pos(body);
         return {
-            x: pos.x * scale,
-            y: height - pos.y * scale - body.height * scale
+            x: pos.x * self.scale,
+            y: self.height - pos.y * self.scale - body.height * self.scale
         };
     };
 
     game.onload(function(assets) {
-        var bg, canvas = document.getElementById('gamepanel');
-        width = canvas.width,
-        height = canvas.height
-        stage = new Stage(canvas);
-        stage.autoClear = false;
+        var canvas;
 
-        bg = assets.bg;
-        bg = new Shape(new Graphics().beginBitmapFill(bg).drawRect(0, 0, width, height));
-        stage.addChild(bg);
+        canvas = document.getElementById('gamepanel');
+
+        self.width = canvas.width,
+        self.height = canvas.height
+        self.stage = new Stage(canvas);
+
+        //self.bg = assets.bg;
+        //self.bg = new Shape(new Graphics().beginBitmapFill(self.bg).drawRect(0, 0, self.width, self.height));
+        //self.stage.addChild(self.bg);
 
         _.each(game.objects, function(object) {
             var newGraphics = [];
@@ -30,24 +32,24 @@ graphics = (function() {
             _.each(object.graphics, function(graphics) {
                 var g, w, h, shape, sheet;
 
-                w = object.body.width * scale;
-                h = object.body.height * scale;
+                w = object.body.width * self.scale;
+                h = object.body.height * self.scale;
                 if (graphics.id) {
                     shape = new Shape();
-                    graphics = assets[graphics.id];
                     g = shape.graphics;
-                    g.beginBitmapFill(graphics);
+                    g.beginBitmapFill(assets[graphics.id]);
                     g.drawRect(0, 0, w, h);
                 } else {
                     sheet = new SpriteSheet(graphics);
                     shape = new BitmapAnimation(sheet);
                     shape.gotoAndStop('default');
                 }
+                console.log(graphics.paddY);
                 shape.paddX = graphics.paddX;
                 shape.paddY = graphics.paddY;
                 shape.regX = w / 2;
                 shape.regY = h / 2;
-                stage.addChild(shape);
+                self.stage.addChild(shape);
                 newGraphics.push(shape);
                 if (graphics.name) newGraphics[graphics.name] = shape;
             });
@@ -57,7 +59,7 @@ graphics = (function() {
 
     game.tick(function() {
         _.each(game.objects, function(object) {
-            var p = pos(object.body);
+            var p = self.pos(object.body);
             _.each(object.graphics, function(graphics) {
                 graphics.x = p.x + graphics.regX;
                 graphics.y = p.y + graphics.regY;
@@ -67,7 +69,7 @@ graphics = (function() {
             });
         });
 
-        stage.update();
+        self.stage.update();
     });
     return self;
 })();
