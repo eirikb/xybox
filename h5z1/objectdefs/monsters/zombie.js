@@ -31,6 +31,22 @@
                 v.Set(way * zombie.speed, v.y);
             });
         });
+
+        events.on('collide', function(a, b) {
+            var bullet, zombie;
+
+            bullet = _.find([a, b], function(o) {
+                return o.objectdef === 'bullet';
+            });
+            zombie = _.find([a, b], function(o) {
+                return o.objectdef === 'zombie';
+            });
+
+            if (bullet && zombie) {
+                console.log(bullet, zombie);
+                return false;
+            }
+        });
     },
     1000);
 })();

@@ -1,9 +1,8 @@
 {
     "preload": [
         "objectdefs/player/player.js",
-        "objectdefs/player/weapon.js",
-        "objectdefs/player/player.png",
-        {"id": "weapon", "src": "objectdefs/player/weapon.png"}
+        "objectdefs/player/weapon.json",
+        "objectdefs/player/player.png"
     ],
     "objectdefs": {
         "player": {

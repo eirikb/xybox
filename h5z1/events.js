@@ -21,10 +21,16 @@ events = (function() {
         });
     };
 
-    self.trigger = function(name, val) {
+    // TODO: Use call and slice arguments
+    self.trigger = function(name, val1, val2) {
+        var ret;
         _.each(listeners[name], function(listener) {
-            listener.callback(val);
+            var r;
+
+            r = listener.callback(val1, val2);
+            if (typeof r !== 'undefined') ret = r;
         });
+        return ret;
     };
 
     return self;

@@ -7,11 +7,33 @@ physics = (function() {
     velocityIterationsPerSecond = 300;
     positionIterationsPerSecond = 200;
 
+    self.createBody = function(object) {
+        object.body = trolley.build(object.body).create()[0];
+        
+        // Reference back from body, used for Box2D collisions
+        if (object.body) object.body.object = object;
+    };
+
+    game.world.SetContactFilter({
+        ShouldCollide: function(fixtureA, fixtureB) {
+            var objectA, objectB;
+
+            objectA = fixtureA.m_body.object;
+            objectB = fixtureB.m_body.object;
+            return events.trigger('collide', objectA, objectB);
+        }
+    });
+
+    events.on('objectCreate', function(object) {
+        self.createBody(object);
+    });
+    /*
     events.on('onload', function() {
         _.each(game.objects, function(object) {
-            object.body = trolley.build(object.body).create()[0];
+            self.createBody(object);
         });
     });
+    */
 
     events.on('tick', 2, function() {
         game.world.ClearForces();

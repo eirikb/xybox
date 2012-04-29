@@ -22,17 +22,18 @@
         pos.y += sin * 4;
 
         bullet = {
-            body: trolley.body(pos.x, pos.y, {
-                bullet: true
-            }).circle(0.4).create(),
-            graphics: [{
-                id: 'weapon'
-            }]
+            objectdef: 'bullet',
+            body: {
+                x: pos.x,
+                y: pos.y
+            }
         };
-
-        bullet.body.GetLinearVelocity().Set(cos * 100, sin * 100);
+        console.log(bullet)
+        physics.createBody(bullet);
         graphics.createGraphics(bullet);
         game.objects.push(bullet);
+
+        bullet.body.GetLinearVelocity().Set(cos * bullet.speed, sin * bullet.speed);
     }
 
     events.on('mouseMove', function(event) {

@@ -54,6 +54,10 @@ graphics = (function() {
         object.graphics = newGraphics;
     };
 
+    events.on('objectCreate', function(object) {
+        self.createGraphics(object);
+    });
+
     events.on('onload', function() {
         var canvas;
 
@@ -76,10 +80,6 @@ graphics = (function() {
         self.stage.onMouseUp = function(event) {
             events.trigger('mouseUp', event);
         };
-
-        _.each(game.objects, function(object) {
-            self.createGraphics(object);
-        });
     });
 
     events.on('tick', function() {
