@@ -42,6 +42,16 @@
             }]
         }
     }, {
+        "objectdef": "bridge",
+        "body": {
+            "x": 10,
+            "y": 12,
+            "boxes": [{
+                "width": 12,
+                "height": 1
+            }]
+        }
+    }, {
         "objectdef": "ground",
         "body": {
             "x": 20,
@@ -50,6 +60,18 @@
                 "width": 2,
                 "height": 2
             }]
+        }
+    }, {
+        "objectdef": "box",
+        "body": {
+            "x": 5,
+            "y": 8
+        }
+    }, {
+        "objectdef": "box",
+        "body": {
+            "x": 5,
+            "y": 10
         }
     }, {
         "objectdef": "box",
