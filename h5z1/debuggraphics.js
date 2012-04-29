@@ -1,7 +1,7 @@
 (function() {
     var self = {};
 
-    game.onload(function(assets) {
+    events.on('onload', function(assets) {
         var c = document.getElementById('debugpanel'),
         ctx = c.getContext('2d');
         var dbgDraw = new b2DebugDraw();
@@ -13,7 +13,7 @@
         game.d = dbgDraw;
     });
 
-    game.tick(function() {
+    events.on('tick', function() {
         game.world.DrawDebugData();
     });
 

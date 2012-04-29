@@ -1,17 +1,12 @@
 game = (function() {
-    var self, manifest, onloads, ticks;
+    var self;
 
     self = {};
     self.fps = 40;
     self.world = trolley.init();
+
     // Keyboard input using kibo ( https://github.com/marquete/kibo )
     self.keys = new Kibo();
-    self.objects = [];
-    self.types = {};
-
-    manifest = [];
-    onloads = [];
-    ticks = [];
 
     function loadLevel(number, cb) {
         var manifest;
@@ -32,33 +27,16 @@ game = (function() {
                 assets[asset.id] = asset.result;
             });
 
-            _.each(onloads, function(onload) {
-                onload();
-            });
+            events.trigger('onload');
 
             Ticker.setFPS(self.fps);
             Ticker.addListener(function() {
-                _.each(ticks, function(tick) {
-                    tick();
-                });
+                events.trigger('tick');
             });
         });
 
         cb();
     }
-
-    self.preOnload = function(onload) {
-        onloads.unshift(onload);
-    };
-    self.onload = function(onload) {
-        onloads.push(onload);
-    };
-    self.preTick = function(tick) {
-        ticks.unshift(tick);
-    };
-    self.tick = function(tick) {
-        ticks.push(tick);
-    };
 
     window.onload = function() {
         var loader, assets, spinner;

@@ -1,6 +1,6 @@
 (function() {
 
-    game.tick(function() {
+    events.on('tick', function() {
         var pos;
 
         pos = graphics.pos(game.player);

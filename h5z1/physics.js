@@ -7,17 +7,17 @@ physics = (function() {
     velocityIterationsPerSecond = 300;
     positionIterationsPerSecond = 200;
 
-    game.onload(function() {
+    events.on('onload', function() {
         _.each(game.objects, function(object) {
             object.body = trolley.build(object.body).create()[0];
         });
     });
 
-    game.preTick(function() {
+    events.on('tick', 2, function() {
         game.world.ClearForces();
     });
 
-    game.tick(function() {
+    events.on('tick', function() {
         var time, delta;
 
         time = new Date().getTime();

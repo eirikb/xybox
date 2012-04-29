@@ -8,7 +8,7 @@
         right: ['d', 'right']
     };
 
-    game.tick(function() {
+    events.on('tick', function() {
         var pos, v;
 
         v = game.player.body.GetLinearVelocity();
@@ -42,15 +42,11 @@
         v.Set(v.x, game.player.speed);
     });
 
-    graphics.onMouseMove(function(event) {
-        var pos, mouseX, mouseY, rightDir, x, y, angle, paddX;
+    events.on('mouseMove', function(event) {
+        var mouseX, mouseY, rightDir, x, y, angle, paddX;
 
-        pos = {
-            x: graphics.width / 2,
-            y: graphics.height / 2
-        };
-        mouseX = event.stageX - pos.x;
-        mouseY = event.stageY - pos.y;
+        mouseX = event.stageX - graphics.center.x;
+        mouseY = event.stageY - graphics.center.y;
         rightDir = mouseX >= 0;
         y = rightDir ? 0: 1;
         x = 0;
