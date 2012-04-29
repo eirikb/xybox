@@ -105,6 +105,18 @@
     }, {
         "objectdef": "zombie",
         "body": {
+            "x": 24,
+            "y": 6
+        }
+    }, {
+        "objectdef": "zombie",
+        "body": {
+            "x": 23,
+            "y": 6
+        }
+    }, {
+        "objectdef": "zombie",
+        "body": {
             "x": 22,
             "y": 6
         }
