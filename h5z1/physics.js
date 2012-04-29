@@ -1,15 +1,16 @@
 // Physics using trolley ( https://github.com/eirikb/trolley )
 physics = (function() {
-    var self, lastUpdate, velocityIterationsPerSecond, positionIterationsPerSecond;
+    var self, lastUpdate, velocityIterationsPerSecond, positionIterationsPerSecond, destroyList;
 
     self = {};
     lastUpdate = Date.now();
     velocityIterationsPerSecond = 300;
     positionIterationsPerSecond = 200;
+    destroyList = [];
 
     self.createBody = function(object) {
         object.body = trolley.build(object.body).create()[0];
-        
+
         // Reference back from body, used for Box2D collisions
         if (object.body) object.body.object = object;
     };
@@ -27,13 +28,10 @@ physics = (function() {
     events.on('objectCreate', function(object) {
         self.createBody(object);
     });
-    /*
-    events.on('onload', function() {
-        _.each(game.objects, function(object) {
-            self.createBody(object);
-        });
+
+    events.on('objectDestroy', function(object) {
+        destroyList.push(object.body);
     });
-    */
 
     events.on('tick', 2, function() {
         game.world.ClearForces();
@@ -41,6 +39,11 @@ physics = (function() {
 
     events.on('tick', function() {
         var time, delta;
+
+        _.each(destroyList, function(body) {
+            game.world.DestroyBody(body);
+        });
+        destroyList = [];
 
         time = new Date().getTime();
         delta = (time - lastUpdate) / 1000;

@@ -6,7 +6,7 @@
     "objectdefs": {
         "zombie": {
             "speed": 5,
-            "life": 20,
+            "life": 100,
             "body": {
                 "options": {
                     "allowSleep": false,

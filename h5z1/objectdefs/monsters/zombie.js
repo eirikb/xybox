@@ -33,18 +33,24 @@
         });
 
         events.on('collide', function(a, b) {
-            var bullet, zombie;
+            var zombie, v, damage, power;
 
-            bullet = _.find([a, b], function(o) {
-                return o.objectdef === 'bullet';
-            });
             zombie = _.find([a, b], function(o) {
                 return o.objectdef === 'zombie';
             });
+            if (zombie === a) a = b;
 
-            if (bullet && zombie) {
-                console.log(bullet, zombie);
-                return false;
+            if (zombie) {
+                v = a.body.GetLinearVelocity();
+                if (a.power) power = a.power;
+                else power = 1;
+
+                damage = Math.floor(((Math.abs(v.x) + Math.abs(v.y)) * a.body.GetMass() / 10) * power);
+                zombie.life -= damage;
+
+                if (zombie.life <= 0) {
+                    game.destroyObject(zombie);
+                }
             }
         });
     },

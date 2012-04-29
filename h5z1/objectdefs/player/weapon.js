@@ -40,7 +40,7 @@
 
     events.on('tick', function() {
         if (reload === 0) {
-            if (shooting) {
+            if (shooting && mouseX && mouseY) {
                 shoot();
                 reload = 10;
             }

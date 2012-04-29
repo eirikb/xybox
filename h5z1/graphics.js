@@ -58,6 +58,12 @@ graphics = (function() {
         self.createGraphics(object);
     });
 
+    events.on('objectDestroy', function(object) {
+        _.each(object.graphics, function(graphics) {
+            self.stage.removeChild(graphics);
+        });
+    });
+
     events.on('onload', function() {
         var canvas;
 

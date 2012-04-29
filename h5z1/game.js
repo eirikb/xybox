@@ -18,6 +18,11 @@ game = (function() {
         return object;
     };
 
+    self.destroyObject = function(object) {
+        events.trigger('objectDestroy', object);
+        self.objects = _.without(self.objects, object);
+    };
+
     function loadLevel(number, cb) {
         var manifest;
 
