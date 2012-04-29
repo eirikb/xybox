@@ -9,12 +9,10 @@
     };
 
     events.on('tick', function() {
-        var pos, v;
+        var v;
 
         v = game.player.body.GetLinearVelocity();
         v.Set(way * game.player.speed, v.y);
-
-        pos = graphics.pos(game.player);
     });
 
     game.keys.down(keys.left, function() {

@@ -1,20 +1,43 @@
 {
-    "top": {
-        "frames": {
-            "width": 30,
-            "numFrames": 22,
-            "height": 30
-        },
-        "animations": {"right": [0, 0]},
-        "images": ["img/player2.png"]
-    }, 
-    "bottom": {
-        "frames": {
-            "width": 30,
-            "numFrames": 22,
-            "height": 30
-        },
-        "animations": {"right": [9, 15], "left": [16, 22]},
-        "images": ["img/player2.png"]
+    "preload": [
+        "objectdefs/monsters/zombie.png",
+        "objectdefs/monsters/zombie.js"
+    ],
+    "objectdefs": {
+        "zombie": {
+            "speed": 5,
+            "body": {
+                "options": {
+                    "allowSleep": false,
+                    "fixedRotation": true
+                },
+                "circles": [{
+                    "size": 1.5,
+                    "options": {
+                        "friction": 0
+                    }
+                },{
+                    "y": 1,
+                    "size": 1.5,
+                    "options": {
+                        "density": 1,
+                        "friction": 0
+                    }
+                }]
+            },
+            "graphics": [{
+                "frames": {
+                    "width": 25,
+                    "numFrames": 6,
+                    "height": 40
+                },
+                "animations": {
+                    "default": 1,
+                    "left": [0, 2, true, 8],
+                    "right": [3, 5, true, 8]
+                },
+                "images": ["objectdefs/monsters/zombie.png"]
+            }]
+        }
     }
 }

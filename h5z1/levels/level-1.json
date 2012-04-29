@@ -2,6 +2,7 @@
     "preload": [
         "objectdefs/world/world.json",
         "objectdefs/player/player.json",
+        "objectdefs/monsters/zombie.json",
         "levels/level-1.js",
         {"id": "bg", "src": "objectdefs/world/bg.png"}
     ],
@@ -43,6 +44,12 @@
         "objectdef": "player",
         "body": {
             "x": 10,
+            "y": 10
+        }
+    }, {
+        "objectdef": "zombie",
+        "body": {
+            "x": 22,
             "y": 10
         }
     }]
