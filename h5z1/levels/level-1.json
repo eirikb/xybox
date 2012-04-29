@@ -26,7 +26,7 @@
     }, {
         "objectdef": "ground",
         "body": {
-            "x": 90,
+            "x": 45,
             "boxes": [{
                 "width": 10,
                 "height": 6
@@ -35,9 +35,9 @@
     }, {
         "objectdef": "ground",
         "body": {
-            "x": 45,
+            "x": 65,
             "boxes": [{
-                "width": 40,
+                "width": 10,
                 "height": 6
             }]
         }
@@ -77,6 +77,21 @@
         "objectdef": "box",
         "body": {
             "x": 11,
+            "y": 6
+        }
+    }, {
+        "objectdef": "bridge",
+        "body": {
+            "x": 60,
+            "y": 11,
+            "options": {
+                "angle": 1.57079633
+            }
+        }
+    }, {
+        "objectdef": "bridge",
+        "body": {
+            "x": 40,
             "y": 6
         }
     }, {
