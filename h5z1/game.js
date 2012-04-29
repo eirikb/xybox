@@ -45,9 +45,8 @@ game = (function() {
             Ticker.addListener(function() {
                 events.trigger('tick');
             });
+            cb();
         });
-
-        cb();
     }
 
     window.onload = function() {
