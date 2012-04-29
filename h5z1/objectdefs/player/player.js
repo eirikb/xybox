@@ -41,5 +41,36 @@
         var v = game.player.body.GetLinearVelocity();
         v.Set(v.x, game.player.speed);
     });
+
+    graphics.onMouseMove(function(event) {
+        var pos, mouseX, mouseY, rightDir, x, y, angle, paddX;
+
+        pos = {
+            x: graphics.width / 2,
+            y: graphics.height / 2
+        };
+        mouseX = event.stageX - pos.x;
+        mouseY = event.stageY - pos.y;
+        rightDir = mouseX >= 0;
+        y = rightDir ? 0: 1;
+        x = 0;
+
+        if (rightDir) mouseY *= - 1;
+        angle = mouseX / mouseY;
+
+        if (angle < - 2 || angle > 5) x = 0;
+        else if (angle < 0) x = 2;
+        else if (angle > 1) x = 1;
+        else x = 3;
+
+        if (!rightDir) {
+            x += 4;
+            paddX = -6;
+        } else {
+            paddX = -2;
+        }
+        game.player.graphics.top.paddX = paddX;
+        game.player.graphics.top.gotoAndStop(x);
+    });
 })();
 

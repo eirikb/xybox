@@ -1,9 +1,10 @@
 // Graphics using EaselJS ( https://github.com/CreateJS/EaselJS/ )
 graphics = (function() {
-    var self;
+    var self, onMouseMoves;
 
     self = {};
     self.scale = 15;
+    onMouseMoves = [];
 
     self.pos = function(object) {
         var pos;
@@ -19,6 +20,10 @@ graphics = (function() {
         }
     };
 
+    self.onMouseMove = function(cb) {
+        onMouseMoves.push(cb);
+    };
+
     game.onload(function() {
         var canvas;
 
@@ -27,6 +32,13 @@ graphics = (function() {
         self.width = canvas.width;
         self.height = canvas.height;
         self.stage = new Stage(canvas);
+
+        self.stage.onMouseMove = function(event) {
+            _.each(onMouseMoves, function(onMouseMove) {
+                onMouseMove(event);
+            });
+        };
+
 
         _.each(game.objects, function(object) {
             var newGraphics = [];

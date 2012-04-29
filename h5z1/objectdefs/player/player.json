@@ -42,12 +42,12 @@
                 "images": ["objectdefs/player/player.png"]
             }, {
                 "name": "top",
-                "paddX": 2,
+                "paddX": -2,
                 "paddY": -12,
                 "frames": {
                     "width": 30,
                     "numFrames": 22,
-                    "height": 30
+                    "height": 35
                 },
                 "animations": {"default": [0], "right": [0, 0]},
                 "images": ["objectdefs/player/player.png"]

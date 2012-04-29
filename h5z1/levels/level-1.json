@@ -10,8 +10,9 @@
         "graphics": [{
             "id": "bg",
             "width": 1000,
-            "height": 400,
-            "paddX": -100
+            "height": 500,
+            "paddX": -100,
+            "paddY": -70
         }]
     }, {
         "objectdef": "ground",
@@ -28,18 +29,6 @@
             "y": 5,
             "boxes": [{
                 "width": 2,
-                "height": 2
-            }]
-        }
-    }, {
-        "graphics": [{
-            "id": "box"
-        }],
-        "body": {
-            "x": 10,
-            "y": 20,
-            "boxes": [{
-                "width": 4,
                 "height": 2
             }]
         }
