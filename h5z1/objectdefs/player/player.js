@@ -1,5 +1,5 @@
 (function() {
-    var way, keys;
+    var way, keys, jump;
 
     way = 0;
     keys = {
@@ -7,6 +7,7 @@
         up: ['w', 'up'],
         right: ['d', 'right']
     };
+    jump = false;
 
     events.on('tick', function() {
         var v;
@@ -36,8 +37,13 @@
     });
 
     game.keys.down(keys.up, function() {
-        var v = game.player.body.GetLinearVelocity();
-        v.Set(v.x, game.player.speed);
+        var v;
+
+        if (!jump) {
+            jump = true;
+            v = game.player.body.GetLinearVelocity();
+            v.Set(v.x, game.player.speed);
+        }
     });
 
     events.on('mouseMove', function(event) {
@@ -65,6 +71,19 @@
         }
         game.player.graphics.top.paddX = paddX;
         game.player.graphics.top.gotoAndStop(x);
+    });
+
+    events.on('collide', function(a, b) {
+        var player, isBullet;
+
+        if (a.name === 'player') player = a;
+        else if (b.name === 'player') player = b;
+
+        isBullet = a.objectdef === 'bullet' || b.objectdef === 'bullet';
+
+        if (player && !isBullet) {
+            jump = false;
+        }
     });
 })();
 

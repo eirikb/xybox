@@ -5,7 +5,7 @@
         var c = document.getElementById('debugpanel'),
         ctx = c.getContext('2d');
         var dbgDraw = new b2DebugDraw();
-        dbgDraw.m_drawScale = 10;
+        dbgDraw.m_drawScale = 2;
         dbgDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit | b2DebugDraw.e_centerOfMassBit);
         dbgDraw.SetSprite(ctx);
         physics.world.SetDebugDraw(dbgDraw);

@@ -26,6 +26,24 @@
     }, {
         "objectdef": "ground",
         "body": {
+            "x": 90,
+            "boxes": [{
+                "width": 10,
+                "height": 6
+            }]
+        }
+    }, {
+        "objectdef": "ground",
+        "body": {
+            "x": 45,
+            "boxes": [{
+                "width": 40,
+                "height": 6
+            }]
+        }
+    }, {
+        "objectdef": "ground",
+        "body": {
             "x": 20,
             "y": 5,
             "boxes": [{

@@ -1,9 +1,12 @@
 // Physics using trolley ( https://github.com/eirikb/trolley )
 physics = (function() {
-    var self, lastUpdate, velocityIterationsPerSecond, positionIterationsPerSecond, destroyList;
+    var self, world, lastUpdate, velocityIterationsPerSecond, positionIterationsPerSecond, destroyList;
 
     self = {};
-    self.world = trolley.init();
+
+    world = self.world = trolley.init();
+    world.SetGravity(new b2Vec2(0, -20));
+
     lastUpdate = Date.now();
     velocityIterationsPerSecond = 300;
     positionIterationsPerSecond = 200;
@@ -16,7 +19,7 @@ physics = (function() {
         if (object.body) object.body.object = object;
     };
 
-    self.world.SetContactFilter({
+    world.SetContactFilter({
         ShouldCollide: function(fixtureA, fixtureB) {
             var objectA, objectB;
 
@@ -35,14 +38,14 @@ physics = (function() {
     });
 
     events.on('tick', 2, function() {
-        self.world.ClearForces();
+        world.ClearForces();
     });
 
     events.on('tick', function() {
         var time, delta;
 
         _.each(destroyList, function(body) {
-            self.world.DestroyBody(body);
+            world.DestroyBody(body);
         });
         destroyList = [];
 
@@ -53,7 +56,7 @@ physics = (function() {
         if (delta > 10) {
             delta = 1 / game.fps;
         }
-        step(self.world, delta);
+        step(world, delta);
     });
 
     function step(w, delta) {
