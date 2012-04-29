@@ -8,13 +8,13 @@
         dbgDraw.m_drawScale = 10;
         dbgDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit | b2DebugDraw.e_centerOfMassBit);
         dbgDraw.SetSprite(ctx);
-        game.world.SetDebugDraw(dbgDraw);
+        physics.world.SetDebugDraw(dbgDraw);
 
         game.d = dbgDraw;
     });
 
     events.on('tick', function() {
-        game.world.DrawDebugData();
+        physics.world.DrawDebugData();
     });
 
     return self;

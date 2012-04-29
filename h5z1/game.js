@@ -3,7 +3,6 @@ game = (function() {
 
     self = {};
     self.fps = 40;
-    self.world = trolley.init();
     self.objects = [];
 
     // Keyboard input using kibo ( https://github.com/marquete/kibo )
