@@ -13,7 +13,7 @@ graphics = (function() {
         };
     };
 
-    game.onload(function(assets) {
+    game.onload(function() {
         var canvas;
 
         canvas = document.getElementById('gamepanel');
@@ -35,9 +35,10 @@ graphics = (function() {
                 w = object.body.width * self.scale;
                 h = object.body.height * self.scale;
                 if (graphics.id) {
+                    if (!game.assets[graphics.id]) throw new Error('Unknown graphics id: ' + graphics.id);
                     shape = new Shape();
                     g = shape.graphics;
-                    g.beginBitmapFill(assets[graphics.id]);
+                    g.beginBitmapFill(game.assets[graphics.id]);
                     g.drawRect(0, 0, w, h);
                 } else {
                     sheet = new SpriteSheet(graphics);

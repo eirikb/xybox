@@ -1,5 +1,9 @@
 {
-    "types": {
+    "preload": [
+        "objectdefs/player/player.js",
+        "objectdefs/player/player.png"
+    ],
+    "objectdefs": {
         "player": {
             "speed": 10,
             "body": {
@@ -35,7 +39,7 @@
                     "right": [9, 14, true, 8],
                     "left": [16, 21, true, 8]
                 },
-                "images": ["object-types/player/player.png"]
+                "images": ["objectdefs/player/player.png"]
             }, {
                 "name": "top",
                 "paddX": 2,
@@ -46,7 +50,7 @@
                     "height": 30
                 },
                 "animations": {"default": [0], "right": [0, 0]},
-                "images": ["object-types/player/player.png"]
+                "images": ["objectdefs/player/player.png"]
             }]
         }
     }

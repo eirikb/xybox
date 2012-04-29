@@ -1,6 +1,10 @@
 {
+    "preload": [
+        "objectdefs/world/world.json",
+        "objectdefs/player/player.json"
+    ],
     "objects": [{
-        "type": "ground",
+        "objectdef": "ground",
         "body": {
             "boxes": [{
                 "width": 40,
@@ -8,7 +12,7 @@
             }]
         }
     }, {
-        "type": "ground",
+        "objectdef": "ground",
         "body": {
             "x": 20,
             "y": 5,
@@ -30,14 +34,14 @@
             }]
         }
     }, {
-        "type": "box",
+        "objectdef": "box",
         "body": {
             "x": 11,
             "y": 10
         }
     }, {
         "name": "player",
-        "type": "player",
+        "objectdef": "player",
         "body": {
             "x": 10,
             "y": 10

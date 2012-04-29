@@ -1,5 +1,9 @@
 {
-    "types": {
+    "preload": [
+        {"id": "ground", "src": "objectdefs/world/ground.png"},
+        {"id": "box", "src": "objectdefs/world/box.png"}
+    ],
+    "objectdefs": {
         "ground": {
             "graphics": [{
                 "id": "ground",

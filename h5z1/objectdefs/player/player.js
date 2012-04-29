@@ -8,9 +8,6 @@
         right: ['d', 'right']
     };
 
-    game.manifest('object-types/player/player.png');
-    game.manifest('object-types/player/player.json');
-
     game.tick(function() {
         var pos, v;
 

@@ -7,7 +7,7 @@ physics = (function() {
     velocityIterationsPerSecond = 300;
     positionIterationsPerSecond = 200;
 
-    game.onload(function(assets) {
+    game.onload(function() {
         _.each(game.objects, function(object) {
             object.body = trolley.build(object.body).create()[0];
         });

@@ -13,29 +13,40 @@ game = (function() {
     onloads = [];
     ticks = [];
 
-    function loadLevel(number) {
-        self.manifest('levels/level-' + number + '.json', 'level-' + number);
-        self.preOnload(function(assets) {
-            var level = JSON.parse(assets['level-' + number]);
-            _.each(level.objects, function(object) {
-                var type = game.types[object.type];
-                if (type) helpers.deepDefaults(object, type);
-                if (object.name) game[object.name] = object;
+    function loadLevel(number, cb) {
+        var manifest;
+
+        manifest = ['levels/level-' + number + '.json'];
+
+        preload.recursiveLoad(manifest, function(result, assets) {
+            self.assets = assets;
+
+            self.objects = _.map(result.objects, function(object) {
+                var objectdef = result.objectdefs[object.objectdef];
+                if (objectdef) helpers.deepDefaults(object, objectdef);
+                if (object.name) self[object.name] = object;
+                return object;
             });
-            _.extend(game, level);
+
+            _.each(assets, function(asset) {
+                assets[asset.id] = asset.result;
+            });
+
+            _.each(onloads, function(onload) {
+                onload();
+            });
+
+            Ticker.setFPS(self.fps);
+            Ticker.addListener(function() {
+                _.each(ticks, function(tick) {
+                    tick();
+                });
+            });
         });
+
+        cb();
     }
 
-    self.manifest = function(src, id) {
-        if (id) {
-            manifest.push({
-                src: src,
-                id: id
-            });
-        } else {
-            manifest.push(src);
-        }
-    };
     self.preOnload = function(onload) {
         onloads.unshift(onload);
     };
@@ -52,47 +63,16 @@ game = (function() {
     window.onload = function() {
         var loader, assets, spinner;
 
-        loadLevel(1);
-
-        loader = new PreloadJS();
-        assets = [];
         spinner = new Spinner({
             top: 150,
             left: 300
         });
 
         spinner.spin(document.body);
-        loader.onFileLoad = function(event) {
-            assets.push(event);
-        };
 
-        loader.onComplete = function() {
+        loadLevel(1, function() {
             spinner.stop();
-
-            _.chain(assets).filter(function(a) {
-                return a.src.match(/json$/);
-            }).each(function(a) {
-                a = JSON.parse(a.result);
-                _.extend(self.types, a.types);
-            });
-
-            _.each(assets, function(asset) {
-                assets[asset.id] = asset.result;
-            });
-
-            _.each(onloads, function(onload) {
-                onload(assets);
-            });
-
-            Ticker.setFPS(game.fps);
-            Ticker.addListener(function() {
-                _.each(ticks, function(tick) {
-                    tick();
-                });
-            });
-        };
-
-        loader.loadManifest(manifest);
+        });
     };
 
     return self;
