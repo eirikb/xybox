@@ -31,7 +31,12 @@ preload = (function() {
                     break;
 
                 case PreloadJS.JSON:
-                    a = JSON.parse(a.result);
+                    try {
+                        a = JSON.parse(a.result);
+                    } catch(e) {
+                        console.error('Unable to parse ' + a.src);
+                        throw e;
+                    }
                     _.each(a.preload, function(m) {
                         manifest.push(m);
                     });
