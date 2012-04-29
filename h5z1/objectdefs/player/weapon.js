@@ -28,10 +28,7 @@
                 y: pos.y
             }
         };
-        console.log(bullet)
-        physics.createBody(bullet);
-        graphics.createGraphics(bullet);
-        game.objects.push(bullet);
+        game.createObject(bullet);
 
         bullet.body.GetLinearVelocity().Set(cos * bullet.speed, sin * bullet.speed);
     }

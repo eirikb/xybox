@@ -4,8 +4,8 @@ game = (function() {
     self = {};
     self.fps = 40;
     self.world = trolley.init();
+    self.objects = [];
 
-    //self.world.SetGravity(new b2Vec2(0, -20));
     // Keyboard input using kibo ( https://github.com/marquete/kibo )
     self.keys = new Kibo();
 
@@ -13,6 +13,7 @@ game = (function() {
         var objectdef = self.objectdefs[object.objectdef];
         if (objectdef) helpers.deepDefaults(object, objectdef);
         if (object.name) self[object.name] = object;
+        self.objects.push(object);
         events.trigger('objectCreate', object);
         return object;
     };
@@ -32,8 +33,8 @@ game = (function() {
 
             self.objectdefs = result.objectdefs;
 
-            self.objects = _.map(result.objects, function(object) {
-                return self.createObject(object);
+            _.each(result.objects, function(object) {
+                self.createObject(object);
             });
 
             Ticker.setFPS(self.fps);
