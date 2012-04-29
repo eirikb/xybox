@@ -5,7 +5,7 @@
     ],
     "objectdefs": {
         "zombie": {
-            "speed": 5,
+            "speed": 11,
             "life": 100,
             "body": {
                 "options": {
