@@ -9,9 +9,6 @@
     };
     jump = false;
 
-    events.on('onload', function() {
-    });
-
     events.on('tick', function() {
         var v;
 

@@ -3,6 +3,7 @@
         "objectdefs/world/world.json",
         "objectdefs/player/player.json",
         "objectdefs/monsters/zombie.json",
+        "objectdefs/general/simpleanimation.json",
         "levels/level-1.js",
         {"id": "bg", "src": "objectdefs/world/bg.png"}
     ],

@@ -3,6 +3,13 @@
 
     reload = 0;
 
+    function updateAmmo() {
+        var label;
+
+        label = document.getElementById('ammo');
+        label.innerText = game.player.ammo;
+    }
+
     function shoot() {
         var bullet, a, b, h, cos, sin, pos;
 
@@ -43,6 +50,7 @@
             if (shooting && mouseX && mouseY && game.player.ammo > 0) {
                 shoot();
                 game.player.ammo--;
+                updateAmmo();
                 reload = 10;
             }
         } else {

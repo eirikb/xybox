@@ -45,6 +45,9 @@ game = (function() {
             Ticker.addListener(function() {
                 events.trigger('tick');
             });
+
+            events.trigger('ready');
+
             cb();
         });
     }

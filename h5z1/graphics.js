@@ -15,7 +15,7 @@ graphics = (function() {
                 y: self.height - pos.y * self.scale - object.body.height * self.scale
             };
         } else {
-            return object.graphics;
+            return object;
         }
     };
 
@@ -23,7 +23,7 @@ graphics = (function() {
         var newGraphics = [];
 
         _.each(object.graphics, function(graphics) {
-            var g, w, h, shape, sheet;
+            var g, w, h, shape, sheet, animation;
 
             if (object.body) {
                 w = object.body.width * self.scale;
@@ -41,8 +41,11 @@ graphics = (function() {
             } else {
                 sheet = new SpriteSheet(graphics);
                 shape = new BitmapAnimation(sheet);
-                shape.gotoAndStop('default');
+                if (object.animation) graphics.animation = object.animation;
+                if (!graphics.animation) graphics.animation = 'default';
+                shape.gotoAndPlay(graphics.animation);
             }
+            if (object.rotation) shape.rotation = object.rotation;
             shape.paddX = graphics.paddX;
             shape.paddY = graphics.paddY;
             shape.regX = w / 2;

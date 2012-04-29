@@ -30,7 +30,7 @@
     });
 
     events.on('collide', function(a, b) {
-        var zombie, v, damage, power;
+        var zombie, v, damage, power, pos;
 
         zombie = _.find([a, b], function(o) {
             return o.objectdef === 'zombie';
@@ -46,7 +46,22 @@
             zombie.life -= damage;
 
             if (zombie.life <= 0) {
+                pos = graphics.pos(zombie);
+                game.createObject({
+                    objectdef: 'blowup',
+                    x: pos.x - 50,
+                    y: pos.y - 80
+                });
                 game.destroyObject(zombie);
+            }
+
+            if (damage > 0 && a.objectdef === 'bullet') {
+                pos = graphics.pos(zombie);
+                game.createObject({
+                    objectdef: 'blood',
+                    x: pos.x,
+                    y: pos.y - 15
+                });
             }
         }
     });
