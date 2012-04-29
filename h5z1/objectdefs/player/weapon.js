@@ -40,8 +40,9 @@
 
     events.on('tick', function() {
         if (reload === 0) {
-            if (shooting && mouseX && mouseY) {
+            if (shooting && mouseX && mouseY && game.player.ammo > 0) {
                 shoot();
+                game.player.ammo--;
                 reload = 10;
             }
         } else {

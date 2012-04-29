@@ -6,6 +6,7 @@
     ],
     "objectdefs": {
         "player": {
+            "ammo": 0,
             "speed": 10,
             "body": {
                 "options": {
