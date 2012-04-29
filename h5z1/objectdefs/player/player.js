@@ -14,13 +14,7 @@
         v = game.player.body.GetLinearVelocity();
         v.Set(way * game.player.speed, v.y);
 
-        pos = graphics.pos(game.player.body);
-
-        graphics.stage.x = - pos.x + graphics.width / 2;
-        graphics.stage.y = -pos.y + graphics.height / 2;
-
-        //graphics.bg.x = - graphics.stage.x * 0.9;
-        //graphics.bg.y = - graphics.stage.y * 0.9;
+        pos = graphics.pos(game.player);
     });
 
     game.keys.down(keys.left, function() {

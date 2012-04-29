@@ -1,9 +1,19 @@
 {
     "preload": [
         "objectdefs/world/world.json",
-        "objectdefs/player/player.json"
+        "objectdefs/player/player.json",
+        "levels/level-1.js",
+        {"id": "bg", "src": "objectdefs/world/bg.png"}
     ],
     "objects": [{
+        "name": "bg",
+        "graphics": [{
+            "id": "bg",
+            "width": 1000,
+            "height": 400,
+            "paddX": -100
+        }]
+    }, {
         "objectdef": "ground",
         "body": {
             "boxes": [{
