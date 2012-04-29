@@ -16,8 +16,7 @@
         sin = a / h;
 
         pos = trolley.pos(game.player.body);
-        pos.x += game.player.body.width / 2;
-        pos.y += game.player.body.height / 2;
+        pos.y += game.player.body.height;
 
         pos.x += cos * 4;
         pos.y += sin * 4;
