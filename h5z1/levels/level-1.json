@@ -42,10 +42,10 @@
             }]
         }
     }, {
-        "objectdef": "bridge",
+        "objectdef": "floor",
         "body": {
             "x": 10,
-            "y": 12,
+            "y": 11,
             "boxes": [{
                 "width": 12,
                 "height": 1
@@ -65,32 +65,32 @@
         "objectdef": "box",
         "body": {
             "x": 5,
-            "y": 8
+            "y": 6
         }
     }, {
         "objectdef": "box",
         "body": {
             "x": 5,
-            "y": 10
+            "y": 8
         }
     }, {
         "objectdef": "box",
         "body": {
             "x": 11,
-            "y": 10
+            "y": 6
         }
     }, {
         "name": "player",
         "objectdef": "player",
         "body": {
             "x": 10,
-            "y": 10
+            "y": 6
         }
     }, {
         "objectdef": "zombie",
         "body": {
             "x": 22,
-            "y": 10
+            "y": 6
         }
     }]
 }

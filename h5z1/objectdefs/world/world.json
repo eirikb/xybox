@@ -2,7 +2,7 @@
     "preload": [
         {"id": "ground", "src": "objectdefs/world/ground.png"},
         {"id": "box", "src": "objectdefs/world/box.png"},
-        {"id": "bridge", "src": "objectdefs/world/bridge.png"}
+        {"id": "floor", "src": "objectdefs/world/floor.png"}
     ],
     "objectdefs": {
         "ground": {
@@ -28,9 +28,9 @@
                 }]
             }
         },
-        "bridge": {
+        "floor": {
             "graphics": [{
-                "id": "bridge"
+                "id": "floor"
             }],
             "body": {
                 "isStatic": true
