@@ -37,7 +37,9 @@
         });
         if (zombie === a) a = b;
 
-        if (zombie && a.objectdef === 'bullet') {
+        if (zombie && a.objectdef === 'bullet' && !a.used) {
+            a.used = true;
+
             v = a.body.GetLinearVelocity();
             if (a.power) power = a.power;
             else power = 1;

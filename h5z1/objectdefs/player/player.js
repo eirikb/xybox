@@ -65,24 +65,46 @@
 
         if (!rightDir) {
             x += 4;
-            paddX = -6;
+            paddX = - 6;
         } else {
-            paddX = -2;
+            paddX = - 2;
         }
         game.player.graphics.top.paddX = paddX;
         game.player.graphics.top.gotoAndStop(x);
     });
 
     events.on('collide', function(a, b) {
-        var player, isBullet;
+        var player;
 
-        if (a.name === 'player') player = a;
-        else if (b.name === 'player') player = b;
+        player = _.find([a, b], function(o) {
+            return o.objectdef === 'player';
+        });
+        if (player === a) a = b;
 
-        isBullet = a.objectdef === 'bullet' || b.objectdef === 'bullet';
+        if (player) {
+            if (a.objectdef !== 'bullet') {
+                jump = false;
+                if (a.power) {
+                    player.life -= a.power;
 
-        if (player && !isBullet) {
-            jump = false;
+                    if (player.life <= 0) {
+                        pos = graphics.pos(player);
+                        game.createObject({
+                            objectdef: 'blowup',
+                            x: pos.x - 50,
+                            y: pos.y - 80
+                        });
+                        game.destroyObject(player);
+                    }
+
+                    pos = graphics.pos(player);
+                    game.createObject({
+                        objectdef: 'blood',
+                        x: pos.x,
+                        y: pos.y - 15
+                    });
+                }
+            }
         }
     });
 })();

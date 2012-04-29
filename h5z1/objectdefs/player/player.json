@@ -8,6 +8,7 @@
         "player": {
             "ammo": 10,
             "speed": 10,
+            "life": 100,
             "body": {
                 "options": {
                     "allowSleep": false,

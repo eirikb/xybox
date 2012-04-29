@@ -7,6 +7,7 @@
         "zombie": {
             "speed": 11,
             "life": 100,
+            "power": 10,
             "body": {
                 "options": {
                     "allowSleep": false,
