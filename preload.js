@@ -33,17 +33,17 @@ preload = (function() {
                 case PreloadJS.JSON:
                     try {
                         a = JSON.parse(a.result);
+                        _.each(a.preload, function(m) {
+                            manifest.push(m);
+                        });
+
+                        // Remove preload and combine/extend result with a.result
+                        delete a.preload;
+                        helpers.deepDefaults(result, a);
                     } catch(e) {
                         console.error('Unable to parse ' + a.src);
                         throw e;
                     }
-                    _.each(a.preload, function(m) {
-                        manifest.push(m);
-                    });
-
-                    // Remove preload and combine/extend result with a.result
-                    delete a.preload;
-                    helpers.deepDefaults(result, a);
                     break;
                 }
             });

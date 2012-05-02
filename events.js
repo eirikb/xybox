@@ -3,6 +3,7 @@ events = (function() {
 
     self = {};
     listeners = {};
+    self.l=listeners;
 
     self.on = function(name, priority, cb) {
         if (arguments.length === 2) {
@@ -17,7 +18,7 @@ events = (function() {
             callback: cb
         });
         listeners[name].sort(function(a, b) {
-            return a.priroity > b.priority;
+            return a.priority > b.priority;
         });
     };
 

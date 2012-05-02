@@ -25,9 +25,12 @@ game = (function() {
     function loadLevel(number, cb) {
         var manifest;
 
-        manifest = ['levels/level-' + number + '.json'];
+        manifest = ['levels/level-' + number + '.json', 'meta.json'];
 
         preload.recursiveLoad(manifest, function(result, assets) {
+            // Global meta
+            meta = result.meta;
+
             events.trigger('onload');
 
             self.assets = assets;
@@ -59,7 +62,6 @@ game = (function() {
             top: 150,
             left: 300
         });
-
         spinner.spin(document.body);
 
         loadLevel(1, function() {

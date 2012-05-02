@@ -5,12 +5,19 @@ physics = (function() {
     self = {};
 
     world = self.world = trolley.init();
-    world.SetGravity(new b2Vec2(0, -20));
 
     lastUpdate = Date.now();
     velocityIterationsPerSecond = 300;
     positionIterationsPerSecond = 200;
     destroyList = [];
+
+    events.on('onload', function() {
+        velocityIterationsPerSecond = meta.velocityIterationsPerSecond || velocityIterationsPerSecond;
+        positionIterationsPerSecond = meta.positionIterationsPerSecond || positionIterationsPerSecond;
+        if (meta.gravity) {
+            world.SetGravity(new b2Vec2(meta.gravity.x, meta.gravity.y));
+        }
+    });
 
     self.createBody = function(object) {
         object.body = trolley.build(object.body).create()[0];
@@ -37,11 +44,11 @@ physics = (function() {
         destroyList.push(object.body);
     });
 
-    events.on('tick', 2, function() {
+    events.on('tick', 3, function() {
         world.ClearForces();
     });
 
-    events.on('tick', function() {
+    events.on('tick', -1, function() {
         var time, delta;
 
         _.each(destroyList, function(body) {

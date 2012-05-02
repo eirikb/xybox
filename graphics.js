@@ -3,7 +3,11 @@ graphics = (function() {
     var self;
 
     self = {};
-    self.scale = 15;
+    self.scale = 10;
+
+    events.on('onload', function() {
+        self.scale = meta.scale || self.scale;
+    });
 
     self.pos = function(object) {
         var pos;
@@ -50,6 +54,10 @@ graphics = (function() {
             shape.paddY = graphics.paddY;
             shape.regX = w / 2;
             shape.regY = h / 2;
+            if (meta.graphics) {
+                shape.scaleX = meta.graphics.scaleX || 1;
+                shape.scaleY = meta.graphics.scaleY || 1;
+            }
             self.stage.addChild(shape);
             newGraphics.push(shape);
             if (graphics.name) newGraphics[graphics.name] = shape;
@@ -91,7 +99,7 @@ graphics = (function() {
         };
     });
 
-    events.on('tick', function() {
+    events.on('tick', 2, function() {
         _.each(game.objects, function(object) {
             var p = self.pos(object);
             _.each(object.graphics, function(graphics) {
