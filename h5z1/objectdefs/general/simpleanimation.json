@@ -1,0 +1,41 @@
+{
+    "preload": [
+        "objectdefs/general/simpleanimation.js",
+        {"id": "blood", "src": "objectdefs/general/blood.png"}
+    ],
+    "objectdefs": {
+        "blood": {
+            "simpleanimation": true,
+            "graphics": [{
+                "width": 40,
+                "height": 40,
+                "regX": 0,
+                "regY": 0,
+                "frames": {
+                    "width": 40,
+                    "height": 40
+                },
+                "animations": {
+                    "default": [0, 9, false, 2]
+                },
+                "images": ["objectdefs/general/blood.png"]
+            }]
+        },
+        "blowup": {
+            "simpleanimation": true,
+            "graphics": [{
+                "width": 120,
+                "height": 120,
+                "frames": {
+                    "width": 140,
+                    "numFrames": 40,
+                    "height": 140
+                },
+                "animations": {
+                    "default": [3, 9, false, 2]
+                },
+                "images": ["objectdefs/general/blood.png"]
+            }]
+        }
+    }
+}

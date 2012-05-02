@@ -1,0 +1,52 @@
+{
+    "preload": [
+        {"id": "ground", "src": "objectdefs/world/ground.png"},
+        {"id": "box", "src": "objectdefs/world/box.png"},
+        {"id": "floor", "src": "objectdefs/world/floor.png"},
+        {"id": "bridge", "src": "objectdefs/world/bridge.png"}
+    ],
+    "objectdefs": {
+        "ground": {
+            "graphics": [{
+                "id": "ground",
+                "paddY": -4
+            }],
+            "body": {
+                "isStatic": true
+            }
+        }, 
+        "box": {
+            "graphics": [{
+                "id": "box"
+            }],
+            "body": {
+                "boxes": [{
+                    "width": 2,
+                    "height": 2,
+                    "options": {
+                        "friction": 1
+                    }
+                }]
+            }
+        },
+        "floor": {
+            "graphics": [{
+                "id": "floor"
+            }],
+            "body": {
+                "isStatic": true
+            }
+        },
+        "bridge": {
+            "graphics": [{
+                "id": "bridge"
+            }],
+            "body": {
+                "boxes": [{
+                    "width": 10,
+                    "height": 1
+                }]
+            }
+        }
+    }
+}

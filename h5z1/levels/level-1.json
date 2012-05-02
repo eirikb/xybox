@@ -1,0 +1,124 @@
+{
+    "preload": [
+        "objectdefs/world/world.json",
+        "objectdefs/player/player.json",
+        "objectdefs/monsters/zombie.json",
+        "objectdefs/general/simpleanimation.json",
+        "levels/level-1.js",
+        {"id": "bg", "src": "objectdefs/world/bg.png"}
+    ],
+    "objects": [{
+        "name": "bg",
+        "graphics": [{
+            "id": "bg",
+            "width": 1000,
+            "height": 500,
+            "paddX": -100,
+            "paddY": -70
+        }]
+    }, {
+        "objectdef": "ground",
+        "body": {
+            "boxes": [{
+                "width": 40,
+                "height": 6
+            }]
+        }
+    }, {
+        "objectdef": "ground",
+        "body": {
+            "x": 45,
+            "boxes": [{
+                "width": 10,
+                "height": 6
+            }]
+        }
+    }, {
+        "objectdef": "ground",
+        "body": {
+            "x": 65,
+            "boxes": [{
+                "width": 10,
+                "height": 6
+            }]
+        }
+    }, {
+        "objectdef": "floor",
+        "body": {
+            "x": 10,
+            "y": 11,
+            "boxes": [{
+                "width": 12,
+                "height": 1
+            }]
+        }
+    }, {
+        "objectdef": "ground",
+        "body": {
+            "x": 20,
+            "y": 5,
+            "boxes": [{
+                "width": 2,
+                "height": 2
+            }]
+        }
+    }, {
+        "objectdef": "box",
+        "body": {
+            "x": 5,
+            "y": 6
+        }
+    }, {
+        "objectdef": "box",
+        "body": {
+            "x": 5,
+            "y": 8
+        }
+    }, {
+        "objectdef": "box",
+        "body": {
+            "x": 11,
+            "y": 6
+        }
+    }, {
+        "objectdef": "bridge",
+        "body": {
+            "x": 60,
+            "y": 11,
+            "options": {
+                "angle": 1.57079633
+            }
+        }
+    }, {
+        "objectdef": "bridge",
+        "body": {
+            "x": 40,
+            "y": 6
+        }
+    }, {
+        "name": "player",
+        "objectdef": "player",
+        "body": {
+            "x": 10,
+            "y": 6
+        }
+    }, {
+        "objectdef": "zombie",
+        "body": {
+            "x": 24,
+            "y": 6
+        }
+    }, {
+        "objectdef": "zombie",
+        "body": {
+            "x": 23,
+            "y": 6
+        }
+    }, {
+        "objectdef": "zombie",
+        "body": {
+            "x": 22,
+            "y": 6
+        }
+    }]
+}

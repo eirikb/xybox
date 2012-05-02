@@ -1,0 +1,26 @@
+{
+    "preload": [
+        "objectdefs/player/weapon.js",
+        {"id": "weapon", "src": "objectdefs/player/weapon.png"}
+    ],
+    "objectdefs": {
+        "bullet": {
+            "power": 10,
+            "speed": 100,
+            "body": {
+                "options": {
+                    "bullet": true
+                },
+                "circles": [{
+                    "size": 0.4,
+                    "options": {
+                        "density": 2
+                    }
+                }]
+            },
+            "graphics": [{
+                "id": "weapon"
+            }]
+        }
+    }
+}
