@@ -1,0 +1,45 @@
+{
+    "preload": [
+        "objectdefs/player/player.js",
+        "objectdefs/player/boy.png"
+    ],
+    "objectdefs": {
+        "player": {
+            "speed": 5,
+            "life": 100,
+            "body": {
+                "options": {
+                    "allowSleep": false,
+                    "fixedRotation": true
+                },
+                "circles": [{
+                    "size": 0.75,
+                    "options": {
+                        "friction": 0
+                    }
+                },{
+                    "y": 0.5,
+                    "size": 0.75,
+                    "options": {
+                        "density": 1,
+                        "friction": 0
+                    }
+                }]
+            },
+            "graphics": [{
+                "paddY": 100,
+                "frames": {
+                    "width": 100,
+                    "numFrames": 1,
+                    "height": 120
+                },
+                "animations": {
+                    "default": 0,
+                    "right": 0,
+                    "left": 0
+                },
+                "images": ["objectdefs/player/boy.png"]
+            }]
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "preload": [
+        "objectdefs/world/world.json",
+        "objectdefs/player/player.json",
+        "objectdefs/general/simpleanimation.json",
+        "levels/level-1.js",
+        {"id": "bg", "src": "objectdefs/world/bg.png"}
+    ],
+    "objects": [{
+        "name": "bg",
+        "graphics": [{
+            "id": "bg",
+            "width": 5000,
+            "height": 500,
+            "paddX": -100,
+            "paddY": -60
+        }]
+    }, {
+        "objectdef": "block",
+        "body": {
+            "x": 2,
+            "y": 1,
+            "boxes": [{
+                "width": 10,
+                "height": 1.2
+            }]
+        }
+    }, {
+        "name": "player",
+        "objectdef": "player",
+        "body": {
+            "x": 3,
+            "y": 2
+        }
+    }]
+}

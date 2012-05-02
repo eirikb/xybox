@@ -1,0 +1,19 @@
+{
+    "preload": [
+        {"id": "block", "src": "objectdefs/world/block.png"}
+    ],
+    "objectdefs": {
+        "block": {
+            "graphics": [{
+                "id": "block"
+            }],
+            "body": {
+                "isStatic": true,
+                "boxes": [{
+                    "width": 1,
+                    "height": 1.2
+                }]
+            }
+        }
+    }
+}
