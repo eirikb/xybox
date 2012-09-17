@@ -5,13 +5,13 @@
 For the lazy:
 
 ```HTML
-    <script src="https://raw.github.com/eirikb/xybox/master/xybox-all.min.js"></script>
+<script src="https://raw.github.com/eirikb/xybox/master/xybox-all.min.js"></script>
 ```
 
 Or:
 
 ```Bash
-    bower install xybox
+bower install xybox
 ```
 
 ## Usage
