@@ -1,0 +1,13 @@
+{
+    "name": "xybox",
+    "version": "1.0.0",
+    "main": "game.js",
+    "dependencies": {
+        "easel": "http://code.createjs.com/easeljs-0.4.1.min.js",
+        "preload": "http://code.createjs.com/preloadjs-0.1.0.min.js",
+        "underscore": "",
+        "kibo": "https://raw.github.com/marquete/kibo/master/kibo.js",
+        "box2d": "https://raw.github.com/HBehrens/box2d.js/master/javascript/Box2D/box2d.min.js",
+        "trolley": ""
+    }
+}
