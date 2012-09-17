@@ -7,8 +7,14 @@ module.exports = function(grunt) {
                 dest: 'xybox.js',
                 separator: ';'
             }
+        },
+        min: {
+            dist: {
+                src: ['xybox.js'],
+                dest: 'xybox.min.js'
+            }
         }
     });
 
-    grunt.registerTask('default', 'concat');
+    grunt.registerTask('default', 'concat', 'min');
 };
