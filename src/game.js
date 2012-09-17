@@ -22,10 +22,12 @@ game = (function() {
         self.objects = _.without(self.objects, object);
     };
 
-    function loadLevel(number, cb) {
+    self.init = function(name, cb) {
         var manifest;
 
-        manifest = ['levels/level-' + number + '.json', 'meta.json'];
+        if (!name.match(/\.json$/i)) name += '.json';
+
+        manifest = [name, 'meta.json'];
 
         preload.recursiveLoad(manifest, function(result, assets) {
             // Global meta
@@ -54,20 +56,6 @@ game = (function() {
             cb();
         });
     }
-
-    window.onload = function() {
-        var loader, assets, spinner;
-
-        spinner = new Spinner({
-            top: 150,
-            left: 300
-        });
-        spinner.spin(document.body);
-
-        loadLevel(1, function() {
-            spinner.stop();
-        });
-    };
 
     return self;
 })();
