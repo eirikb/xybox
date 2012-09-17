@@ -1,14 +1,6 @@
-# HTML5-Game-Bootstrap
+# xybox
 
-This is not a library, instead it is a set of existing libraries
-put together to create a bootstrap for creating web-based games.
-
-Main technologies are canvas for graphics,
-Box2D for physics, JSON with preloading for architecture, 
-and a simple event-system for modularity.
-JavaScript is used for logic, but these files are also preloaded.
-
-## Libraries
+Built on:
 
 *  [EaselJS](https://github.com/CreateJS/EaselJS) - Graphics and animations (canvas).
 *  [PreloadJS](https://github.com/CreateJS/PreloadJS) - Preloading JSON and JavaScript files.
