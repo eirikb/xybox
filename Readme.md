@@ -1,6 +1,20 @@
 # xybox
 
-Built on:
+## Install
+
+For the lazy:
+
+    <script src="https://raw.github.com/eirikb/xybox/master/xybox-all.min.js"></script>
+
+Or:
+
+    bower install xybox
+
+## Usage
+
+For now see [gh-pages of planet cute demo](https://github.com/eirikb/xybox/tree/gh-pages/demos/planet-cute).
+
+## Built on
 
 *  [EaselJS](https://github.com/CreateJS/EaselJS) - Graphics and animations (canvas).
 *  [PreloadJS](https://github.com/CreateJS/PreloadJS) - Preloading JSON and JavaScript files.
