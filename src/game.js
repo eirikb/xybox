@@ -53,7 +53,7 @@ game = (function() {
 
             events.trigger('ready');
 
-            cb();
+            cb && cb();
         });
     }
 
