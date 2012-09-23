@@ -1,8 +1,8 @@
 {
     "preload": [
-        {"id": "block", "src": "objectdefs/world/block.png"}
+        {"id": "block", "src": "defs/world/block.png"}
     ],
-    "objectdefs": {
+    "defs": {
         "block": {
             "graphics": [{
                 "id": "block"

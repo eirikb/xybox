@@ -1,10 +1,10 @@
 {
     "preload": [
-        "objectdefs/world/world.json",
-        "objectdefs/player/player.json",
-        "objectdefs/general/simpleanimation.json",
+        "defs/world/world.json",
+        "defs/player/player.json",
+        "defs/general/simpleanimation.json",
         "levels/level-1.js",
-        {"id": "bg", "src": "objectdefs/world/bg.png"}
+        {"id": "bg", "src": "defs/world/bg.png"}
     ],
     "objects": [{
         "name": "bg",
@@ -16,7 +16,7 @@
             "paddY": -60
         }]
     }, {
-        "objectdef": "block",
+        "def": "block",
         "body": {
             "x": 2,
             "y": 1,
@@ -27,7 +27,7 @@
         }
     }, {
         "name": "player",
-        "objectdef": "player",
+        "def": "player",
         "body": {
             "x": 3,
             "y": 2

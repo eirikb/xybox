@@ -44,7 +44,7 @@
         var player;
 
         player = _.find([a, b], function(o) {
-            return o.objectdef === 'player';
+            return o.def === 'player';
         });
         if (player) {
             jump = false;

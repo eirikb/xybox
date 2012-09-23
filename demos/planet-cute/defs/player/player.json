@@ -1,9 +1,9 @@
 {
     "preload": [
-        "objectdefs/player/player.js",
-        "objectdefs/player/boy.png"
+        "defs/player/player.js",
+        "defs/player/boy.png"
     ],
-    "objectdefs": {
+    "defs": {
         "player": {
             "speed": 5,
             "life": 100,
@@ -38,7 +38,7 @@
                     "right": 0,
                     "left": 0
                 },
-                "images": ["objectdefs/player/boy.png"]
+                "images": ["defs/player/boy.png"]
             }]
         }
     }
