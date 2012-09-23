@@ -1,12 +1,11 @@
 {
     "preload": [
-        "defs/general/simpleanimation.js",
         {"id": "blood", "src": "defs/general/blood.png"}
     ],
     "defs": {
         "blood": {
-            "simpleanimation": true,
             "graphics": [{
+                "loop": 1,
                 "width": 40,
                 "height": 40,
                 "regX": 0,
@@ -22,8 +21,8 @@
             }]
         },
         "blowup": {
-            "simpleanimation": true,
             "graphics": [{
+                "loop": 1,
                 "width": 120,
                 "height": 120,
                 "frames": {

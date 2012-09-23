@@ -3,7 +3,7 @@
         "defs/world/world.json",
         "defs/player/player.json",
         "defs/monsters/zombie.json",
-        "defs/general/simpleanimation.json",
+        "defs/general/blood.json",
         "levels/level-1.js",
         {"id": "bg", "src": "defs/world/bg.png"}
     ],
