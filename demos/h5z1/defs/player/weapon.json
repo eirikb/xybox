@@ -1,9 +1,9 @@
 {
     "preload": [
-        "objectdefs/player/weapon.js",
-        {"id": "weapon", "src": "objectdefs/player/weapon.png"}
+        "defs/player/weapon.js",
+        {"id": "weapon", "src": "defs/player/weapon.png"}
     ],
-    "objectdefs": {
+    "defs": {
         "bullet": {
             "power": 10,
             "speed": 100,

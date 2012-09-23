@@ -1,9 +1,9 @@
 {
     "preload": [
-        "objectdefs/monsters/zombie.png",
-        "objectdefs/monsters/zombie.js"
+        "defs/monsters/zombie.png",
+        "defs/monsters/zombie.js"
     ],
-    "objectdefs": {
+    "defs": {
         "zombie": {
             "speed": 11,
             "life": 100,
@@ -38,7 +38,7 @@
                     "left": [0, 2, true, 8],
                     "right": [3, 5, true, 8]
                 },
-                "images": ["objectdefs/monsters/zombie.png"]
+                "images": ["defs/monsters/zombie.png"]
             }]
         }
     }

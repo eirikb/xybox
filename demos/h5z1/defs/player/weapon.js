@@ -29,7 +29,7 @@
         pos.y += sin * 4;
 
         bullet = {
-            objectdef: 'bullet',
+            def: 'bullet',
             body: {
                 x: pos.x,
                 y: pos.y

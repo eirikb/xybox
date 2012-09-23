@@ -4,7 +4,7 @@
     zombies = [];
 
     events.on('objectCreate', function(object) {
-        if (object.objectdef === 'zombie') zombies.push(object);
+        if (object.def === 'zombie') zombies.push(object);
     });
 
     events.on('tick', function() {
@@ -33,11 +33,11 @@
         var zombie, v, damage, power, pos;
 
         zombie = _.find([a, b], function(o) {
-            return o.objectdef === 'zombie';
+            return o.def === 'zombie';
         });
         if (zombie === a) a = b;
 
-        if (zombie && a.objectdef === 'bullet' && !a.used) {
+        if (zombie && a.def === 'bullet' && !a.used) {
             a.used = true;
 
             v = a.body.GetLinearVelocity();
@@ -50,17 +50,17 @@
             if (zombie.life <= 0) {
                 pos = graphics.pos(zombie);
                 game.createObject({
-                    objectdef: 'blowup',
+                    def: 'blowup',
                     x: pos.x - 50,
                     y: pos.y - 80
                 });
                 game.destroyObject(zombie);
             }
 
-            if (damage > 0 && a.objectdef === 'bullet') {
+            if (damage > 0 && a.def === 'bullet') {
                 pos = graphics.pos(zombie);
                 game.createObject({
-                    objectdef: 'blood',
+                    def: 'blood',
                     x: pos.x,
                     y: pos.y - 15
                 });

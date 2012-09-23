@@ -77,12 +77,12 @@
         var player;
 
         player = _.find([a, b], function(o) {
-            return o.objectdef === 'player';
+            return o.def === 'player';
         });
         if (player === a) a = b;
 
         if (player) {
-            if (a.objectdef !== 'bullet') {
+            if (a.def !== 'bullet') {
                 jump = false;
                 if (a.power) {
                     player.life -= a.power;
@@ -90,7 +90,7 @@
                     if (player.life <= 0) {
                         pos = graphics.pos(player);
                         game.createObject({
-                            objectdef: 'blowup',
+                            def: 'blowup',
                             x: pos.x - 50,
                             y: pos.y - 80
                         });
@@ -99,7 +99,7 @@
 
                     pos = graphics.pos(player);
                     game.createObject({
-                        objectdef: 'blood',
+                        def: 'blood',
                         x: pos.x,
                         y: pos.y - 15
                     });

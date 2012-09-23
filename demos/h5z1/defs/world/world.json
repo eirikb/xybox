@@ -1,11 +1,11 @@
 {
     "preload": [
-        {"id": "ground", "src": "objectdefs/world/ground.png"},
-        {"id": "box", "src": "objectdefs/world/box.png"},
-        {"id": "floor", "src": "objectdefs/world/floor.png"},
-        {"id": "bridge", "src": "objectdefs/world/bridge.png"}
+        {"id": "ground", "src": "defs/world/ground.png"},
+        {"id": "box", "src": "defs/world/box.png"},
+        {"id": "floor", "src": "defs/world/floor.png"},
+        {"id": "bridge", "src": "defs/world/bridge.png"}
     ],
-    "objectdefs": {
+    "defs": {
         "ground": {
             "graphics": [{
                 "id": "ground",

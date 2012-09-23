@@ -1,10 +1,10 @@
 {
     "preload": [
-        "objectdefs/player/player.js",
-        "objectdefs/player/weapon.json",
-        "objectdefs/player/player.png"
+        "defs/player/player.js",
+        "defs/player/weapon.json",
+        "defs/player/player.png"
     ],
-    "objectdefs": {
+    "defs": {
         "player": {
             "ammo": 10,
             "speed": 10,
@@ -42,7 +42,7 @@
                     "right": [9, 14, true, 8],
                     "left": [16, 21, true, 8]
                 },
-                "images": ["objectdefs/player/player.png"]
+                "images": ["defs/player/player.png"]
             }, {
                 "name": "top",
                 "paddX": -2,
@@ -53,7 +53,7 @@
                     "height": 35
                 },
                 "animations": {"default": [0], "right": [0, 0]},
-                "images": ["objectdefs/player/player.png"]
+                "images": ["defs/player/player.png"]
             }]
         }
     }
