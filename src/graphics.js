@@ -54,6 +54,7 @@ graphics = (function() {
             shape.paddY = graphics.paddY;
             shape.regX = w / 2;
             shape.regY = h / 2;
+            shape.loop = graphics.loop;
             if (meta.graphics) {
                 shape.scaleX = meta.graphics.scaleX || 1;
                 shape.scaleY = meta.graphics.scaleY || 1;
@@ -67,6 +68,18 @@ graphics = (function() {
 
     events.on('objectCreate', function(object) {
         self.createGraphics(object);
+        _.each(object.graphics, function(g) {
+            if (g.loop) {
+                g.onAnimationEnd = function() {
+                    g.loop--;
+                    if (g.loop === 0) {
+                        graphics.stage.removeChild(g);
+                        return;
+                    }
+                    g.gotoAndPlay(g.currentAnimation);
+                };
+            };
+        });
     });
 
     events.on('objectDestroy', function(object) {
@@ -107,7 +120,7 @@ graphics = (function() {
                 graphics.y = p.y + graphics.regY;
                 if (graphics.paddX) graphics.x += graphics.paddX;
                 if (graphics.paddY) graphics.y += graphics.paddY;
-                if (object.body) graphics.rotation = - (object.body.GetAngle() * 180 / Math.PI);
+                if (object.body) graphics.rotation = -(object.body.GetAngle() * 180 / Math.PI);
             });
         });
 
@@ -115,4 +128,3 @@ graphics = (function() {
     });
     return self;
 })();
-
