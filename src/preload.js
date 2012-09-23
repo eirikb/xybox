@@ -1,24 +1,27 @@
 // Preloading using PreloadJS ( https://github.com/CreateJS/PreloadJS/ )
 preload = (function() {
-    var self, total, result, allAssets;
+    var self = {};
+    var total = 0;
 
-    self = {};
+    self.recursiveLoad = function(manifest, cb) {
+        total = 0;
+        result = {};
+        allAssets = [];
+        load(manifest, cb);
+    };
 
     function load(manifest, cb) {
-        var loader, assets;
+        var assets = [];
+        var loader = new PreloadJS();
 
         total += manifest.length;
-
-        assets = [];
-
-        loader = new PreloadJS();
 
         loader.onFileLoad = function(event) {
             assets.push(event);
         };
 
         loader.onComplete = function() {
-            manifest = [];
+            var manifest = [];
             total -= assets.length;
 
             _.each(assets, function(a) {
@@ -57,13 +60,6 @@ preload = (function() {
 
         loader.loadManifest(manifest);
     }
-
-    self.recursiveLoad = function(manifest, cb) {
-        total = 0;
-        result = {};
-        allAssets = [];
-        load(manifest, cb);
-    };
 
     return self;
 })();

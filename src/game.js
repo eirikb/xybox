@@ -9,8 +9,8 @@ game = (function() {
     self.keys = new Kibo();
 
     self.createObject = function(object) {
-        var objectdef = self.objectdefs[object.objectdef];
-        if (objectdef) helpers.deepDefaults(object, objectdef);
+        var def = self.defs[object.def];
+        if (def) helpers.deepDefaults(object, def);
         if (object.name) self[object.name] = object;
         self.objects.push(object);
         events.trigger('objectCreate', object);
@@ -40,7 +40,7 @@ game = (function() {
                 assets[asset.id] = asset.result;
             });
 
-            self.objectdefs = result.objectdefs;
+            self.defs = result.defs;
 
             _.each(result.objects, function(object) {
                 self.createObject(object);
