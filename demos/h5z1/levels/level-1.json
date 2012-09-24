@@ -3,19 +3,11 @@
         "defs/world/world.json",
         "defs/player/player.json",
         "defs/monsters/zombie.json",
-        "defs/general/blood.json",
-        "levels/level-1.js",
-        {"id": "bg", "src": "defs/world/bg.png"}
+        "defs/general/blood.json"
     ],
     "objects": [{
         "name": "bg",
-        "graphics": [{
-            "id": "bg",
-            "width": 1000,
-            "height": 500,
-            "paddX": -100,
-            "paddY": -70
-        }]
+        "def": "bg"
     }, {
         "def": "ground",
         "body": {

@@ -3,9 +3,20 @@
         {"id": "ground", "src": "defs/world/ground.png"},
         {"id": "box", "src": "defs/world/box.png"},
         {"id": "floor", "src": "defs/world/floor.png"},
-        {"id": "bridge", "src": "defs/world/bridge.png"}
+        {"id": "bridge", "src": "defs/world/bridge.png"},
+        {"id": "bg", "src": "defs/world/bg.png"},
+        "defs/world/world.js"
     ],
     "defs": {
+        "bg": {
+            "graphics": [{
+                "id": "bg",
+                "width": 1000,
+                "height": 500,
+                "paddX": -100,
+                "paddY": -70
+            }]
+        }, 
         "ground": {
             "graphics": [{
                 "id": "ground",
