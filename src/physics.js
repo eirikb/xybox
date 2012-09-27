@@ -1,15 +1,13 @@
 // Physics using trolley ( https://github.com/eirikb/trolley )
 physics = (function() {
-    var self, world, lastUpdate, velocityIterationsPerSecond, positionIterationsPerSecond, destroyList;
+    var self = {};
 
-    self = {};
+    var world = self.world = trolley.init();
 
-    world = self.world = trolley.init();
-
-    lastUpdate = Date.now();
-    velocityIterationsPerSecond = 300;
-    positionIterationsPerSecond = 200;
-    destroyList = [];
+    var lastUpdate = Date.now();
+    var velocityIterationsPerSecond = 300;
+    var positionIterationsPerSecond = 200;
+    var destroyList = [];
 
     events.on('onload', function() {
         velocityIterationsPerSecond = meta.velocityIterationsPerSecond || velocityIterationsPerSecond;
@@ -26,15 +24,27 @@ physics = (function() {
         if (object.body) object.body.object = object;
     };
 
-    world.SetContactFilter({
-        ShouldCollide: function(fixtureA, fixtureB) {
-            var objectA, objectB;
+    function triggerCollide(trigger, contact, x) {
+        var a = contact.m_fixtureA.m_body.object;
+        var b = contact.m_fixtureB.m_body.object;
+        events.trigger(trigger, a, b, x);
+    }
 
-            objectA = fixtureA.m_body.object;
-            objectB = fixtureB.m_body.object;
-            return events.trigger('collide', objectA, objectB);
-        }
-    });
+    var listener = new b2ContactListener();
+    listener.BeginContact = function(contact) {
+        triggerCollide('collide', contact);
+        triggerCollide('begincontact', contact);
+    };
+    listener.EndContact = function(contact) {
+        triggerCollide('endcontact', contact);
+    };
+    listener.PostSolve = function(contact, impulse) {
+        triggerCollide('postsolve', contact, impulse);
+    };
+    listener.PreSolve = function(contact, oldManifold) {
+        triggerCollide('presolve', contact, oldMainfold);
+    };
+    world.SetContactListener(listener);
 
     events.on('objectCreate', function(object) {
         self.createBody(object);
@@ -49,15 +59,13 @@ physics = (function() {
     });
 
     events.on('tick', -1, function() {
-        var time, delta;
-
         _.each(destroyList, function(body) {
             world.DestroyBody(body);
         });
         destroyList = [];
 
-        time = new Date().getTime();
-        delta = (time - lastUpdate) / 1000;
+        var time = new Date().getTime();
+        var delta = (time - lastUpdate) / 1000;
         lastUpdate = time;
 
         if (delta > 10) {
@@ -72,4 +80,3 @@ physics = (function() {
 
     return self;
 })();
-
