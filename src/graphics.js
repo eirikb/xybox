@@ -59,7 +59,8 @@ graphics = (function() {
                 shape.scaleX = meta.graphics.scaleX || 1;
                 shape.scaleY = meta.graphics.scaleY || 1;
             }
-            self.stage.addChild(shape);
+            if (graphics.zindex) self.stage.addChildAt(shape, graphics.zindex);
+            else self.stage.addChild(shape);
             newGraphics.push(shape);
             if (graphics.name) newGraphics[graphics.name] = shape;
         });
@@ -73,7 +74,8 @@ graphics = (function() {
                 g.onAnimationEnd = function() {
                     g.loop--;
                     if (g.loop === 0) {
-                        graphics.stage.removeChild(g);
+                        if (object.body) game.destroyObject(object);
+                        else graphics.stage.removeChild(g);
                         return;
                     }
                     g.gotoAndPlay(g.currentAnimation);
