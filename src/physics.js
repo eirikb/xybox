@@ -42,7 +42,7 @@ physics = (function() {
         triggerCollide('postsolve', contact, impulse);
     };
     listener.PreSolve = function(contact, oldManifold) {
-        triggerCollide('presolve', contact, oldMainfold);
+        triggerCollide('presolve', contact, oldManifold);
     };
     world.SetContactListener(listener);
 
