@@ -46,6 +46,16 @@ physics = (function() {
     };
     world.SetContactListener(listener);
 
+    world.SetContactFilter({
+        ShouldCollide: function(fixtureA, fixtureB) {
+            var objectA, objectB;
+
+            objectA = fixtureA.m_body.object;
+            objectB = fixtureB.m_body.object;
+            return events.trigger('shouldcollide', objectA, objectB);
+        }
+    });
+
     events.on('objectCreate', function(object) {
         self.createBody(object);
     });
