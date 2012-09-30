@@ -76,7 +76,7 @@
         "def": "bridge",
         "body": {
             "x": 40,
-            "y": 11,
+            "y": 13,
             "options": {
                 "angle": 1.57079633
             }
