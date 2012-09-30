@@ -16,7 +16,7 @@
                 "circles": [{
                     "size": 1.5,
                     "options": {
-                        "friction": 0
+                        "friction": 20
                     }
                 },{
                     "y": 1,

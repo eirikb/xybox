@@ -8,43 +8,45 @@
     });
 
     events.on('tick', function() {
-        var v;
-
         _.each(zombies, function(zombie) {
             var way, animation;
 
+            var px = trolley.pos(game.player.body).x;
+            var zx = trolley.pos(zombie.body).x;
+
+            if (Math.abs(px - zx) > 15) zombie.wait = 10;
+
+            if (zombie.wait > 0) return zombie.wait--;
+
             if (!zombie.prevWay) zombie.prevWay = 0;
-            if (trolley.pos(game.player.body).x > trolley.pos(zombie.body).x) way = 1;
-            else way = - 1;
+            way = px > zx ? 1 : -1;
 
             if (zombie.prevWay !== way) {
                 if (way === 1) animation = 'right';
                 else animation = 'left';
                 zombie.graphics[0].gotoAndPlay(animation);
+                if (!zombie.wait || zombie.wait <= 0) zombie.wait = 40;
             }
             zombie.prevWay = way;
 
-            v = zombie.body.GetLinearVelocity();
+            var v = zombie.body.GetLinearVelocity();
             v.Set(way * zombie.speed, v.y);
         });
     });
 
     events.on('collide', function(a, b) {
-        var zombie, v, damage, power, pos;
+        var zombie = a.def === 'zombie' ? a : b;
+        if (zombie.def !== 'zombie') return;
+        if (zombie === b) b = a;
 
-        zombie = _.find([a, b], function(o) {
-            return o.def === 'zombie';
-        });
-        if (zombie === a) a = b;
+        if (zombie && b.def === 'bullet' && !b.used) {
+            b.used = true;
 
-        if (zombie && a.def === 'bullet' && !a.used) {
-            a.used = true;
-
-            v = a.body.GetLinearVelocity();
-            if (a.power) power = a.power;
+            var v = b.body.GetLinearVelocity();
+            if (b.power) power = b.power;
             else power = 1;
 
-            damage = Math.floor(((Math.abs(v.x) + Math.abs(v.y)) * a.body.GetMass() / 10) * power);
+            var damage = Math.floor(((Math.abs(v.x) + Math.abs(v.y)) * a.body.GetMass() / 10) * power);
             zombie.life -= damage;
 
             if (zombie.life <= 0) {
@@ -57,7 +59,7 @@
                 game.destroyObject(zombie);
             }
 
-            if (damage > 0 && a.def === 'bullet') {
+            if (damage > 0 && b.def === 'bullet') {
                 pos = graphics.pos(zombie);
                 game.createObject({
                     def: 'blood',

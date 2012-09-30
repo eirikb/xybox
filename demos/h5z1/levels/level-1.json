@@ -12,46 +12,46 @@
         "def": "ground",
         "body": {
             "boxes": [{
-                "width": 40,
+                "width": 20,
                 "height": 6
-            }]
-        }
-    }, {
-        "def": "ground",
-        "body": {
-            "x": 45,
-            "boxes": [{
-                "width": 10,
-                "height": 6
-            }]
-        }
-    }, {
-        "def": "ground",
-        "body": {
-            "x": 65,
-            "boxes": [{
-                "width": 10,
-                "height": 6
-            }]
-        }
-    }, {
-        "def": "floor",
-        "body": {
-            "x": 10,
-            "y": 11,
-            "boxes": [{
-                "width": 12,
-                "height": 1
             }]
         }
     }, {
         "def": "ground",
         "body": {
             "x": 20,
-            "y": 5,
+            "y": 1,
             "boxes": [{
-                "width": 2,
+                "width": 10,
                 "height": 2
+            }]
+        }
+    }, {
+        "def": "ground",
+        "body": {
+            "x": 30,
+            "boxes": [{
+                "width": 20,
+                "height": 6
+            }]
+        }
+    }, {
+        "def": "ground",
+        "body": {
+            "x": 60,
+            "boxes": [{
+                "width": 50,
+                "height": 6
+            }]
+        }
+    }, {
+        "def": "floor",
+        "body": {
+            "x": 18,
+            "y": 9.5,
+            "boxes": [{
+                "width": 12,
+                "height": 1
             }]
         }
     }, {
@@ -75,17 +75,11 @@
     }, {
         "def": "bridge",
         "body": {
-            "x": 60,
+            "x": 40,
             "y": 11,
             "options": {
                 "angle": 1.57079633
             }
-        }
-    }, {
-        "def": "bridge",
-        "body": {
-            "x": 40,
-            "y": 6
         }
     }, {
         "name": "player",
@@ -109,8 +103,38 @@
     }, {
         "def": "zombie",
         "body": {
-            "x": 22,
+            "x": 90,
             "y": 6
+        }
+    }, {
+        "def": "box",
+        "body": {
+            "x": 108,
+            "y": 6
+        }
+    }, {
+        "def": "box",
+        "body": {
+            "x": 108,
+            "y": 8
+        }
+    }, {
+        "def": "box",
+        "body": {
+            "x": 108,
+            "y": 10
+        }
+    }, {
+        "def": "box",
+        "body": {
+            "x": 108,
+            "y": 12
+        }
+    }, {
+        "def": "box",
+        "body": {
+            "x": 108,
+            "y": 14
         }
     }]
 }

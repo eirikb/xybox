@@ -65,5 +65,10 @@
     events.on('mouseUp', function(event) {
         shooting = false;
     });
+
+    events.on('collide', function(a, b) {
+        if (a.def === 'bullet') game.destroyObject(a);
+        else if (b.def === 'bullet') game.destroyObject(b);
+    });
 })();
 
