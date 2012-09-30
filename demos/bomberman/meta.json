@@ -1,0 +1,16 @@
+{
+    "meta": {
+        "fps": 30,
+        "scale": 16,
+        "graphics": {
+            "scaleX": 1,
+            "scaleY": 1
+        },
+        "gravity": {
+            "x": 0,
+            "y": 0
+        },
+        "velocityIterationsPerSecond" : 300,
+        "positionIterationsPerSecond" : 200
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "preload": ["defs/world/world.js", {
+        "id": "objects",
+        "src": "defs/world/objects.png"
+    }],
+    "defs": {
+        "block": {
+            "graphics": [{
+                "id": "objects"
+            }],
+            "body": {
+                "isStatic": true,
+                "boxes": [{
+                    "width": 1,
+                    "height": 1
+                }]
+            }
+        },
+        "brick": {
+            "armor": 1,
+            "graphics": [{
+                "images": ["defs/world/objects.png"],
+                "frames": {
+                    "width": 16,
+                    "numFrames": 7,
+                    "height": 16 
+                },
+                "animations": {
+                    "default": 1
+                }
+            }],
+            "body": {
+                "isStatic": true,
+                "boxes": [{
+                    "width": 1,
+                    "height": 1
+                }]
+            }
+        },
+        "firebrick": {
+            "graphics": [{
+                "loop": 1,
+                "images": ["defs/world/objects.png"],
+                "frames": {
+                    "width": 16,
+                    "numFrames": 7,
+                    "height": 16 
+                },
+                "animations": {
+                    "default": [2, 3, true, 3]
+                }
+            }],
+            "body": {
+                "isStatic": true,
+                "boxes": [{
+                    "width": 1,
+                    "height": 1
+                }]
+            }
+        }
+    }
+}

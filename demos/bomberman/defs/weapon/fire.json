@@ -1,0 +1,35 @@
+{
+    "preload": ["defs/weapon/fire.js"],
+    "defs": {
+        "fire": {
+            "graphics": [{
+                "loop": 1,
+                "images": ["defs/weapon/fire.png"],
+                "frames": {
+                    "width": 16,
+                    "numFrames": 28,
+                    "height": 16
+                },
+                "animations": {
+                    "core": [0, 3, true, 5],
+                    "down": [4, 7, true, 5],
+                    "left": [8, 11, true, 5],
+                    "right": [12, 15, true, 5],
+                    "up": [16, 19, true, 5],
+                    "horizontal": [20, 23, true, 5],
+                    "vertical": [24, 28, true, 5]
+                }
+            }],
+            "body": {
+                "options": {
+                    "allowSleep": false,
+                    "fixedRotation": true
+                },
+                "boxes": [{
+                    "circles": 0.8,
+                    "density": 1
+                }]
+            }
+        }
+    }
+}

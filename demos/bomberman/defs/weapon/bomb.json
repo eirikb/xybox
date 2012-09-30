@@ -1,0 +1,26 @@
+{
+    "preload": ["defs/weapon/bomb.js"],
+    "defs": {
+        "bomb": {
+            "timer": 100,
+            "bump": 4,
+            "power": 4,
+            "graphics": [{
+                "images": ["defs/weapon/bomb.png"],
+                "frames": {
+                    "width": 16,
+                    "numFrames": 7,
+                    "height": 16
+                },
+                "animations": {
+                    "default": [0, 2, true, 3]
+                }
+            }],
+            "body": {
+                "circles": [{
+                    "radius": 1
+                }]
+            }
+        }
+    }
+}

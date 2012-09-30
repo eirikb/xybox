@@ -1,0 +1,3 @@
+{
+    "preload": ["defs/weapon/bomb.json", "defs/weapon/fire.json"]
+}

@@ -1,0 +1,16 @@
+{
+    "preload": [
+        "defs/world/world.json",
+        "defs/player/player.json",
+        "defs/weapon/weapon.json",
+        "levels/level-1.js"
+    ],
+    "objects": [{
+        "name": "player",
+        "def": "player",
+        "body": {
+            "x": 0,
+            "y": 0
+        }
+    }]
+}
