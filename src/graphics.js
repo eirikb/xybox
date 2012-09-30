@@ -9,6 +9,17 @@ graphics = (function() {
         self.scale = meta.scale || self.scale;
     });
 
+    function draw(object) {
+        var p = self.pos(object);
+        _.each(object.graphics, function(graphics) {
+            graphics.x = p.x + graphics.regX;
+            graphics.y = p.y + graphics.regY;
+            if (graphics.paddX) graphics.x += graphics.paddX;
+            if (graphics.paddY) graphics.y += graphics.paddY;
+            if (object.body) graphics.rotation = -(object.body.GetAngle() * 180 / Math.PI);
+        });
+    }
+
     self.pos = function(object) {
         var pos;
 
@@ -82,6 +93,7 @@ graphics = (function() {
                 };
             };
         });
+        draw(object);
     });
 
     events.on('objectDestroy', function(object) {
@@ -115,16 +127,7 @@ graphics = (function() {
     });
 
     events.on('tick', 2, function() {
-        _.each(game.objects, function(object) {
-            var p = self.pos(object);
-            _.each(object.graphics, function(graphics) {
-                graphics.x = p.x + graphics.regX;
-                graphics.y = p.y + graphics.regY;
-                if (graphics.paddX) graphics.x += graphics.paddX;
-                if (graphics.paddY) graphics.y += graphics.paddY;
-                if (object.body) graphics.rotation = -(object.body.GetAngle() * 180 / Math.PI);
-            });
-        });
+        _.each(game.actives, draw);
 
         self.stage.update();
     });

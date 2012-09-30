@@ -4,6 +4,7 @@ game = (function() {
     self = {};
     self.fps = 40;
     self.objects = [];
+    self.actives = [];
 
     // Keyboard input using kibo ( https://github.com/marquete/kibo )
     self.keys = new Kibo();
@@ -13,6 +14,7 @@ game = (function() {
         if (def) helpers.deepDefaults(object, def);
         if (object.name) self[object.name] = object;
         self.objects.push(object);
+        if (!(def.body && def.body.isStatic)) self.actives.push(object);
         events.trigger('objectCreate', object);
         return object;
     };
