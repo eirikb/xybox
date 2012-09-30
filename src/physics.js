@@ -24,6 +24,19 @@ physics = (function() {
         if (object.body) object.body.object = object;
     };
 
+    self.overlapping = function(body) {
+        var overlaps = [];
+        var bf = body.GetFixtureList();
+        while (bf !== null) {
+            physics.world.QueryAABB(function(f) {
+                overlaps.push(f.GetBody());
+                return true;
+            }, bf.GetAABB());
+            bf = bf.GetNext();
+        }
+        return overlaps;
+    };
+
     function triggerCollide(trigger, contact, x) {
         var a = contact.m_fixtureA.m_body.object;
         var b = contact.m_fixtureB.m_body.object;

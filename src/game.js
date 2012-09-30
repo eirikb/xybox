@@ -22,6 +22,13 @@ game = (function() {
         self.objects = _.without(self.objects, object);
     };
 
+    self.overlapping = function(object) {
+        var overlaps = physics.overlapping(object.body);
+        return _.chain(overlaps).compact().map(function(fixture) {
+            return fixture.object;
+        }).value();
+    }
+
     self.init = function(name, cb) {
         var manifest;
 
@@ -59,4 +66,3 @@ game = (function() {
 
     return self;
 })();
-
