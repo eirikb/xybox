@@ -3,6 +3,7 @@
 
     game.keys.down('space', function() {
         if (game.player.bombs < 1) return;
+        if (game.player.dead) return;
         game.player.bombs--;
 
         var pos = trolley.pos(game.player.body);
@@ -10,8 +11,8 @@
         var bomb = game.createObject({
             def: 'bomb',
             body: {
-                x: pos.x + (game.player.body.width / 4),
-                y: pos.y - (game.player.body.height / 4)
+                x: pos.x,
+                y: pos.y
             }
         });
 
@@ -32,6 +33,7 @@
     });
 
     events.on('shouldcollide', function(a, b) {
+        if (!a || !b) return;
         var player = a.def === 'player' ? a : b;
         var bomb = a.def === 'bomb' ? a : b;
         if (player.def !== 'player' || bomb.def !== 'bomb') return;

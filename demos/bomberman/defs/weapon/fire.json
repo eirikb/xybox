@@ -4,6 +4,8 @@
         "fire": {
             "graphics": [{
                 "loop": 1,
+                "paddX": -3,
+                "paddY": -3,
                 "images": ["defs/weapon/fire.png"],
                 "frames": {
                     "width": 16,
@@ -21,13 +23,14 @@
                 }
             }],
             "body": {
+                "isStatic": true,
                 "options": {
                     "allowSleep": false,
                     "fixedRotation": true
                 },
                 "boxes": [{
-                    "circles": 0.8,
-                    "density": 1
+                    "width": 0.6,
+                    "height": 0.6
                 }]
             }
         }
