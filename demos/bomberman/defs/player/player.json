@@ -1,5 +1,5 @@
 {
-    "preload": ["defs/player/player.js", "defs/player/player.png"],
+    "preload": [{"id": "blood", "src": "defs/player/blood.png"},"defs/player/player.js", "defs/player/player.png"],
     "defs": {
         "player": {
             "speed": 5,
@@ -46,6 +46,13 @@
                     }
                 },
                 "images": ["defs/player/player.png"]
+            }]
+        },
+        "blood": {
+            "graphics": [{
+                "id": "blood",
+                "width": 32,
+                "height": 32 
             }]
         }
     }

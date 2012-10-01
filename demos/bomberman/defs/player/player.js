@@ -46,4 +46,16 @@
             return;
         });
     });
+
+    events.on('fire', function(fire, b) {
+        if (b !== game.player) return;
+        game.player.dead = true;
+        game.destroyObject(game.player);
+        var gpos = graphics.pos(game.player);
+        game.createObject({
+            def: 'blood',
+            x: gpos.x - 8,
+            y: gpos.y - 8
+        });
+    });
 })();
