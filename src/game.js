@@ -14,7 +14,7 @@ game = (function() {
         if (def) helpers.deepDefaults(object, def);
         if (object.name) self[object.name] = object;
         self.objects.push(object);
-        if (!(def.body && def.body.isStatic)) self.actives.push(object);
+        if (!(def && def.body && def.body.isStatic)) self.actives.push(object);
         events.trigger('objectCreate', object);
         return object;
     };
