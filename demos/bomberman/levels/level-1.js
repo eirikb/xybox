@@ -21,7 +21,10 @@
 
                 if (x % 2 === 1 && y % 2 === 1) create('block', x, y);
                 if ((x < 2 || x > width - 3) && (y < 2 || y > height - 3)) return;
-                if (addBrick && (x % 2 === 0 || y % 2 === 0)) create('brick', x, y);
+                if (addBrick && (x % 2 === 0 || y % 2 === 0)) {
+                    events.trigger('brick', x, y);
+                    create('brick', x, y);
+                }
             });
         });
 

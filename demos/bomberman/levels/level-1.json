@@ -3,6 +3,7 @@
         "defs/world/world.json",
         "defs/player/player.json",
         "defs/weapon/weapon.json",
+        "defs/powerup/powerup.json",
         "levels/level-1.js"
     ],
     "objects": [{
