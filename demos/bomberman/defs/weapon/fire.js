@@ -6,7 +6,7 @@
         down: [0, -1]
     };
 
-    function addFire(x, y, type, power) {
+    function addFire(bomb, x, y, type, power) {
         power = power - 1;
         if (power <= 0) return;
         var playType = type;
@@ -18,6 +18,7 @@
             def: 'fire',
             type: type,
             power: power,
+            bomb: bomb,
             body: {
                 x: x + 0.2,
                 y: y + 0.2
@@ -25,7 +26,7 @@
         });
         f.graphics[0].gotoAndPlay(playType);
         var overlapping = game.overlapping(f).filter(function(o) {
-            return o.def === 'brick' || o.def === 'block';
+            return o.def !== 'fire' && f.bomb !== o;
         });
         _.each(overlapping, function(b) {
             collide(f, b);
@@ -33,17 +34,17 @@
         if (overlapping.length > 0) return;
         if (type === 'core') {
             _.each(ways, function(w, n) {
-                addFire(x + w[0], y + w[1], n, power);
+                addFire(bomb, x + w[0], y + w[1], n, power);
             });
             return;
         }
         var w = ways[type];
-        addFire(x + w[0], y + w[1], type, power);
+        addFire(bomb, x + w[0], y + w[1], type, power);
     }
 
     events.on('explode', function(bomb) {
         var pos = trolley.pos(bomb.body);
-        addFire(pos.x, pos.y, 'core', bomb.power);
+        addFire(bomb, pos.x, pos.y, 'core', bomb.power);
     });
 
     function collide(a, b) {

@@ -20,7 +20,7 @@
                 }]
             },
             "graphics": [{
-                "paddY": -4,
+                "paddY": -6,
                 "frames": {
                     "width": 18,
                     "numFrames": 12,
