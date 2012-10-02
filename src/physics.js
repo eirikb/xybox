@@ -29,7 +29,9 @@ physics = (function() {
         var bf = body.GetFixtureList();
         while (bf !== null) {
             physics.world.QueryAABB(function(f) {
-                overlaps.push(f.GetBody());
+                if (f !== bf && f.GetAABB().TestOverlap(bf.GetAABB())) {
+                    overlaps.push(f.GetBody());
+                }
                 return true;
             }, bf.GetAABB());
             bf = bf.GetNext();
