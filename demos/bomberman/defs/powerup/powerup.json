@@ -1,0 +1,30 @@
+{
+    "preload": ["defs/powerup/powerup.js"],
+    "defs": {
+        "powerup": {
+            "graphics": [{
+                "images": ["defs/powerup/powerup.png"],
+                "paddX": -2,
+                "paddY": -2,
+                "frames": {
+                    "width": 16,
+                    "numFrames": 4,
+                    "height": 16
+                },
+                "animations": {
+                    "power": 0,
+                    "bomb": 1,
+                    "death": 2,
+                    "score": 3
+                }
+            }],
+            "body": {
+                "isStatic": true,
+                "boxes": [{
+                    "width": 0.8,
+                    "height": 0.8
+                }]
+            }
+        }
+    }
+}

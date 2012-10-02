@@ -4,7 +4,8 @@
         "player": {
             "speed": 5,
             "life": 100,
-            "bombs": 100,
+            "bombs": 1,
+            "power": 3,
             "armor": 0,
             "body": {
                 "options": {

@@ -10,6 +10,7 @@
 
         var bomb = game.createObject({
             def: 'bomb',
+            power: game.player.power,
             body: {
                 x: pos.x,
                 y: pos.y
@@ -25,6 +26,7 @@
             if (bomb.timer <= 0) {
                 var pos = trolley.pos(bomb.body);
                 game.destroyObject(bomb);
+                game.player.bombs++;
                 events.trigger('explode', bomb);
                 return false;
             }

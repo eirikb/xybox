@@ -49,6 +49,10 @@
 
     events.on('fire', function(fire, b) {
         if (b !== game.player) return;
+        events.trigger('death');
+    });
+
+    events.on('death', function() {
         game.player.dead = true;
         game.destroyObject(game.player);
         var gpos = graphics.pos(game.player);
