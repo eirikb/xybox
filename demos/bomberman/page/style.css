@@ -1,0 +1,21 @@
+body {
+    background-image: url(bg.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+
+canvas { 
+    margin: 0 auto;
+    border: 1px solid; 
+    background-image: url(paper.jpg);
+}
+
+header, section, footer {
+    margin-top: 40px;
+    background-color: #FFF;
+    padding: 15px;
+    border-radius: 10px;
+}

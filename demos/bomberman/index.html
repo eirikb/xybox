@@ -3,18 +3,24 @@
     <head>
         <title>xybox - bomberman</title>
 
-        <style> canvas { border: 1px solid; } </style>
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+        <link rel="stylesheet" href="page/style.css">
 
         <script src="https://raw.github.com/eirikb/xybox/master/xybox-all.min.js"></script>
-
-        <script>
-            window.onload = function() {
-                game.init('levels/level-1');
-            };
-        </script>
-
+        <script src="bomberman.js"></script>
     </head>
     <body>
-        <canvas id="gamepanel" width="817" height="433"></canvas>
+        <div class="container">
+            <section>
+                <div class="row">
+                    <div class="span12">
+                        <div id="progress" class="span11 progress progress-info progress-striped">
+                            <div id="bar" class="bar"></div>
+                        </div>
+                        <canvas class="span11" id="gamepanel" width="817" height="433"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
     </body>
 </html>
