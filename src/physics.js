@@ -27,13 +27,16 @@ physics = (function() {
     self.overlapping = function(body) {
         var overlaps = [];
         var bf = body.GetFixtureList();
+
+        function checkQuery(f) {
+            if (f !== bf && f.GetAABB().TestOverlap(bf.GetAABB())) {
+                overlaps.push(f.GetBody());
+            }
+            return true;
+        }
+
         while (bf !== null) {
-            physics.world.QueryAABB(function(f) {
-                if (f !== bf && f.GetAABB().TestOverlap(bf.GetAABB())) {
-                    overlaps.push(f.GetBody());
-                }
-                return true;
-            }, bf.GetAABB());
+            physics.world.QueryAABB(checkQuery, bf.GetAABB());
             bf = bf.GetNext();
         }
         return overlaps;

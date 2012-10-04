@@ -29,9 +29,9 @@ game = (function() {
         return _.chain(overlaps).compact().map(function(fixture) {
             return fixture.object;
         }).value();
-    }
+    };
 
-    self.init = function(name, cb) {
+    self.init = function(name, cb, complete) {
         var manifest;
 
         if (!name.match(/\.json$/i)) name += '.json';
@@ -39,6 +39,7 @@ game = (function() {
         manifest = [name, 'meta.json'];
 
         preload.recursiveLoad(manifest, function(count, total, result, assets) {
+            cb(count, total, result, assets);
             if (count < total) return;
 
             // Global meta
@@ -64,9 +65,9 @@ game = (function() {
 
             events.trigger('ready');
 
-            cb && cb();
+            if (complete) complete();
         });
-    }
+    };
 
     return self;
 })();

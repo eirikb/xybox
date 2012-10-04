@@ -91,7 +91,7 @@ graphics = (function() {
                     }
                     g.gotoAndPlay(g.currentAnimation);
                 };
-            };
+            }
         });
         draw(object);
     });
