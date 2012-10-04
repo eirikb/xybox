@@ -2,9 +2,11 @@
 preload = (function() {
     var self = {};
     var total = 0;
+    var count = 0;
 
     self.recursiveLoad = function(manifest, cb) {
         total = 0;
+        count = 0;
         result = {};
         allAssets = [];
         load(manifest, cb);
@@ -22,7 +24,7 @@ preload = (function() {
 
         loader.onComplete = function() {
             var manifest = [];
-            total -= assets.length;
+            count += assets.length;
 
             _.each(assets, function(a) {
                 allAssets.push(a);
@@ -43,7 +45,7 @@ preload = (function() {
                         // Remove preload and combine/extend result with a.result
                         delete a.preload;
                         helpers.deepDefaults(result, a);
-                    } catch(e) {
+                    } catch (e) {
                         console.error('Unable to parse ' + a.src);
                         throw e;
                     }
@@ -53,9 +55,7 @@ preload = (function() {
 
             if (manifest.length > 0) load(manifest, cb);
 
-            if (total === 0) {
-                cb(result, allAssets);
-            }
+            cb(count, total, result, allAssets);
         };
 
         loader.loadManifest(manifest);
@@ -63,4 +63,3 @@ preload = (function() {
 
     return self;
 })();
-

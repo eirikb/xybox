@@ -38,7 +38,9 @@ game = (function() {
 
         manifest = [name, 'meta.json'];
 
-        preload.recursiveLoad(manifest, function(result, assets) {
+        preload.recursiveLoad(manifest, function(count, total, result, assets) {
+            if (count < total) return;
+
             // Global meta
             meta = result.meta;
 
