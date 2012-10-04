@@ -5,6 +5,7 @@ body {
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
+    font-family: 'Stalinist One', cursive;
 }
 
 canvas { 
@@ -13,9 +14,14 @@ canvas {
     background-image: url(paper.jpg);
 }
 
-header, section, footer {
+section {
     margin-top: 40px;
     background-color: #FFF;
     padding: 15px;
     border-radius: 10px;
+}
+
+h1 {
+    color: darkred;
+    margin-left: 16px;
 }
