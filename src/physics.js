@@ -42,6 +42,16 @@ physics = (function() {
         return overlaps;
     };
 
+    self.collide = function(def, cb) {
+        events.on('collide', function(a, b) {
+            if (!a || !b) return;
+            var d = a.def === def ? a : b;
+            if (d.def !== def) return;
+            if (d === b) b = a;
+            cb(d, b);
+        });
+    };
+
     function triggerCollide(trigger, contact, x) {
         var a = contact.m_fixtureA.m_body.object;
         var b = contact.m_fixtureB.m_body.object;
