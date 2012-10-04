@@ -4,21 +4,14 @@
         "defs/player/player.json",
         "defs/weapon/weapon.json",
         "defs/powerup/powerup.json",
-        "levels/level-1.js"
+        "levels/level-2.js"
     ],
     "objects": [{
         "name": "player",
         "def": "player",
         "body": {
-            "x": 10,
-            "y": 10
-        }
-    },{
-        "def": "stairs",
-        "level": 2,
-        "body": {
-            "x": 20,
-            "y": 10
+            "x": 0,
+            "y": 0
         }
     }]
 }

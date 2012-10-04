@@ -16,6 +16,26 @@
                 }]
             }
         },
+        "stairs": {
+            "graphics": [{
+                "images": ["defs/world/objects.png"],
+                "frames": {
+                    "width": 16,
+                    "numFrames": 5,
+                    "height": 16 
+                },
+                "animations": {
+                    "default": 4
+                }
+            }],
+            "body": {
+                "isStatic": true,
+                "boxes": [{
+                    "width": 1,
+                    "height": 1
+                }]
+            }
+        },
         "brick": {
             "armor": 1,
             "graphics": [{

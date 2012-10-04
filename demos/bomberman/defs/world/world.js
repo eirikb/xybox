@@ -1,5 +1,4 @@
 (function() {
-    // TODO: "Uncaught TypeError: Cannot call method 'CreateFixture' of null" if caslling createObject of firebrick immediately
     var hacks = [];
 
     events.on('fire', function(fire, b) {
@@ -22,5 +21,9 @@
         _.each(newHacks, function(hack) {
             game.createObject(hack);
         });
+    });
+
+    physics.collide('stairs', function(stairs) {
+        bomberman(stairs.level);
     });
 })();
