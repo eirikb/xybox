@@ -25,3 +25,9 @@ h1 {
     color: darkred;
     margin-left: 16px;
 }
+
+.progress-holder {
+    height: 30px;
+    margin-top: -10px;
+    margin-left: 0px;
+}
