@@ -5,6 +5,8 @@ game = (function() {
     self.fps = 40;
     self.objects = [];
     self.actives = [];
+    self.defs = {};
+    self.assets = {};
 
     // Keyboard input using kibo ( https://github.com/marquete/kibo )
     self.keys = new Kibo();
@@ -38,10 +40,7 @@ game = (function() {
 
         manifest = [name, 'meta.json'];
 
-        var a = []
         preload.recursiveLoad(manifest, function(count, total, result, assets) {
-            assets = a.concat(assets);
-            a = assets;
             cb(count, total, result, assets);
             if (count < total) return;
 
@@ -50,12 +49,11 @@ game = (function() {
 
             events.trigger('onload');
 
-            self.assets = assets;
             _.each(assets, function(asset) {
-                assets[asset.id] = asset.result;
+                self.assets[asset.id] = asset.result;
             });
 
-            self.defs = result.defs;
+            _.extend(self.defs, result.defs);
 
             _.each(result.objects, function(object) {
                 self.createObject(object);
@@ -66,7 +64,9 @@ game = (function() {
                 events.trigger('tick');
             });
 
-            events.trigger('ready');
+            setTimeout(function() {
+                events.trigger('ready');
+            }, 100);
 
             if (complete) complete();
         });
