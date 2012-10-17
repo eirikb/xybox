@@ -43,7 +43,6 @@ preload = (function() {
                         a = JSON.parse(a.result);
                         _.each(a.preload, function(m) {
                             if (_.contains(cache, m)) return;
-                            console.log('m',m)
                             manifest.push(m);
                         });
 
