@@ -38,7 +38,10 @@ game = (function() {
 
         manifest = [name, 'meta.json'];
 
+        var a = []
         preload.recursiveLoad(manifest, function(count, total, result, assets) {
+            assets = a.concat(assets);
+            a = assets;
             cb(count, total, result, assets);
             if (count < total) return;
 

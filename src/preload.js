@@ -3,6 +3,7 @@ preload = (function() {
     var self = {};
     var total = 0;
     var count = 0;
+    var cache = [];
 
     self.recursiveLoad = function(manifest, cb) {
         total = 0;
@@ -13,6 +14,8 @@ preload = (function() {
     };
 
     function load(manifest, cb) {
+        manifest = _.without(manifest, cache);
+        cache = cache.concat(manifest);
         var assets = [];
         var loader = new PreloadJS();
 
@@ -39,6 +42,8 @@ preload = (function() {
                     try {
                         a = JSON.parse(a.result);
                         _.each(a.preload, function(m) {
+                            if (_.contains(cache, m)) return;
+                            console.log('m',m)
                             manifest.push(m);
                         });
 
