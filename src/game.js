@@ -44,6 +44,10 @@ game = (function() {
             cb(count, total, result, assets);
             if (count < total) return;
 
+            _.each(self.objects, function(object) {
+                self.destroyObject(object);
+            });
+
             // Global meta
             meta = result.meta;
 
@@ -59,6 +63,7 @@ game = (function() {
                 self.createObject(object);
             });
 
+            Ticker.removeAllListeners();
             Ticker.setFPS(self.fps);
             Ticker.addListener(function() {
                 events.trigger('tick');
