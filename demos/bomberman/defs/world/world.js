@@ -23,7 +23,7 @@
         });
     });
 
-    physics.collide('stairs', function(stairs) {
-        bomberman(stairs.level);
+    physics.collide('stairs', function(stairs, b) {
+        if (b.def === 'player') bomberman(stairs.level);
     });
 })();
