@@ -52,7 +52,7 @@ graphics = (function() {
                 shape = new Shape();
                 g = shape.graphics;
                 g.beginBitmapFill(game.assets[graphics.id]);
-                g.drawRect(0, 0, w, h);
+                o.drawRect(0, 0, w, h);
             } else {
                 sheet = new SpriteSheet(graphics);
                 shape = new BitmapAnimation(sheet);

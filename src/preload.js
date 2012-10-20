@@ -13,8 +13,18 @@ preload = (function() {
         load(manifest, cb);
     };
 
-    function load(manifest, cb) {
+    function load(root, manifest, cb) {
+        if (arguments.length === 2) {
+            cb = manifest;
+            manifest = root;
+            root = '';
+        }
         manifest = _.without(manifest, cache);
+        manifest = _.map(manifest, function(m) {
+            if (!m.id) return root + m;
+            m.src = root + m.src;
+            return m;
+        });
         cache = cache.concat(manifest);
         var assets = [];
         var loader = new PreloadJS();
@@ -26,7 +36,6 @@ preload = (function() {
         };
 
         loader.onComplete = function() {
-            var manifest = [];
             count += assets.length;
 
             _.each(assets, function(a) {
@@ -40,10 +49,12 @@ preload = (function() {
 
                 case PreloadJS.JSON:
                     try {
+                        var r = a.src.match(/.*\//);
+                        r = r ? r[0] : '';
                         a = JSON.parse(a.result);
                         _.each(a.preload, function(m) {
                             if (_.contains(cache, m)) return;
-                            manifest.push(m);
+                            load(r, [m], cb);
                         });
 
                         // Remove preload and combine/extend result with a.result
@@ -56,8 +67,6 @@ preload = (function() {
                     break;
                 }
             });
-
-            if (manifest.length > 0) load(manifest, cb);
 
             cb(count, total, result, allAssets);
         };
