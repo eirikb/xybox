@@ -1,0 +1,51 @@
+{
+    "preload": ["defs/monsters/monsters.png", "defs/monsters/monsters.js"],
+    "defs": {
+        "ghost": {
+            "speed": 5,
+            "life": 100,
+            "body": {
+                "options": {
+                    "allowSleep": false,
+                    "fixedRotation": true
+                },
+                "circles": [{
+                    "size": 2,
+                    "options": {
+                        "density": 0,
+                        "friction": 0
+                    }
+                }]
+            },
+            "graphics": [{
+                "height": 16,
+                "width": 16,
+                "frames": {
+                    "width": 32,
+                    "numFrames": 12,
+                    "height": 32
+                },
+                "animations": {
+                    "default": 0,
+                    "left": {
+                        "frames": [7, 6, 8, 6],
+                        "frequency": 6
+                    },
+                    "up": {
+                        "frames": [4, 3, 5, 3],
+                        "frequency": 6
+                    },
+                    "right": {
+                        "frames": [10, 9, 11, 9],
+                        "frequency": 6
+                    },
+                    "down": {
+                        "frames": [1, 0, 2, 0],
+                        "frequency": 6
+                    }
+                },
+                "images": ["defs/monsters/monsters.png"]
+            }]
+        }
+    }
+}
