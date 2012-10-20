@@ -52,7 +52,7 @@ graphics = (function() {
                 shape = new Shape();
                 g = shape.graphics;
                 g.beginBitmapFill(game.assets[graphics.id]);
-                o.drawRect(0, 0, w, h);
+                g.drawRect(0, 0, w, h);
             } else {
                 sheet = new SpriteSheet(graphics);
                 shape = new BitmapAnimation(sheet);
@@ -70,6 +70,8 @@ graphics = (function() {
                 shape.scaleX = meta.graphics.scaleX || 1;
                 shape.scaleY = meta.graphics.scaleY || 1;
             }
+            if (graphics.scaleX) shape.scaleX = graphics.scaleX;
+            if (graphics.scaleY) shape.scaleY = graphics.scaleY;
             if (graphics.zindex) self.stage.addChildAt(shape, graphics.zindex);
             else self.stage.addChild(shape);
             newGraphics.push(shape);

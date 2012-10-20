@@ -21,7 +21,12 @@ preload = (function() {
         }
         manifest = _.without(manifest, cache);
         manifest = _.map(manifest, function(m) {
-            if (!m.id) return root + m;
+            if (!m.id) {
+                m = {
+                    id: m,
+                    src: m
+                }
+            }
             m.src = root + m.src;
             return m;
         });
