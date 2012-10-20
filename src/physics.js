@@ -12,9 +12,13 @@ physics = (function() {
     events.on('onload', function() {
         velocityIterationsPerSecond = meta.velocityIterationsPerSecond || velocityIterationsPerSecond;
         positionIterationsPerSecond = meta.positionIterationsPerSecond || positionIterationsPerSecond;
-        if (meta.gravity) {
-            world.SetGravity(new b2Vec2(meta.gravity.x, meta.gravity.y));
+        if (!meta.gravity) {
+            meta.gravity = {
+                x: 0,
+                y: 0
+            };
         }
+        world.SetGravity(new b2Vec2(meta.gravity.x, meta.gravity.y));
     });
 
     self.createBody = function(object) {

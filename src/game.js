@@ -2,7 +2,7 @@ game = (function() {
     var self;
 
     self = {};
-    self.fps = 40;
+    self.fps = 30;
     self.objects = [];
     self.actives = [];
     self.defs = {};
@@ -62,6 +62,8 @@ game = (function() {
             _.each(result.objects, function(object) {
                 self.createObject(object);
             });
+
+            if (meta.fps) self.fps = meta.fps;
 
             Ticker.removeAllListeners();
             Ticker.setFPS(self.fps);
