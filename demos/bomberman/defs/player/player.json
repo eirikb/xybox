@@ -1,5 +1,5 @@
 {
-    "preload": [{"id": "blood", "src": "defs/player/blood.png"},"defs/player/player.js", "defs/player/player.png"],
+    "preload": ["blood.png","player.js", "player.png"],
     "defs": {
         "player": {
             "speed": 5,
@@ -21,6 +21,7 @@
                 }]
             },
             "graphics": [{
+                "image": "player.png",
                 "paddY": -6,
                 "frames": {
                     "width": 18,
@@ -45,13 +46,12 @@
                         "frames": [1, 0, 2, 0],
                         "frequency": 6
                     }
-                },
-                "images": ["defs/player/player.png"]
+                }
             }]
         },
         "blood": {
             "graphics": [{
-                "id": "blood",
+                "image": "blood.png",
                 "width": 32,
                 "height": 32 
             }]

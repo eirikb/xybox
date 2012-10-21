@@ -1,12 +1,12 @@
 {
-    "preload": ["defs/weapon/fire.js"],
+    "preload": ["fire.js", "fire.png"],
     "defs": {
         "fire": {
             "graphics": [{
                 "loop": 1,
                 "paddX": -3,
                 "paddY": -3,
-                "images": ["defs/weapon/fire.png"],
+                "image": "fire.png",
                 "frames": {
                     "width": 16,
                     "numFrames": 28,

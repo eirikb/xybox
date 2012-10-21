@@ -1,10 +1,11 @@
 {
     "preload": [
-        "defs/world/world.json",
-        "defs/player/player.json",
-        "defs/weapon/weapon.json",
-        "defs/powerup/powerup.json",
-        "levels/level-1.js"
+        "../defs/world/world.json",
+        "../defs/player/player.json",
+        "../defs/monsters/monsters.json",
+        "../defs/weapon/weapon.json",
+        "../defs/powerup/powerup.json",
+        "level-1.js"
     ],
     "objects": [{
         "name": "player",
@@ -18,6 +19,12 @@
         "level": 2,
         "body": {
             "x": 20,
+            "y": 10
+        }
+    },{
+        "def": "ghost",
+        "body": {
+            "x": 30,
             "y": 10
         }
     }]

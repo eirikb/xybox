@@ -1,5 +1,5 @@
 {
-    "preload": ["defs/monsters/monsters.png", "defs/monsters/monsters.js"],
+    "preload": ["monsters.png", "monsters.js"],
     "defs": {
         "ghost": {
             "speed": 5,
@@ -18,8 +18,9 @@
                 }]
             },
             "graphics": [{
-                "height": 16,
-                "width": 16,
+                "image": "monsters.png",
+                "scaleX": 0.8,
+                "scaleY": 0.8,
                 "frames": {
                     "width": 32,
                     "numFrames": 12,
@@ -43,8 +44,7 @@
                         "frames": [1, 0, 2, 0],
                         "frequency": 6
                     }
-                },
-                "images": ["defs/monsters/monsters.png"]
+                }
             }]
         }
     }

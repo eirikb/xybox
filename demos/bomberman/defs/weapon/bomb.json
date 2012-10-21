@@ -1,11 +1,11 @@
 {
-    "preload": ["defs/weapon/bomb.js"],
+    "preload": ["bomb.js", "bomb.png"],
     "defs": {
         "bomb": {
             "timer": 50,
             "bump": 4,
             "graphics": [{
-                "images": ["defs/weapon/bomb.png"],
+                "image": "bomb.png",
                 "frames": {
                     "width": 16,
                     "numFrames": 7,

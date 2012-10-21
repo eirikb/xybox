@@ -1,10 +1,10 @@
 {
     "preload": [
-        "defs/world/world.json",
-        "defs/player/player.json",
-        "defs/weapon/weapon.json",
-        "defs/powerup/powerup.json",
-        "levels/level-2.js"
+        "../defs/world/world.json",
+        "../defs/player/player.json",
+        "../defs/weapon/weapon.json",
+        "../defs/powerup/powerup.json",
+        "level-2.js"
     ],
     "objects": [{
         "name": "player",

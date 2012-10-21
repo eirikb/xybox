@@ -1,9 +1,9 @@
 {
-    "preload": ["defs/powerup/powerup.js"],
+    "preload": ["powerup.js", "powerup.png"],
     "defs": {
         "powerup": {
             "graphics": [{
-                "images": ["defs/powerup/powerup.png"],
+                "image": "powerup.png",
                 "paddX": -2,
                 "paddY": -2,
                 "frames": {

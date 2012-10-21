@@ -1,12 +1,12 @@
 {
-    "preload": ["defs/world/world.js", {
+    "preload": ["world.js", {
         "id": "objects",
-        "src": "defs/world/objects.png"
+        "src": "objects.png"
     }],
     "defs": {
         "block": {
             "graphics": [{
-                "id": "objects"
+                "image": "objects"
             }],
             "body": {
                 "isStatic": true,
@@ -18,7 +18,7 @@
         },
         "stairs": {
             "graphics": [{
-                "images": ["defs/world/objects.png"],
+                "image": "objects",
                 "frames": {
                     "width": 16,
                     "numFrames": 5,
@@ -39,7 +39,7 @@
         "brick": {
             "armor": 1,
             "graphics": [{
-                "images": ["defs/world/objects.png"],
+                "image": "objects",
                 "frames": {
                     "width": 16,
                     "numFrames": 7,
@@ -60,7 +60,7 @@
         "firebrick": {
             "graphics": [{
                 "loop": 1,
-                "images": ["defs/world/objects.png"],
+                "image": "objects",
                 "frames": {
                     "width": 16,
                     "numFrames": 7,
