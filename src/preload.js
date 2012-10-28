@@ -20,6 +20,7 @@ preload = (function() {
             root = '';
         }
         manifest = _.without(manifest, cache);
+        cache = cache.concat(manifest);
         manifest = _.map(manifest, function(m) {
             if (!m.id) {
                 m = {
@@ -30,7 +31,6 @@ preload = (function() {
             m.src = root + m.src;
             return m;
         });
-        cache = cache.concat(manifest);
         var assets = [];
         var loader = new PreloadJS();
 
