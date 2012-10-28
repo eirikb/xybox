@@ -9,7 +9,7 @@ graphics = (function() {
         self.scale = meta.scale || self.scale;
     });
 
-    function draw(object) {
+    self.draw = function(object) {
         var p = self.pos(object);
         _.each(object.graphics, function(graphics) {
             graphics.x = p.x + graphics.regX;
@@ -47,8 +47,8 @@ graphics = (function() {
                 h = graphics.height;
             }
 
-            if (!graphics.image) throw new Error('Missing graphics id: ' + object.def);
-            if (!game.assets[graphics.image]) throw new Error('Unknown graphics id: ' + graphics.image);
+            if (!graphics.image) throw new Error('Missing graphics image: ' + object.def);
+            if (!game.assets[graphics.image]) throw new Error('Unknown graphics image: ' + graphics.image);
             var shape;
             if (!graphics.animations) {
                 shape = new Shape();
@@ -96,7 +96,7 @@ graphics = (function() {
                 };
             }
         });
-        draw(object);
+        self.draw(object);
     });
 
     events.on('objectDestroy', function(object) {
@@ -130,7 +130,7 @@ graphics = (function() {
     });
 
     events.on('tick', 2, function() {
-        _.each(game.actives, draw);
+        _.each(game.actives, self.draw);
 
         self.stage.update();
     });
