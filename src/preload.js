@@ -26,7 +26,7 @@ preload = (function() {
                 m = {
                     id: m,
                     src: m
-                }
+                };
             }
             m.src = root + m.src;
             return m;
