@@ -1,10 +1,11 @@
 {
     "preload": [
-        {"id": "blood", "src": "defs/general/blood.png"}
+         "blood.png"
     ],
     "defs": {
         "blood": {
             "graphics": [{
+                "image": "blood.png",
                 "loop": 1,
                 "width": 40,
                 "height": 40,
@@ -16,12 +17,12 @@
                 },
                 "animations": {
                     "default": [0, 9, false, 2]
-                },
-                "images": ["defs/general/blood.png"]
+                }
             }]
         },
         "blowup": {
             "graphics": [{
+                "image": "blood.png",
                 "loop": 1,
                 "width": 120,
                 "height": 120,
@@ -32,8 +33,7 @@
                 },
                 "animations": {
                     "default": [3, 9, false, 2]
-                },
-                "images": ["defs/general/blood.png"]
+                }
             }]
         }
     }

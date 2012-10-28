@@ -1,8 +1,8 @@
 {
     "preload": [
-        "defs/player/player.js",
-        "defs/player/weapon.json",
-        "defs/player/player.png"
+        "player.js",
+        "weapon.json",
+        "player.png"
     ],
     "defs": {
         "player": {
@@ -30,6 +30,7 @@
             },
             "graphics": [{
                 "name":"bottom",
+                "image": "player.png",
                 "paddX": -4,
                 "paddY": 7,
                 "frames": {
@@ -41,10 +42,10 @@
                     "default": 8,
                     "right": [9, 14, true, 8],
                     "left": [16, 21, true, 8]
-                },
-                "images": ["defs/player/player.png"]
+                }
             }, {
                 "name": "top",
+                "image": "player.png",
                 "paddX": -2,
                 "paddY": -12,
                 "frames": {
@@ -52,8 +53,7 @@
                     "numFrames": 22,
                     "height": 35
                 },
-                "animations": {"default": [0], "right": [0, 0]},
-                "images": ["defs/player/player.png"]
+                "animations": {"default": [0], "right": [0, 0]}
             }]
         }
     }

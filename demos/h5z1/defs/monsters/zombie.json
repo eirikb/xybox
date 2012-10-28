@@ -1,7 +1,7 @@
 {
     "preload": [
-        "defs/monsters/zombie.png",
-        "defs/monsters/zombie.js"
+        "zombie.png",
+        "zombie.js"
     ],
     "defs": {
         "zombie": {
@@ -28,6 +28,7 @@
                 }]
             },
             "graphics": [{
+                "image": "zombie.png",
                 "frames": {
                     "width": 25,
                     "numFrames": 6,
@@ -37,8 +38,7 @@
                     "default": 1,
                     "left": [0, 2, true, 8],
                     "right": [3, 5, true, 8]
-                },
-                "images": ["defs/monsters/zombie.png"]
+                }
             }]
         }
     }

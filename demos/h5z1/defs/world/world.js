@@ -8,5 +8,6 @@
 
         game.bg.x = -graphics.stage.x * 0.9;
         game.bg.y = -graphics.stage.y * 0.9;
+        graphics.draw(game.bg);
     });
 })();

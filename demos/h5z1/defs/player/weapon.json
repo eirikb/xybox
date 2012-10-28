@@ -1,8 +1,5 @@
 {
-    "preload": [
-        "defs/player/weapon.js",
-        {"id": "weapon", "src": "defs/player/weapon.png"}
-    ],
+    "preload": ["weapon.js", "weapon.png"],
     "defs": {
         "bullet": {
             "power": 10,
@@ -19,7 +16,7 @@
                 }]
             },
             "graphics": [{
-                "id": "weapon"
+                "image": "weapon.png"
             }]
         }
     }

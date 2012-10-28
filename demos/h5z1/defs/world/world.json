@@ -1,34 +1,27 @@
 {
-    "preload": [
-        {"id": "ground", "src": "defs/world/ground.png"},
-        {"id": "box", "src": "defs/world/box.png"},
-        {"id": "floor", "src": "defs/world/floor.png"},
-        {"id": "bridge", "src": "defs/world/bridge.png"},
-        {"id": "bg", "src": "defs/world/bg.png"},
-        "defs/world/world.js"
-    ],
+    "preload": ["ground.png", "box.png", "floor.png", "bridge.png", "bg.png", "world.js"],
     "defs": {
         "bg": {
             "graphics": [{
-                "id": "bg",
+                "image": "bg.png",
                 "width": 1000,
                 "height": 500,
                 "paddX": -100,
                 "paddY": -70
             }]
-        }, 
+        },
         "ground": {
             "graphics": [{
-                "id": "ground",
+                "image": "ground.png",
                 "paddY": -4
             }],
             "body": {
                 "isStatic": true
             }
-        }, 
+        },
         "box": {
             "graphics": [{
-                "id": "box"
+                "image": "box.png"
             }],
             "body": {
                 "boxes": [{
@@ -42,7 +35,7 @@
         },
         "floor": {
             "graphics": [{
-                "id": "floor"
+                "image": "floor.png"
             }],
             "body": {
                 "isStatic": true
@@ -50,7 +43,7 @@
         },
         "bridge": {
             "graphics": [{
-                "id": "bridge"
+                "image": "bridge.png"
             }],
             "body": {
                 "boxes": [{

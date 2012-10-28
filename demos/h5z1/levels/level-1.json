@@ -1,9 +1,9 @@
 {
     "preload": [
-        "defs/world/world.json",
-        "defs/player/player.json",
-        "defs/monsters/zombie.json",
-        "defs/general/blood.json"
+        "../defs/world/world.json",
+        "../defs/player/player.json",
+        "../defs/monsters/zombie.json",
+        "../defs/general/blood.json"
     ],
     "objects": [{
         "name": "bg",
