@@ -22,6 +22,7 @@ physics = (function() {
     });
 
     self.createBody = function(object) {
+        if (!object.body) return;
         object.body = trolley.build(object.body).create()[0];
 
         // Reference back from body, used for Box2D collisions
