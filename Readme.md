@@ -5,7 +5,7 @@
 For the lazy:
 
 ```HTML
-<script src="https://raw.github.com/eirikb/xybox/v1.0/xybox-all.min.js"></script>
+<script src="https://raw.github.com/eirikb/xybox/v1.0.1/xybox-all.min.js"></script>
 ```
 
 Or:
