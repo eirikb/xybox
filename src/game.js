@@ -7,6 +7,7 @@ game = (function() {
     self.actives = [];
     self.defs = {};
     self.assets = {};
+    self.version = '1.0.1';
 
     // Keyboard input using kibo ( https://github.com/marquete/kibo )
     self.keys = new Kibo();
