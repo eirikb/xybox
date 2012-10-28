@@ -38,8 +38,7 @@ graphics = (function() {
         var newGraphics = [];
 
         _.each(object.graphics, function(graphics) {
-            var g, w, h, shape, sheet, animation;
-
+            var w, h;
             if (object.body) {
                 w = object.body.width * self.scale;
                 h = object.body.height * self.scale;
@@ -50,14 +49,15 @@ graphics = (function() {
 
             if (!graphics.image) throw new Error('Missing graphics id: ' + object.def);
             if (!game.assets[graphics.image]) throw new Error('Unknown graphics id: ' + graphics.image);
+            var shape;
             if (!graphics.animations) {
                 shape = new Shape();
-                g = shape.graphics;
+                var g = shape.graphics;
                 g.beginBitmapFill(game.assets[graphics.image]);
                 g.drawRect(0, 0, w, h);
             } else {
                 graphics.images = [game.assets[graphics.image].src];
-                sheet = new SpriteSheet(graphics);
+                var sheet = new SpriteSheet(graphics);
                 shape = new BitmapAnimation(sheet);
                 if (object.animation) graphics.animation = object.animation;
                 if (!graphics.animation) graphics.animation = 'default';
