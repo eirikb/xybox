@@ -1,9 +1,7 @@
 events = (function() {
-    var self, listeners;
-
-    self = {};
-    listeners = {};
-    self.l=listeners;
+    var self = {};
+    var listeners = {};
+    self.l = listeners;
 
     self.on = function(name, priority, cb) {
         if (arguments.length === 2) {
@@ -22,13 +20,13 @@ events = (function() {
         });
     };
 
-    // TODO: Use call and slice arguments
-    self.trigger = function(name, val1, val2) {
+    self.trigger = function(name) {
         var ret;
+        var args = _.toArray(arguments).slice(1);
         _.each(listeners[name], function(listener) {
             var r;
 
-            r = listener.callback(val1, val2);
+            r = listener.callback.apply(null, args);
             if (typeof r !== 'undefined') ret = r;
         });
         return ret;
@@ -36,4 +34,3 @@ events = (function() {
 
     return self;
 })();
-
