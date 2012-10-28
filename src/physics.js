@@ -94,7 +94,7 @@ physics = (function() {
     });
 
     events.on('objectDestroy', function(object) {
-        destroyList.push(object.body);
+        if (object.body) destroyList.push(object.body);
     });
 
     events.on('tick', 3, function() {
