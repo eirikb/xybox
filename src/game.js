@@ -41,6 +41,7 @@ game = (function() {
 
         manifest = [name, 'meta.json'];
 
+        self.ready = false;
         preload.recursiveLoad(manifest, function(count, total, result, assets) {
             if (cb) cb(count, total, result, assets);
             if (count < total) return;
@@ -72,11 +73,10 @@ game = (function() {
                 events.trigger('tick');
             });
 
-            setTimeout(function() {
-                events.trigger('ready');
-            }, 100);
+            events.trigger('ready');
 
             if (complete) complete();
+            self.ready = true;
         });
     };
 

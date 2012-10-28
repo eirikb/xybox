@@ -13,6 +13,30 @@ preload = (function() {
         load(manifest, cb);
     };
 
+    // http://stackoverflow.com/questions/756382/bookmarklet-wait-until-javascript-is-loaded
+    function loadScript(url, callback) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = url;
+
+        var done = false;
+        if (callback) {
+            script.onload = script.onreadystatechange = function() {
+                if (!done && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
+                    done = true;
+
+                    callback();
+
+                    // Handle memory leak in IE
+                    script.onload = script.onreadystatechange = null;
+                    head.removeChild(script);
+                }
+            };
+        }
+
+        head.appendChild(script);
+    }
+
     function load(root, manifest, cb) {
         if (arguments.length === 2) {
             cb = manifest;
@@ -49,7 +73,9 @@ preload = (function() {
                 switch (a.type) {
 
                 case PreloadJS.JAVASCRIPT:
-                    document.body.appendChild(a.result);
+                    loadScript(a.result.src, function() {
+                        if (game.ready) events.trigger('ready');
+                    });
                     break;
 
                 case PreloadJS.JSON:
