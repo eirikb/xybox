@@ -1,8 +1,5 @@
 {
-    "preload": [
-        "defs/player/player.js",
-        "defs/player/boy.png"
-    ],
+    "preload": ["player.js", "boy.png"],
     "defs": {
         "player": {
             "speed": 5,
@@ -17,7 +14,7 @@
                     "options": {
                         "friction": 0
                     }
-                },{
+                }, {
                     "y": 0.5,
                     "size": 0.75,
                     "options": {
@@ -27,6 +24,7 @@
                 }]
             },
             "graphics": [{
+                "image": "boy.png",
                 "paddY": 100,
                 "frames": {
                     "width": 100,
@@ -37,8 +35,7 @@
                     "default": 0,
                     "right": 0,
                     "left": 0
-                },
-                "images": ["defs/player/boy.png"]
+                }
             }]
         }
     }

@@ -1,15 +1,13 @@
 {
-    "preload": [
-        "defs/world/world.json",
-        "defs/player/player.json",
-        "defs/general/simpleanimation.json",
-        "levels/level-1.js",
-        {"id": "bg", "src": "defs/world/bg.png"}
-    ],
+    "preload": ["../defs/world/world.json", "../defs/player/player.json", "level-1.js",
+    {
+        "id": "bg",
+        "src": "../defs/world/bg.png"
+    }],
     "objects": [{
         "name": "bg",
         "graphics": [{
-            "id": "bg",
+            "image": "bg",
             "width": 5000,
             "height": 500,
             "paddX": -100,

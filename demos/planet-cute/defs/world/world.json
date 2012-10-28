@@ -1,11 +1,9 @@
 {
-    "preload": [
-        {"id": "block", "src": "defs/world/block.png"}
-    ],
+    "preload": ["block.png"],
     "defs": {
         "block": {
             "graphics": [{
-                "id": "block"
+                "image": "block.png"
             }],
             "body": {
                 "isStatic": true,
