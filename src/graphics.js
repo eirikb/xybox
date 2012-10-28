@@ -47,20 +47,21 @@ graphics = (function() {
                 w = graphics.width;
                 h = graphics.height;
             }
-            if (!graphics.id) throw new Error('graphics.id not defined');
-            if (!game.assets[graphics.id]) throw new Error('Unknown graphics id: ' + graphics.id);
-            graphics.images = [game.assets[graphics.id].src];
-            if (graphics.animations) {
+
+            if (!graphics.image) throw new Error('Missing graphics id: ' + object.def);
+            if (!game.assets[graphics.image]) throw new Error('Unknown graphics id: ' + graphics.image);
+            if (!graphics.animations) {
+                shape = new Shape();
+                g = shape.graphics;
+                g.beginBitmapFill(game.assets[graphics.image]);
+                g.drawRect(0, 0, w, h);
+            } else {
+                graphics.images = [game.assets[graphics.image].src];
                 sheet = new SpriteSheet(graphics);
                 shape = new BitmapAnimation(sheet);
                 if (object.animation) graphics.animation = object.animation;
                 if (!graphics.animation) graphics.animation = 'default';
                 shape.gotoAndPlay(graphics.animation);
-            } else {
-                shape = new Shape();
-                g = shape.graphics;
-                g.beginBitmapFill(game.assets[graphics.id]);
-                g.drawRect(0, 0, w, h);
             }
             if (object.rotation) shape.rotation = object.rotation;
             shape.paddX = graphics.paddX;
@@ -72,8 +73,6 @@ graphics = (function() {
                 shape.scaleX = meta.graphics.scaleX || 1;
                 shape.scaleY = meta.graphics.scaleY || 1;
             }
-            if (graphics.width) shape.scaleX = graphics.scaleX;
-            if (graphics.height) shape.scaleY = graphics.scaleY;
             if (graphics.zindex) self.stage.addChildAt(shape, graphics.zindex);
             else self.stage.addChild(shape);
             newGraphics.push(shape);
