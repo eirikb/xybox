@@ -53,9 +53,10 @@
     });
 
     events.on('death', function() {
+        if (game.player.dead) return;
         game.player.dead = true;
-        game.destroyObject(game.player);
         var gpos = graphics.pos(game.player);
+        game.destroyObject(game.player);
         game.createObject({
             def: 'blood',
             x: gpos.x - 8,

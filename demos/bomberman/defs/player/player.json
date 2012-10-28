@@ -4,7 +4,7 @@
         "player": {
             "speed": 5,
             "life": 100,
-            "bombs": 1,
+            "bombs": 10,
             "power": 3,
             "armor": 0,
             "body": {
@@ -52,8 +52,8 @@
         "blood": {
             "graphics": [{
                 "image": "blood.png",
-                "width": 32,
-                "height": 32 
+                "width": 31,
+                "height": 31 
             }]
         }
     }

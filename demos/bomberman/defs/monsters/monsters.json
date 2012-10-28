@@ -2,7 +2,8 @@
     "preload": ["monsters.png", "monsters.js"],
     "defs": {
         "ghost": {
-            "speed": 5,
+            "speed": 6,
+            "bump": 10,
             "life": 100,
             "body": {
                 "options": {
@@ -10,7 +11,7 @@
                     "fixedRotation": true
                 },
                 "circles": [{
-                    "size": 2,
+                    "size": 1,
                     "options": {
                         "density": 0,
                         "friction": 0
@@ -19,25 +20,24 @@
             },
             "graphics": [{
                 "image": "monsters.png",
-                "scaleX": 0.8,
-                "scaleY": 0.8,
+                "paddY": -6,
                 "frames": {
-                    "width": 32,
-                    "numFrames": 12,
-                    "height": 32
+                    "width": 18,
+                    "numFrames": 96,
+                    "height": 22
                 },
                 "animations": {
                     "default": 0,
                     "left": {
-                        "frames": [7, 6, 8, 6],
+                        "frames": [10, 9, 11, 9],
                         "frequency": 6
                     },
                     "up": {
-                        "frames": [4, 3, 5, 3],
+                        "frames": [7, 6, 8, 6],
                         "frequency": 6
                     },
                     "right": {
-                        "frames": [10, 9, 11, 9],
+                        "frames": [4, 3, 5, 3],
                         "frequency": 6
                     },
                     "down": {
