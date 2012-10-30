@@ -61,7 +61,10 @@ graphics = (function() {
                 shape = new BitmapAnimation(sheet);
                 if (object.animation) graphics.animation = object.animation;
                 if (!graphics.animation) graphics.animation = 'default';
-                shape.gotoAndPlay(graphics.animation);
+                var doPlay = graphics.animations[graphics.animation];
+                doPlay = doPlay && doPlay.length > 1;
+                var call = 'gotoAnd' + (doPlay ? 'Play' : 'Stop');
+                shape[call](graphics.animation);
             }
             if (object.rotation) shape.rotation = object.rotation;
             shape.paddX = graphics.paddX;
