@@ -11,14 +11,28 @@
         "name": "player",
         "def": "player",
         "body": {
-            "x": 18,
+            "x": 5,
             "y": 10
         }
     },{
         "def": "stairs",
         "level": 2,
         "body": {
-            "x": 20,
+            "x": 10,
+            "y": 10
+        }
+    },{
+        "def": "stairs",
+        "level": 2,
+        "body": {
+            "x": 23,
+            "y": 10
+        }
+    },{
+        "def": "stairs",
+        "level": 3,
+        "body": {
+            "x": 27,
             "y": 10
         }
     }]
