@@ -34,7 +34,7 @@ game = (function() {
         }).value();
     };
 
-    self.init = function(name, cb, complete) {
+    self.load = function(name, cb, complete) {
         var manifest;
 
         if (!name.match(/\.json$/i)) name += '.json';
@@ -43,7 +43,6 @@ game = (function() {
 
         self.ready = false;
         preload.recursiveLoad(manifest, function(count, total, result, assets) {
-            if (cb) cb(count, total, result, assets);
             if (count < total) return;
 
             _.each(self.objects, function(object) {
@@ -65,18 +64,21 @@ game = (function() {
                 self.createObject(object);
             });
 
-            if (meta.fps) self.fps = meta.fps;
-
-            Ticker.removeAllListeners();
-            Ticker.setFPS(self.fps);
-            Ticker.addListener(function() {
-                events.trigger('tick');
-            });
-
-            events.trigger('ready');
-
-            if (complete) complete();
+            if (cb) cb(count, total, result, assets);
             self.ready = true;
+            events.trigger('ready');
+            name = name.replace(/^\S*\//, '').replace(/\.json$/i, '');
+            events.trigger('ready-' + name);
+        });
+    };
+
+    self.start = function() {
+        if (meta.fps) self.fps = meta.fps;
+
+        Ticker.removeAllListeners();
+        Ticker.setFPS(self.fps);
+        Ticker.addListener(function() {
+            events.trigger('tick');
         });
     };
 
