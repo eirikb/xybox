@@ -11,7 +11,7 @@
         });
     }
 
-    events.on('ready', function() {
+    events.on('ready-level-2', function() {
         var width = graphics.width / (game.player.body.width * graphics.scale);
         var height = graphics.height / (game.player.body.height * graphics.scale);
 
