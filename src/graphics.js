@@ -51,14 +51,14 @@ graphics = (function() {
             if (!game.assets[graphics.image]) throw new Error('Unknown graphics image: ' + graphics.image);
             var shape;
             if (!graphics.animations) {
-                shape = new Shape();
+                shape = new createjs.Shape();
                 var g = shape.graphics;
                 g.beginBitmapFill(game.assets[graphics.image]);
                 g.drawRect(0, 0, w, h);
             } else {
                 graphics.images = [game.assets[graphics.image].src];
-                var sheet = new SpriteSheet(graphics);
-                shape = new BitmapAnimation(sheet);
+                var sheet = new createjs.SpriteSheet(graphics);
+                shape = new createjs.BitmapAnimation(sheet);
                 if (object.animation) graphics.animation = object.animation;
                 if (!graphics.animation) graphics.animation = 'default';
                 var doPlay = graphics.animations[graphics.animation];
@@ -119,7 +119,7 @@ graphics = (function() {
             x: self.width / 2,
             y: self.height / 2
         };
-        self.stage = new Stage(canvas);
+        self.stage = new createjs.Stage(canvas);
 
         self.stage.onMouseMove = function(event) {
             events.trigger('mouseMove', event);

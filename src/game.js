@@ -75,9 +75,9 @@ game = (function() {
     self.start = function() {
         if (meta.fps) self.fps = meta.fps;
 
-        Ticker.removeAllListeners();
-        Ticker.setFPS(self.fps);
-        Ticker.addListener(function() {
+        createjs.Ticker.removeAllListeners();
+        createjs.Ticker.setFPS(self.fps);
+        createjs.Ticker.addListener(function() {
             events.trigger('tick');
         });
     };

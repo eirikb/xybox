@@ -56,7 +56,7 @@ preload = (function() {
             return m;
         });
         var assets = [];
-        var loader = new PreloadJS();
+        var loader = new createjs.PreloadJS();
 
         total += manifest.length;
 
@@ -72,13 +72,13 @@ preload = (function() {
 
                 switch (a.type) {
 
-                case PreloadJS.JAVASCRIPT:
+                case createjs.PreloadJS.JAVASCRIPT:
                     loadScript(a.result.src, function() {
                         if (game.ready) events.trigger('ready');
                     });
                     break;
 
-                case PreloadJS.JSON:
+                case createjs.PreloadJS.JSON:
                     try {
                         var r = a.src.match(/.*\//);
                         r = r ? r[0] : '';

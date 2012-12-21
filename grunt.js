@@ -8,7 +8,7 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             all: {
-                src: ['components/box2d.min.js', 'components/easeljs-0.4.1.min.js', 'components/kibo.js', 'components/preloadjs-0.1.0.min.js', 'components/trolley.js', 'components/underscore.js', 'src/helpers.js', 'src/events.js', 'src/preload.js', 'src/physics.js', 'src/graphics.js', 'src/game.js'],
+                src: ['components/box2d/index.js', 'components/easel/index.js', 'components/kibo/index.js', 'components/preload/index.js', 'components/trolley/trolley.js', 'components/underscore/underscore.js', 'src/helpers.js', 'src/events.js', 'src/preload.js', 'src/physics.js', 'src/graphics.js', 'src/game.js'],
                 dest: 'xybox-all.js',
                 separator: ';'
             }
