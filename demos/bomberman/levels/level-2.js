@@ -12,8 +12,8 @@
     }
 
     events.on('ready-level-2', function() {
-        var width = graphics.width / (game.player.body.width * graphics.scale);
-        var height = graphics.height / (game.player.body.height * graphics.scale);
+        var width = Math.floor(graphics.width / (game.player.body.width * graphics.scale));
+        var height = Math.floor(graphics.height / (game.player.body.height * graphics.scale));
 
         _(height - 1).times(function(y) {
             _(width - 1).times(function(x) {
