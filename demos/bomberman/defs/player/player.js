@@ -35,7 +35,7 @@
             }
             if (way.xDir) xDir = way.xDir;
             if (way.yDir) yDir = way.yDir;
-            return;
+            return false;
         }).up(keys, function() {
             if (xDir === way.xDir) xDir = 0;
             if (yDir === way.yDir) yDir = 0;
@@ -43,7 +43,7 @@
             _(ways).each(function(w, k) {
                 if (w.xDir === xDir || w.yDir === yDir) game.player.graphics[0].gotoAndPlay(k);
             });
-            return;
+            return false;
         });
     });
 
