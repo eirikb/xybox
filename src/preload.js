@@ -4,6 +4,8 @@ preload = (function() {
     var total = 0;
     var count = 0;
     var cache = [];
+    var result = {};
+    var allAssets = [];
 
     self.recursiveLoad = function(manifest, cb) {
         total = 0;
@@ -14,6 +16,7 @@ preload = (function() {
     };
 
     // http://stackoverflow.com/questions/756382/bookmarklet-wait-until-javascript-is-loaded
+
     function loadScript(url, callback) {
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');
@@ -71,13 +74,11 @@ preload = (function() {
                 allAssets.push(a);
 
                 switch (a.type) {
-
                 case createjs.PreloadJS.JAVASCRIPT:
                     loadScript(a.result.src, function() {
-                        if (game.ready) events.trigger('ready');
+                        cb(count, total, result, allAssets);
                     });
                     break;
-
                 case createjs.PreloadJS.JSON:
                     try {
                         var r = a.src.match(/.*\//);
@@ -91,15 +92,18 @@ preload = (function() {
                         // Remove preload and combine/extend result with a.result
                         delete a.preload;
                         helpers.deepDefaults(result, a);
-                    } catch (e) {
+                    } catch(e) {
                         console.error('Unable to parse ' + a.src);
                         throw e;
                     }
+
+                    cb(count, total, result, allAssets);
+                    break;
+                default:
+                    cb(count, total, result, allAssets);
                     break;
                 }
             });
-
-            cb(count, total, result, allAssets);
         };
 
         loader.loadManifest(manifest);
