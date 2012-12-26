@@ -29,5 +29,6 @@
         });
 
         graphics.stage.swapChildren(game.player.graphics[0], last.graphics[0]);
+        game.start();
     });
 })();

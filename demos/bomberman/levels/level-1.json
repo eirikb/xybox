@@ -11,7 +11,7 @@
         "name": "player",
         "def": "player",
         "body": {
-            "x": 5,
+            "x": 8,
             "y": 10
         }
     },{

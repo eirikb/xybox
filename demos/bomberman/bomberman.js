@@ -13,7 +13,7 @@ bomberman = function(level) {
 };
 
 window.onload = function() {
-    bomberman(1);
+    bomberman(2);
 };
 
 bomberman.box = function(type, startX, startY, width, height) {
