@@ -2,14 +2,13 @@
 preload = (function() {
     var self = {};
     var total = 0;
-    var count = 0;
     var cache = [];
     var result = {};
     var allAssets = [];
+    var count = 0;
 
     self.recursiveLoad = function(manifest, cb) {
         total = 0;
-        count = 0;
         result = {};
         allAssets = [];
         load(manifest, cb);
@@ -68,15 +67,13 @@ preload = (function() {
         };
 
         loader.onComplete = function() {
-            count += assets.length;
-
             _.each(assets, function(a) {
                 allAssets.push(a);
 
                 switch (a.type) {
                 case createjs.PreloadJS.JAVASCRIPT:
                     loadScript(a.result.src, function() {
-                        cb(count, total, result, allAssets);
+                        cb(++count, total, result, allAssets);
                     });
                     break;
                 case createjs.PreloadJS.JSON:
@@ -92,15 +89,15 @@ preload = (function() {
                         // Remove preload and combine/extend result with a.result
                         delete a.preload;
                         helpers.deepDefaults(result, a);
-                    } catch(e) {
+                    } catch (e) {
                         console.error('Unable to parse ' + a.src);
                         throw e;
                     }
+                    cb(++count, total, result, allAssets);
 
-                    cb(count, total, result, allAssets);
                     break;
                 default:
-                    cb(count, total, result, allAssets);
+                    cb(++count, total, result, allAssets);
                     break;
                 }
             });

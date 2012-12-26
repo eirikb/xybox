@@ -42,8 +42,9 @@ game = (function() {
         manifest = [name, 'meta.json'];
 
         self.ready = false;
-        preload.recursiveLoad(manifest, function(count, total, result, assets) {
+        preload.recursiveLoad(manifest, function (count, total, result, assets) {
             if (count < total) return;
+
 
             _.each(self.objects, function(object) {
                 self.destroyObject(object);
@@ -72,7 +73,7 @@ game = (function() {
         });
     };
 
-    self.start = function() {
+    self.start = function () {
         if (meta.fps) self.fps = meta.fps;
 
         createjs.Ticker.removeAllListeners();
