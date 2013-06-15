@@ -5,9 +5,9 @@
   "dependencies": {
     "easel": "http://code.createjs.com/easeljs-0.5.0.min.js",
     "preload": "http://code.createjs.com/preloadjs-0.2.0.min.js",
-    "underscore": "",
+    "underscore": "1.4.2",
     "kibo": "https://raw.github.com/marquete/kibo/master/kibo.js",
     "box2d": "https://raw.github.com/HBehrens/box2d.js/master/javascript/Box2D/box2d.min.js",
-    "trolley": ""
+    "trolley": "https://raw.github.com/eirikb/trolley/master/trolley.min.js"
   }
 }
