@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         separator: ';'
       }
     },
-    min: {
+    uglify: {
       dist: {
         src: ['xybox.js'],
         dest: 'xybox.min.js'
@@ -25,5 +25,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', 'concat min');
+  grunt.loadNpmTasks('grunt-contrib');
+
+  grunt.registerTask('default', ['concat',  'uglify']);
 };
