@@ -31,10 +31,13 @@ module.exports = function(grunt) {
           nospawn: true,
         }
       }
-    }
+    },
+    jshint: {
+      all: ['src/*.js']
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib');
 
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['concat', 'jshint', 'uglify']);
 };

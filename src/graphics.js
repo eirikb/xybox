@@ -18,7 +18,7 @@ graphics = (function() {
       if (graphics.paddY) graphics.y += graphics.paddY;
       if (object.body) graphics.rotation = -(object.body.GetAngle() * 180 / Math.PI);
     });
-  }
+  };
 
   self.pos = function(object) {
     var pos;
