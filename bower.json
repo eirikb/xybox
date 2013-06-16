@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "main": ["src/helpers.js", "src/events.js", "src/preload.js", "src/physics.js", "src/graphics.js", "src/game.js"],
   "dependencies": {
-    "easel": "http://code.createjs.com/easeljs-0.5.0.min.js",
+    "easel": "http://code.createjs.com/easeljs-0.6.1.min.js",
     "preload": "http://code.createjs.com/preloadjs-0.2.0.min.js",
     "underscore": "1.4.2",
     "kibo": "https://raw.github.com/marquete/kibo/master/kibo.js",
