@@ -1,36 +1,36 @@
 events = (function() {
-    var self = {};
-    var listeners = {};
-    self.l = listeners;
+  var self = {};
+  var listeners = {};
+  self.l = listeners;
 
-    self.on = function(name, priority, cb) {
-        if (arguments.length === 2) {
-            cb = priority;
-            priority = 1;
-        }
+  self.on = function(name, priority, cb) {
+    if (arguments.length === 2) {
+      cb = priority;
+      priority = 1;
+    }
 
-        if (!listeners[name]) listeners[name] = [];
+    if (!listeners[name]) listeners[name] = [];
 
-        listeners[name].push({
-            priority: priority,
-            callback: cb
-        });
-        listeners[name].sort(function(a, b) {
-            return a.priority > b.priority;
-        });
-    };
+    listeners[name].push({
+      priority: priority,
+      callback: cb
+    });
+    listeners[name].sort(function(a, b) {
+      return a.priority > b.priority;
+    });
+  };
 
-    self.trigger = function(name) {
-        var ret;
-        var args = _.toArray(arguments).slice(1);
-        _.each(listeners[name], function(listener) {
-            var r;
+  self.trigger = function(name) {
+    var ret;
+    var args = _.toArray(arguments).slice(1);
+    _.each(listeners[name], function(listener) {
+      var r;
 
-            r = listener.callback.apply(null, args);
-            if (typeof r !== 'undefined') ret = r;
-        });
-        return ret;
-    };
+      r = listener.callback.apply(null, args);
+      if (typeof r !== 'undefined') ret = r;
+    });
+    return ret;
+  };
 
-    return self;
+  return self;
 })();
