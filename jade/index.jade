@@ -8,15 +8,28 @@ block content
           li
             a(href='#install') Install
           li
+            a(href='#xybox') XYBox
+          li
             a(href='#defs') Defs
   .container
     .hero-unit
       h1 XYBox
+        small= pkg.version
       p Game engine
+      p
+        a.btn.btn-primary.btn-large(href='#install') Get started 
+          i.icon-double-angle-down
+      p
+        a.btn.btn-primary.btn-large(href='tutorial.html') Tutorial 
+          i.icon-double-angle-right
     section#install
       .page-header
         h1 Install/setup
       include install
+    section#xybox
+      .page-header
+        h1 XYBox library 
+      include xybox
     section#defs
       .page-header
         h1 Defs

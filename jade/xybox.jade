@@ -1,0 +1,26 @@
+.row
+  .span12
+    h2 Global objects
+    :markdown
+      The XYBox library consist of these parts (global objects on _window_):  
+    ul
+      li
+        h4 game
+        p Properties:
+        ul
+          li
+            strong objects 
+            | All objects created.
+          li
+            strong actives 
+            | Active (non-static, moving) objects created.
+      li
+        h4 events
+        p Functions:
+        ul
+          li
+            strong on(name, callback) 
+            | Add event listener.
+          li
+            strong trigger(name, arguments ... ) 
+            | Trigger a given event.
