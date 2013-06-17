@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    pkg: require('./package.json'),
     concat: {
       dist: {
         src: ['src/main.js'],
@@ -23,6 +24,11 @@ module.exports = function(grunt) {
       compile: {
         files: {
           'index.html': 'jade/index.jade'
+        },
+        options: {
+          data: {
+            pkg: '<%= pkg %>'
+          }
         }
       }
     },
