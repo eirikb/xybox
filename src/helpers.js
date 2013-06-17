@@ -1,5 +1,4 @@
-helpers = {
-  // Recursive defaults
+var helpers = {
   deepDefaults: function(obj, def) {
     if (_.isObject(obj) && _.isObject(def)) {
       _.defaults(obj, def);

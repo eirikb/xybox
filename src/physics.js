@@ -9,6 +9,7 @@ physics = (function() {
   var positionIterationsPerSecond = 200;
   var destroyList = [];
 
+  /*
   events.on('onload', function() {
     velocityIterationsPerSecond = meta.velocityIterationsPerSecond || velocityIterationsPerSecond;
     positionIterationsPerSecond = meta.positionIterationsPerSecond || positionIterationsPerSecond;
@@ -122,4 +123,5 @@ physics = (function() {
   }
 
   return self;
+ */
 })();

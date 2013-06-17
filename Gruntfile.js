@@ -3,12 +3,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
       dist: {
-        src: ['src/helpers.js', 'src/events.js', 'src/preload.js', 'src/physics.js', 'src/graphics.js', 'src/game.js'],
+        src: ['src/intro.js', 'src/helpers.js', 'src/events.js', 'src/preload.js', 'src/physics.js', 'src/graphics.js', 'src/game.js', 'src/outro.js'],
         dest: 'xybox.js',
         separator: ';'
       },
       all: {
-        src: ['components/box2d/index.js', 'components/easel/index.js', 'components/kibo/index.js', 'components/preload/index.js', 'components/trolley/index.js', 'components/underscore/underscore.js', 'src/helpers.js', 'src/events.js', 'src/preload.js', 'src/physics.js', 'src/graphics.js', 'src/game.js'],
+        src: ['components/box2d/index.js', 'components/easel/index.js', 'components/kibo/index.js', 'components/preload/index.js', 'components/trolley/index.js', 'components/underscore/underscore.js', 'xybox.js'],
         dest: 'xybox-all.js',
         separator: ';'
       }
@@ -26,18 +26,26 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['src/**'],
-        tasks: ['default'],
-        options: {
-          nospawn: true,
-        }
+        tasks: ['default']
       }
     },
     jshint: {
-      all: ['src/*.js']
+      all: ['Gruntfile.js', 'src/*.js'],
+      options: {
+        ignores: ['src/intro.js', 'src/outro.js']
+      }
     },
+    copy: {
+      main: {
+        files: [{
+          src: 'xybox*',
+          dest: '../xybox-pages/lib/'
+        }]
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib');
 
-  grunt.registerTask('default', ['concat', 'jshint', 'uglify']);
+  grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'copy']);
 };

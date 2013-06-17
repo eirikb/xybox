@@ -1,0 +1,10 @@
+{
+  "name": "xybox",
+  "author": {
+    "name": "Eirik Brandtzæg"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib": "~0.7.0"
+  }
+}
