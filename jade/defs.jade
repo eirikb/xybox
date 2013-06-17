@@ -1,0 +1,24 @@
+.row
+  .span12
+    :markdown
+      XYBox is built on definitions called _defs_.
+      It is a way to describe an item, such as a car, player, house, ball or brick wall.  
+      The def define item _physics_, _graphics_ and _behavior_.
+      Physics and graphics are defined in _JSON_ files, 
+      while the behavior and logic is defined in _JS_ files.
+    h3 Ball
+    :markdown
+      As an example we will try to make a ball with a _defs_ file.  
+      First we need an image, like this one:  
+      ![chrome logo](img/chrome.png)  
+      _[(img/chrome.png)](img/chrome.png)_.  
+      Then we can define this in a _defs_ file like this (_ball.json_):
+    .row
+      .span6
+        pre.prettyprint
+          include ../defs/ball1.json
+      .span6
+        :markdown
+          Here __defs__ indicates the definition. All definitions are merged together.
+          One item can have many graphical parts, so __graphics__ is an array,
+          in this case it only have one __image__. This image will be 100% its original size.
