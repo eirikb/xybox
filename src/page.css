@@ -5,3 +5,7 @@
 section {
   padding-top: 30px;
 }
+
+canvas {
+  border: 1px solid;
+}

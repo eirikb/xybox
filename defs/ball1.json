@@ -1,0 +1,9 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "x": 10,
+    "y": 10
+  }]
+}

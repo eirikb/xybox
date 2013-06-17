@@ -12,13 +12,21 @@
       First we need an image, like this one:  
       ![chrome logo](img/chrome.png)  
       _[(img/chrome.png)](img/chrome.png)_.  
-      Then we can define this in a _defs_ file like this (_ball.json_):
+      Then we can define this in a _defs_ file like this (_ball1.json_):
     .row
       .span6
+        h5 Input
         pre.prettyprint
           include ../defs/ball1.json
       .span6
-        :markdown
-          Here __defs__ indicates the definition. All definitions are merged together.
-          One item can have many graphical parts, so __graphics__ is an array,
-          in this case it only have one __image__. This image will be 100% its original size.
+        h5 Output
+        canvas#ball1
+
+    :markdown
+      Here _items_ indicate the items we want to draw.
+      The _images_ in _graphics_ will be preloaded (only once pr src).
+
+    p Run like this with JavaScript:
+    pre.prettyprint game.init('ball1', 'defs/ball1.json');
+    :markdown
+      First argument, _ball1_, is _ID_ of canvas, and second argument is definition (_defs_) file.

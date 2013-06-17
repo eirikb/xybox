@@ -1,13 +1,15 @@
 .row
   .span12
     :markdown
-      Include the "_all_" bundle:
-    pre
-      a(href="http://eirikb.github.io/xybox/#{pkg.version}/lib/xybox-all.min.js") http://eirikb.github.io/xybox/#{pkg.version}/lib/xybox-all.min.js
+      Either:  
+      Include the ["_all_"](http://eirikb.github.io/xybox/#{pkg.version}/lib/xybox-all.min.js) bundle:
+    pre.prettyprint
+        &lt;script src="http://eirikb.github.io/xybox/#{pkg.version}/lib/xybox-all.min.js"&gt;
     :markdown
       Remove _min._ for development purposes (referenced libraries are still minified).
 
-      Or install with [bower](https://github.com/bower/bower):
+      Or:  
+      install with [bower](https://github.com/bower/bower):
     pre bower install xybox
     :markdown
       Then all you need to do is reference the script(s) in your markup.
