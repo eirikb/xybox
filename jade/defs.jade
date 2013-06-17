@@ -6,7 +6,7 @@
       The def define item _physics_, _graphics_ and _behavior_.
       Physics and graphics are defined in _JSON_ files, 
       while the behavior and logic is defined in _JS_ files.
-    h3 Ball
+    h3 Items and graphics
     :markdown
       As an example we will try to make a ball with a _defs_ file.  
       First we need an image, like this one:  
@@ -30,3 +30,19 @@
     pre.prettyprint game.init('ball1', 'defs/ball1.json');
     :markdown
       First argument, _ball1_, is _ID_ of canvas, and second argument is definition (_defs_) file.
+
+    h3 Items and defs
+    :markdown
+      Now what if we would like to draw the same ball two times?  
+      This is where we will use _defs_. Basically a _def_ will merge into items,
+      so you only have can split the item definition from actual items.  
+      This can be setup like this (_ball2.json):
+
+    .row
+      .span6
+        h5 Input
+        pre.prettyprint
+          include ../defs/ball2.json
+      .span6
+        h5 Output
+        canvas#ball2

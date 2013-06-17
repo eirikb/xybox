@@ -3,7 +3,7 @@
 <p>Or:<br/>install with <a href="https://github.com/bower/bower">bower</a>:</p><pre>bower install xybox</pre><p>Then all you need to do is reference the script(s) in your markup.</p></div></div></section><section id="xyboxlib"><div class="page-header"><h1>XYBox library </h1></div><div class="row"><!--/.span12<h2>Global objects</h2><p>The XYBox library consist of these parts (global objects on <em>window</em>):  </p><ul><li><h4>game</h4><p>Properties:</p><ul><li><strong>objects </strong>All objects created.</li><li><strong>actives </strong>Active (non-static, moving) objects created.</li></ul><p>Functions:</p><ul><li><strong>init(canvas, defs ... ) </strong>Initialize a game with canvas ID and one or more defs.</li></ul></li><li><h4>events</h4><p>Functions:</p><ul><li><strong>on(name, callback) </strong>Add event listener.</li><li><strong>trigger(name, arguments ... ) </strong>Trigger a given event.</li></ul></li></ul>--></div></section><section id="defs"><div class="page-header"><h1>Defs and Items</h1></div><div class="row"><div class="span12"><p>XYBox is built on definitions called <em>defs</em>.
 It is a way to describe an item, such as a car, player, house, ball or brick wall.<br/>The def define item <em>physics</em>, <em>graphics</em> and <em>behavior</em>.
 Physics and graphics are defined in <em>JSON</em> files, 
-while the behavior and logic is defined in <em>JS</em> files.</p><h3>Ball</h3><p>As an example we will try to make a ball with a <em>defs</em> file.<br/>First we need an image, like this one:<br/><img alt="chrome logo" src="img/chrome.png"/><br/><em><a href="img/chrome.png">(img/chrome.png)</a></em>.<br/>Then we can define this in a <em>defs</em> file like this (<em>ball1.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+while the behavior and logic is defined in <em>JS</em> files.</p><h3>Items and graphics</h3><p>As an example we will try to make a ball with a <em>defs</em> file.<br/>First we need an image, like this one:<br/><img alt="chrome logo" src="img/chrome.png"/><br/><em><a href="img/chrome.png">(img/chrome.png)</a></em>.<br/>Then we can define this in a <em>defs</em> file like this (<em>ball1.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome.png"
@@ -13,4 +13,23 @@ while the behavior and logic is defined in <em>JS</em> files.</p><h3>Ball</h3><p
   }]
 }
 </pre></div><div class="span6"><h5>Output</h5><canvas id="ball1"></canvas></div></div><p>Here <em>items</em> indicate the items we want to draw.
-The <em>images</em> in <em>graphics</em> will be preloaded (only once pr src).</p><p>Run like this with JavaScript:</p><pre class="prettyprint">game.init('ball1', 'defs/ball1.json');</pre><p>First argument, <em>ball1</em>, is <em>ID</em> of canvas, and second argument is definition (<em>defs</em>) file.</p></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="js/app.min.js"></script></body></html>
+The <em>images</em> in <em>graphics</em> will be preloaded (only once pr src).</p><p>Run like this with JavaScript:</p><pre class="prettyprint">game.init('ball1', 'defs/ball1.json');</pre><p>First argument, <em>ball1</em>, is <em>ID</em> of canvas, and second argument is definition (<em>defs</em>) file.</p><h3>Items and defs</h3><p>Now what if we would like to draw the same ball two times?<br/>This is where we will use <em>defs</em>. Basically a <em>def</em> will merge into items,
+so you only have can split the item definition from actual items.<br/>This can be setup like this (_ball2.json):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+  "defs": {
+    "ball": {
+      "graphics": [{
+        "image": "img/chrome.png"
+      }]
+    }
+  },
+  "items": [{
+    "def": "ball",
+    "x": 10,
+    "y": 10
+  }, {
+    "def": "ball",
+    "x": 80,
+    "y": 10
+  }]
+}
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball2"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="js/app.min.js"></script></body></html>

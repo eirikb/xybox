@@ -1,6 +1,8 @@
 $(function() {
   prettyPrint();
 
-  window.game = new xybox.Game();
-  window.game.init('ball1', 'defs/ball1.json');
+  for (var i = 1; i < 3; i++) {
+    var game = new xybox.Game();
+    game.init('ball' + i, 'defs/ball' + i + '.json');
+  }
 });
