@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>xybox</title>
-    </head>
-    <body>
-        <ul>
-            <li><a href="demos/h5z1/">h5z1</a></li>
-            <li><a href="demos/planet-cute/">planet-cute</a></li>
-            <li><a href="demos/bomberman/">bomberman</a></li>
-        </p>
-    </body>
-</html>
+<!DOCTYPE html><html><head><title>xybox - Game engine</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"><link rel="stylesheet" href="css/app.min.css"><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--></head><body data-spy="scroll" data-target=".navbar" data-offet="1000"><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="#install">Install</a></li><li><a href="#defs">Defs</a></li></ul></div></div></div><div class="container"><div class="hero-unit"><h1>XYBox</h1><p>Game engine</p></div><section id="install"><div class="page-header"><h1>Install/setup</h1></div><div class="row"><div class="span12"><p>Include the &quot;<em>all</em>&quot; bundle:</p><pre><a href="http://eirikb.github.io/xybox/1.0.2/xybox-all.min.js">http://eirikb.github.io/xybox/1.0.2/xybox-all.min.js</a></pre><p>Remove <em>min.</em> for development purposes (referenced libraries are still minified).</p>
+
+<p>Or install with <a href="https://github.com/bower/bower">bower</a>:</p><pre>bower install xybox</pre></div></div></section><section id="defs"><div class="page-header"><h1>Defs</h1></div><div class="row"><div class="span12"><p>XYBox is built on definitions called <em>defs</em>.
+It is a way to describe an item, such as a car, player, house, ball or brick wall.<br/>The def define item <em>physics</em>, <em>graphics</em> and <em>behavior</em>.
+Physics and graphics are defined in <em>JSON</em> files, 
+while the behavior and logic is defined in <em>JS</em> files.</p><h3>Ball</h3><p>As an example we will try to make a ball with a <em>defs</em> file.<br/>First we need an image, like this one:<br/><img alt="chrome logo" src="img/chrome.png"/><br/><em><a href="img/chrome.png">(img/chrome.png)</a></em>.<br/>Then we can define this in a <em>defs</em> file like this (<em>ball.json</em>):</p><div class="row"><div class="span6"><pre class="prettyprint">{
+  "defs": {
+    "graphics": [{
+      "image": "img/chrome.png"
+    }]
+  }
+}
+</pre></div><div class="span6"><p>Here <strong>defs</strong> indicates the definition. All definitions are merged together.
+One item can have many graphical parts, so <strong>graphics</strong> is an array,
+in this case it only have one <strong>image</strong>. This image will be 100% its original size.</p></div></div><h4>Output</h4></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="js/app.min.js"></script></body></html>
