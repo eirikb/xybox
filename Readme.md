@@ -5,7 +5,7 @@
 For the lazy:
 
 ```HTML
-<script src="https://raw.github.com/eirikb/xybox/v1.0.1/xybox-all.min.js"></script>
+<script src="https://eirikb.github.io/1.0.2/lib/xybox-all.min.js"></script>
 ```
 
 Or:
@@ -13,21 +13,6 @@ Or:
 ```Bash
 bower install xybox
 ```
-
-## Usage
-
-```JavaScript
-window.onload = function() {
-    game.init('level1', function() {
-        console.log('Ready');
-    });
-};
-```
-
-The *level1* is the name of a [definition file](https://github.com/eirikb/xybox/blob/gh-pages/demos/planet-cute/levels/level-1.json).  
-xybox is built to read these definitions from JSON files and load other definition from these.  
-**[meta.json](https://github.com/eirikb/xybox/blob/gh-pages/demos/planet-cute/meta.json)** is always loaded.  
-For now see [gh-pages of planet cute demo](https://github.com/eirikb/xybox/tree/gh-pages/demos/planet-cute).
 
 ## Built on
 
