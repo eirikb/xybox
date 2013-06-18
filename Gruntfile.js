@@ -5,13 +5,13 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: ['src/main.js'],
-        dest: 'js/app.js'
+        dest: 'dist/app.js'
       },
     },
     uglify: {
       dist: {
-        src: 'js/app.js',
-        dest: 'js/app.min.js'
+        src: 'dist/app.js',
+        dest: 'dist/app.min.js'
       },
     },
     watch: {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
     cssmin: {
       combine: {
         files: {
-          'css/app.min.css': ['src/page.css']
+          'dist/app.min.css': ['src/page.css']
         }
       }
     }

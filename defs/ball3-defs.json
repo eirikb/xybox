@@ -1,0 +1,9 @@
+{
+  "defs": {
+    "ball": {
+      "graphics": [{
+        "image": "img/chrome.png"
+      }]
+    }
+  }
+}

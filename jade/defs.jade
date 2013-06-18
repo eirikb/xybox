@@ -46,3 +46,22 @@
       .span6
         h5 Output
         canvas#ball2
+
+    h3 Includes
+    :markdown
+      It could be preferable to move _defs_ out into a separate file or files.
+      Then in the file with _items_ one add a property for _includes_,
+      which will make sure that the _defs_ file is also merged.
+
+    .row
+      .span6
+        h5 Input
+        strong ball3-defs.json
+        pre.prettyprint
+          include ../defs/ball3-defs.json
+        strong ball3.json
+        pre.prettyprint
+          include ../defs/ball3.json
+      .span6
+        h5 Output
+        canvas#ball3

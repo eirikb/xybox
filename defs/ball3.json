@@ -1,0 +1,12 @@
+{
+  "includes": ["ball3-defs"],
+  "items": [{
+    "def": "ball",
+    "x": 10,
+    "y": 10
+  }, {
+    "def": "ball",
+    "x": 80,
+    "y": 10
+  }]
+}
