@@ -1,0 +1,26 @@
+.row
+  .span12
+    :markdown
+      Animations in XYBox are defined inside the _JSON_ files.  
+      All animations must be in form of sprites,
+      for example with the Chrome logo "ball" from earlier:  
+      ![Chrome logo](img/chrome-anim.png)  
+      _[(img/chrome-anim.png)](img/chrome-anim.png)_.  
+
+      This might seem a bit wasteful, since the image could simply be rotated by the canvas.  
+      Although having one single solution for animations makes it much more consistent
+      and easy to work with.  
+      The overall size and performance will not be 
+      that much affected. In the case of the ball it will be, but in a whole games
+      most animations are more complex.
+
+      The animations are defined in _defs_ like this (_defs/ball4.json_):
+
+    .row
+      .span6
+        h5 Input
+        pre.prettyprint
+          include ../defs/ball4.json
+      .span6
+        h5 Output
+        canvas#ball4
