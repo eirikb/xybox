@@ -1,5 +1,6 @@
 // Graphics using EaselJS ( https://github.com/CreateJS/EaselJS/ )
-function Graphics(game) {
+function Graphics(game, center) {
+  var self = this;
   var stage;
 
   function draw(item) {
@@ -27,7 +28,7 @@ function Graphics(game) {
     }
   };
 
-  this.createItem = function(item) {
+  self.createItem = function(item) {
     createGraphics(item);
     _.each(item.graphics, function(g) {
       if (g.loop) {
@@ -60,7 +61,7 @@ function Graphics(game) {
 
 
       if (!graphics.image) throw new Error('Missing graphics image: ' + item.def);
-      var img = game.assets[graphics.image];
+      var img = center.assets[graphics.image];
       if (!img) throw new Error('Unknown graphics image: ' + graphics.image);
       var shape;
       if (!graphics.animations) {
@@ -104,7 +105,7 @@ function Graphics(game) {
     item.graphics = newGraphics;
   }
 
-  this.init = function() {
+  self.init = function() {
     game.width = game.canvas.width;
     game.height = game.canvas.height;
     game.center = {
@@ -125,7 +126,7 @@ function Graphics(game) {
   };
 
 
-  this.itemDestroy = function(item) {
+  self.itemDestroy = function(item) {
     _.each(item.graphics, function(graphics) {
       stage.removeChild(graphics);
     });

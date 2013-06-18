@@ -1,4 +1,5 @@
   return {
-    Game: Game
+    Game: Game,
+    version: pkg.version
   };
 })();

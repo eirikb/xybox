@@ -1,109 +1,81 @@
 // Preloading using PreloadJS ( https://github.com/CreateJS/PreloadJS/ )
-preload = (function() {
-  var self = {};
-  var total = 0;
-  var cache = [];
-  var result = {};
-  var allAssets = [];
-  var count = 0;
+function Preload(game, center) {
+  var self = this;
+  var allDefs;
 
-  self.recursiveLoad = function(manifest, cb) {
-    total = 0;
-    result = {};
-    allAssets = [];
-    load(manifest, cb);
-  };
+  function loadDefs(defPaths, cb) {
+    defPaths = _.flatten([defPaths]);
 
-  // http://stackoverflow.com/questions/756382/bookmarklet-wait-until-javascript-is-loaded
-  function loadScript(url, callback) {
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    script.src = url;
+    var queue = new createjs.LoadQueue();
+    var defs = [];
+    var src;
 
-    var done = false;
-    if (callback) {
-      script.onload = script.onreadystatechange = function() {
-        if (!done && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
-          done = true;
-
-          callback();
-
-          // Handle memory leak in IE
-          script.onload = script.onreadystatechange = null;
-          head.removeChild(script);
-        }
-      };
+    function addPathToDef(def) {
+      var path = src.match(/.*\//);
+      path = path ? path[0] : '';
+      path += def;
+      if (!path.match(/\.json$/i)) path += '.json';
+      return path;
     }
 
-    head.appendChild(script);
-  }
-
-  function load(root, manifest, cb) {
-    if (arguments.length === 2) {
-      cb = manifest;
-      manifest = root;
-      root = '';
-    }
-    manifest = _.without(manifest, cache);
-    cache = cache.concat(manifest);
-    manifest = _.map(manifest, function(m) {
-      if (!m.id) {
-        m = {
-          id: m,
-          src: m
-        };
-      }
-      m.src = root + m.src;
-      return m;
+    queue.addEventListener('fileload', function(e) {
+      src = e.item.src;
+      defs.push(e.result);
+      allDefs.push(e.result);
     });
-    var assets = [];
-    var loader = new createjs.PreloadJS();
 
-    total += manifest.length;
+    queue.addEventListener('complete', function() {
+      var count = _.reduce(defs, function(memo, def) {
+        return _.flatten([def.includes]).length + memo;
+      }, 0);
 
-    loader.onFileLoad = function(event) {
-      assets.push(event);
-    };
-
-    loader.onComplete = function() {
-      _.each(assets, function(a) {
-        allAssets.push(a);
-
-        switch (a.type) {
-        case createjs.PreloadJS.JAVASCRIPT:
-          loadScript(a.result.src, function() {
-            cb(++count, total, result, allAssets);
-          });
-          break;
-        case createjs.PreloadJS.JSON:
-          try {
-            var r = a.src.match(/.*\//);
-            r = r ? r[0] : '';
-            a = JSON.parse(a.result);
-            _.each(a.preload, function(m) {
-              if (_.contains(cache, m)) return;
-              load(r, [m], cb);
-            });
-
-            // Remove preload and combine/extend result with a.result
-            delete a.preload;
-            helpers.deepDefaults(result, a);
-          } catch (e) {
-            console.error('Unable to parse ' + a.src);
-            throw e;
-          }
-          cb(++count, total, result, allAssets);
-
-          break;
-        default:
-          cb(++count, total, result, allAssets);
-          break;
+      _.each(defs, function(def) {
+        if (def.includes) {
+          def.includes = _.map(def.includes, addPathToDef);
+          loadDefs(def.includes, cb);
+        } else {
+          count--;
+          if (count === 0) cb();
         }
       });
-    };
+    });
 
-    loader.loadManifest(manifest);
+    queue.loadManifest(defPaths);
   }
 
-  return self;
-})();
+  function loadAssets(root, cb) {
+    var queue = new createjs.LoadQueue();
+
+    var defsAndItems = _.compact(_.toArray(root.defs).concat(root.items));
+    var manifest = [];
+    center.assets = {};
+
+    queue.addEventListener('fileload', function(e) {
+      center.assets[e.item.id] = e.result;
+    });
+
+    queue.addEventListener('complete', cb);
+
+    _.each(defsAndItems, function(defOrItem, name) {
+      _.each(defOrItem.graphics, function(graphic) {
+        var img = graphic.image;
+        if (img) manifest.push(img);
+      });
+    });
+    queue.loadManifest(manifest);
+  }
+
+  self.init = function(defPaths, cb) {
+    allDefs = [];
+    loadDefs(defPaths, function() {
+      var root = allDefs[0];
+      _.each(allDefs.slice(1), function(def) {
+        helpers.deepDefaults(root, def);
+      });
+
+      center.items = root.items;
+      center.defs = root.defs;
+      loadAssets(root, cb);
+    });
+  };
+}

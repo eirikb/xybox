@@ -1,1 +1,2 @@
 xybox = (function() {
+  var pkg =

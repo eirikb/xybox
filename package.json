@@ -3,6 +3,7 @@
   "author": {
     "name": "Eirik Brandtzæg"
   },
+  "version": "1.0.2",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib": "~0.7.0"
