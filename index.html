@@ -1,9 +1,8 @@
-<!DOCTYPE html><html><head><title>xybox - Game engine</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"><link rel="stylesheet" href="dist/app.min.css"><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--></head><body data-spy="scroll" data-target=".navbar" data-offet="1000"><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="#install">Install</a></li><li><a href="#xyboxlib">XYBox library</a></li><li><a href="#defs">Defs and Items</a></li><li><a href="#animations">Animations</a></li></ul></div></div></div><div class="container"><div class="hero-unit"><h1>XYBox<small>1.0.2</small></h1><p>Game engine</p><p><a href="#install" class="btn btn-primary btn-large">Get started <i class="icon-double-angle-down"></i></a></p><p><a href="tutorial.html" class="btn btn-primary btn-large">Tutorial <i class="icon-double-angle-right"></i></a></p></div><section id="install"><div class="page-header"><h1>Install/setup</h1></div><div class="row"><div class="span12"><p>Either:<br/>Include the <a href="http://eirikb.github.io/xybox/1.0.2/lib/xybox-all.min.js">&quot;<em>all</em>&quot;</a> bundle:</p><pre class="prettyprint">&lt;script src="http://eirikb.github.io/xybox/1.0.2/lib/xybox-all.min.js"&gt;</pre><p>Remove <em>min.</em> for development purposes (referenced libraries are still minified).</p>
+<!DOCTYPE html><html><head><title>xybox - Game engine</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"><link rel="stylesheet" href="dist/app.min.css"><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--></head><body data-spy="scroll" data-target=".navbar" data-offet="1000"><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="#install">Install</a></li><li><a href="#xyboxlib">XYBox library</a></li><li><a href="#defs">Defs and Items</a></li><li><a href="#animations">Animations</a></li><li><a href="#physics">Physics</a></li></ul></div></div></div><div class="container"><div class="hero-unit"><h1>XYBox<small>1.0.2</small></h1><p>Game engine</p><p><a href="#install" class="btn btn-primary btn-large">Get started <i class="icon-double-angle-down"></i></a></p><p><a href="tutorial.html" class="btn btn-primary btn-large">Tutorial <i class="icon-double-angle-right"></i></a></p></div><section id="install"><div class="page-header"><h1>Install/setup</h1></div><div class="row"><div class="span12"><p>Either:<br/>Include the <a href="http://eirikb.github.io/xybox/1.0.2/lib/xybox-all.min.js">&quot;<em>all</em>&quot;</a> bundle:</p><pre class="prettyprint">&lt;script src="http://eirikb.github.io/xybox/1.0.2/lib/xybox-all.min.js"&gt;</pre><p>Remove <em>min.</em> for development purposes (referenced libraries are still minified).</p>
 
 <p>Or:<br/>install with <a href="https://github.com/bower/bower">bower</a>:</p><pre>bower install xybox</pre><p>Then all you need to do is reference the script(s) in your markup.</p></div></div></section><section id="xyboxlib"><div class="page-header"><h1>XYBox library </h1></div><div class="row"><!--/.span12<h2>Global objects</h2><p>The XYBox library consist of these parts (global objects on <em>window</em>):  </p><ul><li><h4>game</h4><p>Properties:</p><ul><li><strong>objects </strong>All objects created.</li><li><strong>actives </strong>Active (non-static, moving) objects created.</li></ul><p>Functions:</p><ul><li><strong>init(canvas, defs ... ) </strong>Initialize a game with canvas ID and one or more defs.</li></ul></li><li><h4>events</h4><p>Functions:</p><ul><li><strong>on(name, callback) </strong>Add event listener.</li><li><strong>trigger(name, arguments ... ) </strong>Trigger a given event.</li></ul></li></ul>--></div></section><section id="defs"><div class="page-header"><h1>Defs and Items</h1></div><div class="row"><div class="span12"><p>XYBox is built on definitions called <em>defs</em>.
 It is a way to describe an item, such as a car, player, house, ball or brick wall.<br/>The def define item <em>physics</em>, <em>graphics</em> and <em>behavior</em>.
-Physics and graphics are defined in <em>JSON</em> files, 
-while the behavior and logic is defined in <em>JS</em> files.</p><h3>Items and graphics</h3><p>As an example we will try to make a ball with a <em>defs</em> file.<br/>First we need an image, like this one:<br/><img alt="chrome logo" src="img/chrome.png"/><br/><em><a href="img/chrome.png">(img/chrome.png)</a></em>.<br/>Then we can define this in a <em>defs</em> file like this (<em>ball1.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+Physics and graphics are defined in <em>JSON</em> files, while the behavior and logic is defined in <em>JS</em> files.</p><h3>Items and graphics</h3><p>As an example we will try to make a ball with a <em>defs</em> file.<br/>First we need an image, like this one:<br/><img alt="chrome logo" src="img/chrome.png"/><br/><em><a href="img/chrome.png">(img/chrome.png)</a></em>.<br/>Then we can define this in a <em>defs</em> file like this (<em>ball1.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome.png"
@@ -55,7 +54,31 @@ which will make sure that the <em>defs</em> file is also merged.</p><div class="
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball3"></canvas></div></div></div></div></section><section id="animations"><div class="page-header"><h1>Animations</h1></div><div class="row"><div class="span12"><p>Animations in XYBox are defined inside the <em>JSON</em> files.<br/>All animations must be in form of sprites,
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball3"></canvas></div></div><h4>Code/JavaScript</h4><p>To add behavior and logic to the game JavaScript is used.<br/>These files are linked through <em>code</em> part, like this (<em>ball4.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><strong>ball4.json</strong><pre class="prettyprint">{
+  "items": [{
+    "code": "ball4.js onball",
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "x": 50,
+    "y": 10
+  }]
+}
+</pre><strong>ball4.js</strong><pre class="prettyprint">onball = function(ball, game) {
+  var way = 1;
+  var g = ball.graphics[0];
+
+  game.on('tick', function() {
+    g.x += way * 4;
+
+    if (g.x &gt; 200) way = -1;
+    else if (g.x &lt; 50) way = 1;
+  });
+};
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball4"></canvas></div></div><p>The property consists of two parts separated with space.
+The first part is the actual JavaScript file, relative from <em>defs</em> file location.
+The second part is an optional function which will be called when an item is created.
+First argument would be the actual item, the second is game object (if needed).  </p></div></div></section><section id="animations"><div class="page-header"><h1>Animations</h1></div><div class="row"><div class="span12"><p>Animations in XYBox are defined inside the <em>JSON</em> files.<br/>All animations must be in form of sprites,
 for example with the Chrome logo &quot;ball&quot; from earlier:<br/><img alt="Chrome logo" src="img/chrome-anim.png"/><br/><em><a href="img/chrome-anim.png">(img/chrome-anim.png)</a></em>.  </p>
 
 <p>This might seem a bit wasteful, since the image could simply be rotated by the canvas.<br/>Although having one single solution for animations makes it much more consistent
@@ -79,8 +102,8 @@ most animations are more complex.</p>
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball4"></canvas></div></div><p>Note that &quot;<em>default</em>&quot; will be run automatically. Simply call it something 
-different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look at <a href="http://www.createjs.com/Docs/EaselJS/classes/SpriteSheet.html">EaselJS SpriteSheet documentation</a> to see different methods to do animations.<br/>For example (<em>ball5.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball5"></canvas></div></div><p>Note that &quot;<em>default</em>&quot; will be run automatically. Simply call it something 
+different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look at <a href="http://www.createjs.com/Docs/EaselJS/classes/SpriteSheet.html">EaselJS SpriteSheet documentation</a> to see different methods to do animations.<br/>For example (<em>ball6.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome-anim.png",
@@ -91,12 +114,28 @@ different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look
       "animations": {
         "default": {
           "frames": [7, 6, 5, 4, 3, 2, 1, 0],
+          "next": "back",
           "frequency": 2
-        }
+        },
+        "back": [0, 7, "default", 2]
       }
     }],
     "x": 10,
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball5"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball6"></canvas></div></div></div></div></section><section id="physics"><div class="page-header"><h1>Physics</h1></div><div class="row"><div class="span12"><p>XYBox let you combine physics and graphics in the same <em>JSON</em> file.<br/>Lets add some physics to our ball (<em>ball6.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "body": {
+      "circles": [{
+        "size": 4
+      }],
+      "x": 4,
+      "y": 4
+    }
+  }]
+}
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball7"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>

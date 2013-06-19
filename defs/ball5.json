@@ -7,10 +7,7 @@
         "height": 64
       },
       "animations": {
-        "default": {
-          "frames": [7, 6, 5, 4, 3, 2, 1, 0],
-          "frequency": 2
-        }
+        "default": [0, 7]
       }
     }],
     "x": 10,
