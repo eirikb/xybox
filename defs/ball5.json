@@ -1,0 +1,19 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome-anim.png",
+      "frames": {
+        "width": 64,
+        "height": 64
+      },
+      "animations": {
+        "default": {
+          "frames": [7, 6, 5, 4, 3, 2, 1, 0],
+          "frequency": 2
+        }
+      }
+    }],
+    "x": 10,
+    "y": 10
+  }]
+}

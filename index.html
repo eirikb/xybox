@@ -80,4 +80,23 @@ most animations are more complex.</p>
   }]
 }
 </pre></div><div class="span6"><h5>Output</h5><canvas id="ball4"></canvas></div></div><p>Note that &quot;<em>default</em>&quot; will be run automatically. Simply call it something 
-different to prevent it from executing.</p></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
+different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look at <a href="http://www.createjs.com/Docs/EaselJS/classes/SpriteSheet.html">EaselJS SpriteSheet documentation</a> to see different methods to do animations.<br/>For example (<em>ball5.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome-anim.png",
+      "frames": {
+        "width": 64,
+        "height": 64
+      },
+      "animations": {
+        "default": {
+          "frames": [7, 6, 5, 4, 3, 2, 1, 0],
+          "frequency": 2
+        }
+      }
+    }],
+    "x": 10,
+    "y": 10
+  }]
+}
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball5"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
