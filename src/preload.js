@@ -19,9 +19,16 @@ function Preload(game, center) {
     }
 
     queue.addEventListener('fileload', function(e) {
+      var result = e.result;
       src = e.item.src;
-      defs.push(e.result);
-      allDefs.push(e.result);
+
+      if (result instanceof Error) {
+        console.log('Unable to parse', src);
+        throw result;
+      }
+
+      defs.push(result);
+      allDefs.push(result);
     });
 
     queue.addEventListener('complete', function() {
