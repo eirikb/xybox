@@ -1,16 +1,10 @@
 {
   "items": [{
+    "code": "ball4.js onball",
     "graphics": [{
-      "image": "img/chrome-anim.png",
-      "frames": {
-        "width": 64,
-        "height": 64
-      },
-      "animations": {
-        "default": [0, 7]
-      }
+      "image": "img/chrome.png"
     }],
-    "x": 10,
+    "x": 50,
     "y": 10
   }]
 }

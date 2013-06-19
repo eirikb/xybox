@@ -1,4 +1,14 @@
 module.exports = function(grunt) {
+  var fs = require('fs');
+  var path = require('path');
+
+  var js = {};
+  fs.readdirSync('defs').filter(function(file) {
+    return file.match(/\.js$/i);
+  }).forEach(function(file) {
+    var id = path.basename(file, '.js');
+    js[id] = fs.readFileSync(path.join('defs', file)).toString();
+  });
 
   grunt.initConfig({
     pkg: require('./package.json'),
@@ -16,7 +26,7 @@ module.exports = function(grunt) {
     },
     watch: {
       scripts: {
-        files: ['jade/**', 'src/**'],
+        files: ['jade/**', 'src/**', 'defs/**'],
         tasks: ['default']
       },
     },
@@ -27,7 +37,8 @@ module.exports = function(grunt) {
         },
         options: {
           data: {
-            pkg: '<%= pkg %>'
+            pkg: '<%= pkg %>',
+            js: js
           }
         }
       }

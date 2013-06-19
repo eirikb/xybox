@@ -4,8 +4,7 @@
       XYBox is built on definitions called _defs_.
       It is a way to describe an item, such as a car, player, house, ball or brick wall.  
       The def define item _physics_, _graphics_ and _behavior_.
-      Physics and graphics are defined in _JSON_ files, 
-      while the behavior and logic is defined in _JS_ files.
+      Physics and graphics are defined in _JSON_ files, while the behavior and logic is defined in _JS_ files.
     h3 Items and graphics
     :markdown
       As an example we will try to make a ball with a _defs_ file.  
@@ -65,3 +64,26 @@
       .span6
         h5 Output
         canvas#ball3
+ 
+    h4 Code/JavaScript
+    :markdown
+      To add behavior and logic to the game JavaScript is used.  
+      These files are linked through _code_ part, like this (_ball4.json_):
+
+    .row
+      .span6
+        h5 Input
+        strong ball4.json
+        pre.prettyprint
+          include ../defs/ball4.json
+        strong ball4.js
+        pre.prettyprint= js.ball4
+      .span6
+        h5 Output
+        canvas#ball4
+
+    :markdown
+      The property consists of two parts separated with space.
+      The first part is the actual JavaScript file, relative from _defs_ file location.
+      The second part is an optional function which will be called when an item is created.
+      First argument would be the actual item, the second is game object (if needed).  
