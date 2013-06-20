@@ -16,3 +16,17 @@
     :markdown
       That does not seem very fantastic, but that is a full blown physical object, trust me,
       it can do marvelous things.
+
+      Lets add this brick wall: ![Brick wall](img/brick-wall.png) and some behavior with JS:
+
+    .row
+      .span6
+        h5 Input
+        strong ball8.json
+        pre.prettyprint
+          include ../defs/ball8.json
+        strong ball8.js
+        pre.prettyprint= js.ball8
+      .span6
+        h5 Output
+        canvas#ball8(height=300)

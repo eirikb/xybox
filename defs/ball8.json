@@ -1,1 +1,44 @@
-{}
+{
+  "defs": {
+    "wall": {
+      "graphics": [{
+        "image": "img/brick-wall.png",
+        "type": "repeat"
+      }],
+      "body": {
+        "isStatic": true,
+        "boxes": [{
+          "width": 10,
+          "height": 2
+        }],
+        "x": 2
+      }
+    }
+  },
+  "items": [{
+    "code": "ball8.js onball8",
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "body": {
+      "circles": [{
+        "size": 4,
+        "options": {
+          "restitution": 1
+        }
+      }],
+      "x": 4,
+      "y": 4
+    }
+  }, {
+    "def": "wall",
+    "body": {
+      "y": 12
+    }
+  }, {
+    "def": "wall",
+    "body": {
+      "y": 0
+    }
+  }]
+}

@@ -1,7 +1,7 @@
 $(function() {
   prettyPrint();
 
-  for (var i = 1; i <= 7; i++) {
+  for (var i = 1; i <= 8; i++) {
     window.game = new xybox.Game();
     game.init('ball' + i, 'defs/ball' + i + '.json');
   }

@@ -141,7 +141,57 @@ different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look
   }]
 }
 </pre></div><div class="span6"><h5>Output</h5><canvas id="ball7"></canvas></div></div><p>That does not seem very fantastic, but that is a full blown physical object, trust me,
-it can do marvelous things.</p></div></div></section><section id="cheatsheet"><div class="page-header"><h1>Cheat Sheet</h1></div><div class="row"><div class="span12"><p>This is a set of examples of how images can be used and rendered.
+it can do marvelous things.</p>
+
+<p>Lets add this brick wall: <img alt="Brick wall" src="img/brick-wall.png"/> and some behavior with JS:</p><div class="row"><div class="span6"><h5>Input</h5><strong>ball8.json</strong><pre class="prettyprint">{
+  "defs": {
+    "wall": {
+      "graphics": [{
+        "image": "img/brick-wall.png",
+        "type": "repeat"
+      }],
+      "body": {
+        "isStatic": true,
+        "boxes": [{
+          "width": 10,
+          "height": 2
+        }],
+        "x": 2
+      }
+    }
+  },
+  "items": [{
+    "code": "ball8.js onball8",
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "body": {
+      "circles": [{
+        "size": 4,
+        "options": {
+          "restitution": 1
+        }
+      }],
+      "x": 4,
+      "y": 4
+    }
+  }, {
+    "def": "wall",
+    "body": {
+      "y": 12
+    }
+  }, {
+    "def": "wall",
+    "body": {
+      "y": 0
+    }
+  }]
+}
+</pre><strong>ball8.js</strong><pre class="prettyprint">onball8 = function(ball, game) {
+  var b = ball.body;
+  b.ApplyImpulse(new b2Vec2(0, 100), b.GetWorldCenter());
+};
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball8" height="300"></canvas></div></div></div></div></section><section id="cheatsheet"><div class="page-header"><h1>Cheat Sheet</h1></div><div class="row"><div class="span12"><p>This is a set of examples of how images can be used and rendered.
 There are four main parts: Normal static image, animated image,
 physical body with static image and physical body with animated image.  </p><div class="row"><div class="span6"><h5>Static image</h5><pre class="prettyprint">{
   "items": [{
@@ -177,7 +227,7 @@ physical body with static image and physical body with animated image.  </p><div
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-static" width="450"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at top left corner.  </p></dd><dt>Types</dt><dd><p>By setting <code>&quot;type&quot;: &quot;repeat&quot;</code> in <code>&quot;graphics&quot;</code> is possible
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-static" width="450"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at top left corner.  </p></dd><dt>Types</dt><dd><p>By setting <code>&quot;type&quot;: &quot;repeat&quot;</code> in <code>&quot;graphics&quot;</code> it is possible
 to make the image repeat itself. This is a nice feature for backgrounds.</p></dd><dt>Size</dt><dd><p>The image size can be set by <code>&quot;width&quot;</code> and <code>&quot;height&quot;</code> properties, 
 if not set the size will be default <code>&lt;img&gt;</code> size (original size).</p></dd></dl></div></div><div class="row"><div class="span6"><h5>Animated image</h5><pre class="prettyprint">{
   "items": [{
@@ -274,7 +324,7 @@ if not set the size will be default <code>&lt;img&gt;</code> size (original size
     }
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-body-static" width="400"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at bottom left corner.<br/>Physical body follows standard XY-coordinate system layout.  </p></dd><dt>Types</dt><dd><p>By setting <code>&quot;type&quot;: &quot;repeat&quot;</code> in <code>&quot;graphics&quot;</code> is possible
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-body-static" width="400"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at bottom left corner.<br/>Physical body follows standard XY-coordinate system layout.  </p></dd><dt>Types</dt><dd><p>By setting <code>&quot;type&quot;: &quot;repeat&quot;</code> in <code>&quot;graphics&quot;</code> it is possible
 to make the image repeat itself.</p></dd><dt>Size</dt><dd><p>The image size is determined by size of physical item multipled by a scale.<br/>The default <code>game.scale</code> is <strong>16</strong>, 
 this means an item with height <code>5</code> will be <code>80</code>px tall.</p></dd></dl></div></div><div class="row"><div class="span6"><h5>Physical body with animated image</h5><pre class="prettyprint">{
   "items": [{
@@ -334,4 +384,4 @@ this means an item with height <code>5</code> will be <code>80</code>px tall.</p
   }]
 }
 </pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-body-anim" width="400"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at bottom left corner.<br/>Physical body follows standard XY-coordinate system layout.  </p></dd><dt>Types</dt><dd><p>The <code>&quot;type&quot;: &quot;repeat&quot;</code> feature is not supported on animations.</p></dd><dt>Size</dt><dd><p>The image size is determined by size of physical item multipled by a scale.<br/>The default <code>game.scale</code> is <strong>16</strong>, 
-this means an item with height <code>5</code> will be <code>80px</code> tall.</p></dd></dl></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="lib/debuggraphics.js"></script><script src="dist/app.min.js"></script></body></html>
+this means an item with height <code>5</code> will be <code>80px</code> tall.</p></dd></dl></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
