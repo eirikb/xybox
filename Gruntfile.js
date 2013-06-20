@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['src/**'],
-        tasks: ['default']
+        tasks: ['devbuild']
       }
     },
     jshint: {
@@ -48,4 +48,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib');
 
   grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'copy']);
+
+  grunt.registerTask('devbuild', ['concat', 'jshint', 'copy']);
+  grunt.registerTask('dev', ['devbuild', 'watch']);
 };
