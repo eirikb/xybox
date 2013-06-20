@@ -1,5 +1,10 @@
 .row
   .span12
+    :markdown
+      This is a set of examples of how images can be used and rendered.
+      There are four main parts: Normal static image, animated image,
+      physical body with static image and physical body with animated image.  
+
     .row
       .span6
         h5 Static image
@@ -7,7 +12,22 @@
           include ../defs/ball-cs-static.json
       .span6
         h5 Output
-        canvas#ball-cs-static(width=400)
+        canvas#ball-cs-static(width=450)
+        dl
+          dt Positioning
+          dd
+            :markdown
+              __X__ and __Y__ coordinates start at top left corner.  
+          dt Types
+          dd
+            :markdown
+              By setting `"type": "repeat"` in `"graphics"` is possible
+              to make the image repeat itself. This is a nice feature for backgrounds.
+          dt Size
+          dd
+            :markdown
+              The image size can be set by `"width"` and `"height"` properties, 
+              if not set the size will be default `<img>` size (original size).
 
     .row
       .span6
@@ -17,6 +37,20 @@
       .span6
         h5 Output
         canvas#ball-cs-anim(width=400)
+        dl
+          dt Positioning
+          dd
+            :markdown
+              __X__ and __Y__ coordinates start at top left corner.  
+          dt Types
+          dd
+            :markdown
+              The `"type": "repeat"` feature is not supported on animations.
+          dt Size
+          dd
+            :markdown
+              The image size can be set by `"width"` and `"height"` properties, 
+              if not set the size will be default `<img>` size (original size).
 
     .row
       .span6
@@ -26,6 +60,23 @@
       .span6
         h5 Output
         canvas#ball-cs-body-static(width=400)
+        dl
+          dt Positioning
+          dd
+            :markdown
+              __X__ and __Y__ coordinates start at bottom left corner.  
+              Physical body follows standard XY-coordinate system layout.  
+          dt Types
+          dd
+            :markdown
+              By setting `"type": "repeat"` in `"graphics"` is possible
+              to make the image repeat itself.
+          dt Size
+          dd
+            :markdown
+              The image size is determined by size of physical item multipled by a scale.  
+              The default `game.scale` is __16__, 
+              this means an item with height `5` will be `80`px tall.
 
     .row
       .span6
@@ -35,3 +86,19 @@
       .span6
         h5 Output
         canvas#ball-cs-body-anim(width=400)
+        dl
+          dt Positioning
+          dd
+            :markdown
+              __X__ and __Y__ coordinates start at bottom left corner.  
+              Physical body follows standard XY-coordinate system layout.  
+          dt Types
+          dd
+            :markdown
+              The `"type": "repeat"` feature is not supported on animations.
+          dt Size
+          dd
+            :markdown
+              The image size is determined by size of physical item multipled by a scale.  
+              The default `game.scale` is __16__, 
+              this means an item with height `5` will be `80px` tall.
