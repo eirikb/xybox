@@ -2,7 +2,8 @@
 function Physics(game, center) {
   var self = this;
 
-  var world = trolley.init();
+  var trolley = new Trolley();
+  var world = trolley.world;
   game.world = world;
 
   var lastUpdate = Date.now();
