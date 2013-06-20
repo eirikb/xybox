@@ -1,28 +1,39 @@
 // Physics using trolley ( https://github.com/eirikb/trolley )
-physics = (function() {
-  var self = {};
+function Physics(game, center) {
+  var self = this;
 
-  var world = self.world = trolley.init();
+  var world = trolley.init();
+  game.world = world;
 
   var lastUpdate = Date.now();
   var velocityIterationsPerSecond = 300;
   var positionIterationsPerSecond = 200;
   var destroyList = [];
 
-  /*
-  events.on('onload', function() {
-    velocityIterationsPerSecond = meta.velocityIterationsPerSecond || velocityIterationsPerSecond;
-    positionIterationsPerSecond = meta.positionIterationsPerSecond || positionIterationsPerSecond;
-    if (!meta.gravity) {
-      meta.gravity = {
-        x: 0,
-        y: 0
-      };
-    }
-    world.SetGravity(new b2Vec2(meta.gravity.x, meta.gravity.y));
-  });
+  game.pos = function(item) {
+    var pos;
 
-  self.createBody = function(object) {
+    if (item.body) {
+      pos = trolley.pos(item.body);
+      return {
+        x: pos.x * game.scale,
+        y: game.height - pos.y * game.scale - item.body.height * game.scale
+      };
+    } else {
+      return item;
+    }
+  };
+
+
+  self.init = function() {
+    var gravity = {
+      x: 0,
+      y: 0
+    };
+    world.SetGravity(new b2Vec2(gravity.x, gravity.y));
+  };
+
+  self.createItem = function(object) {
     if (!object.body) return;
     object.body = trolley.build(object.body).create()[0];
 
@@ -49,7 +60,7 @@ physics = (function() {
   };
 
   self.collide = function(def, cb) {
-    events.on('collide', function(a, b) {
+    game.on('collide', function(a, b) {
       if (!a || !b) return;
       var d = a.def === def ? a : b;
       if (d.def !== def) return;
@@ -61,7 +72,7 @@ physics = (function() {
   function triggerCollide(trigger, contact, x) {
     var a = contact.m_fixtureA.m_body.object;
     var b = contact.m_fixtureB.m_body.object;
-    events.trigger(trigger, a, b, x);
+    game.trigger(trigger, a, b, x);
   }
 
   var listener = new b2ContactListener();
@@ -86,23 +97,25 @@ physics = (function() {
 
       objectA = fixtureA.m_body.object;
       objectB = fixtureB.m_body.object;
-      return events.trigger('shouldcollide', objectA, objectB);
+      return game.trigger('shouldcollide', objectA, objectB);
     }
   });
 
-  events.on('objectCreate', function(object) {
+  /*
+  game.on('objectCreate', function(object) {
     self.createBody(object);
   });
 
-  events.on('objectDestroy', function(object) {
+  game.on('objectDestroy', function(object) {
     if (object.body) destroyList.push(object.body);
   });
 
-  events.on('tick', 3, function() {
+  game.on('tick', 3, function() {
     world.ClearForces();
   });
+ */
 
-  events.on('tick', -1, function() {
+  game.on('tick', -1, function() {
     _.each(destroyList, function(body) {
       world.DestroyBody(body);
     });
@@ -123,5 +136,4 @@ physics = (function() {
   }
 
   return self;
- */
-})();
+}
