@@ -1,5 +1,5 @@
 // Preloading using PreloadJS ( https://github.com/CreateJS/PreloadJS/ )
-function Preload(game, center) {
+function Preload(core) {
   var self = this;
   var allDefs;
 
@@ -56,10 +56,10 @@ function Preload(game, center) {
 
     var defsAndItems = _.compact(_.toArray(root.defs).concat(root.items));
     var manifest = [];
-    center.assets = {};
+    core.assets = {};
 
     queue.addEventListener('fileload', function(e) {
-      center.assets[e.item.id] = e.result;
+      core.assets[e.item.id] = e.result;
       if (e.item.ext === 'js') document.body.appendChild(e.result);
     });
 
@@ -86,8 +86,8 @@ function Preload(game, center) {
         helpers.deepDefaults(root, def);
       });
 
-      center.items = root.items;
-      center.defs = root.defs;
+      core.items = root.items;
+      core.defs = root.defs;
       loadAssets(root, cb);
     });
   };

@@ -1,24 +1,24 @@
 // Physics using trolley ( https://github.com/eirikb/trolley )
-function Physics(game, center) {
+function Physics(core) {
   var self = this;
 
   var trolley = new Trolley();
   var world = trolley.world;
-  game.world = world;
+  core.world = world;
 
   var lastUpdate = Date.now();
   var velocityIterationsPerSecond = 300;
   var positionIterationsPerSecond = 200;
   var destroyList = [];
 
-  game.pos = function(item) {
+  core.pos = function(item) {
     var pos;
 
     if (item.body) {
       pos = trolley.pos(item.body);
       return {
-        x: pos.x * game.scale,
-        y: game.height - pos.y * game.scale - item.body.height * game.scale
+        x: pos.x * core.scale,
+        y: core.height - pos.y * core.scale - item.body.height * core.scale
       };
     } else {
       return item;
@@ -61,7 +61,7 @@ function Physics(game, center) {
   };
 
   self.collide = function(def, cb) {
-    game.on('collide', function(a, b) {
+    core.on('collide', function(a, b) {
       if (!a || !b) return;
       var d = a.def === def ? a : b;
       if (d.def !== def) return;
@@ -73,7 +73,7 @@ function Physics(game, center) {
   function triggerCollide(trigger, contact, x) {
     var a = contact.m_fixtureA.m_body.object;
     var b = contact.m_fixtureB.m_body.object;
-    game.trigger(trigger, a, b, x);
+    core.trigger(trigger, a, b, x);
   }
 
   var listener = new b2ContactListener();
@@ -98,25 +98,11 @@ function Physics(game, center) {
 
       objectA = fixtureA.m_body.object;
       objectB = fixtureB.m_body.object;
-      return game.trigger('shouldcollide', objectA, objectB);
+      return core.trigger('shouldcollide', objectA, objectB);
     }
   });
 
-  /*
-  game.on('objectCreate', function(object) {
-    self.createBody(object);
-  });
-
-  game.on('objectDestroy', function(object) {
-    if (object.body) destroyList.push(object.body);
-  });
-
-  game.on('tick', 3, function() {
-    world.ClearForces();
-  });
- */
-
-  game.on('tick', -1, function() {
+  core.on('tick', -1, function() {
     _.each(destroyList, function(body) {
       world.DestroyBody(body);
     });
@@ -127,7 +113,7 @@ function Physics(game, center) {
     lastUpdate = time;
 
     if (delta > 10) {
-      delta = 1 / game.fps;
+      delta = 1 / core.fps;
     }
     step(world, delta);
   });

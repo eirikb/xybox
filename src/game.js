@@ -2,36 +2,39 @@ function Game() {
   var self = this;
 
   // centralized object to store all internal properties
-  var center = {};
+  var core = {};
 
   // Keyboard input using kibo ( https://github.com/marquete/kibo )
   self.version = pkg.version;
-  self.items = [];
-  self.actives = [];
-  self.scale = 16;
-  center.keys = new Kibo();
-  center.events = new Events(self, center);
-  center.graphics = new Graphics(self, center);
-  center.preload = new Preload(self, center);
-  center.physics = new Physics(self, center);
+  core.items = [];
+  core.actives = [];
+  core.scale = 16;
+  core.keys = new Kibo();
+  core.events = new Events(core);
+  core.graphics = new Graphics(core);
+  core.preload = new Preload(core);
+  core.physics = new Physics(core);
+
+  self.on = core.on;
+  self.trigger = core.trigger;
 
   function start() {
     createjs.Ticker.addListener(function() {
-      self.trigger('tick');
+      core.trigger('tick');
     });
-    self.trigger('game:start');
+    core.trigger('game:start');
   }
 
   self.createItem = function(item) {
     var def;
-    if (item.def) def = center.defs[item.def];
+    if (item.def) def = core.defs[item.def];
     if (def) helpers.deepDefaults(item, def);
-    if (item.name) self[item.name] = item;
-    self.items.push(item);
-    center.physics.createItem(item);
-    center.graphics.createItem(item);
+    if (item.name) core[item.name] = item;
+    core.items.push(item);
+    core.physics.createItem(item);
+    core.graphics.createItem(item);
 
-    if (item && item.body && !item.body.isStatic) self.actives.push(item);
+    if (item && item.body && !item.body.isStatic) core.actives.push(item);
 
     if (item.code) {
       var f = item.code.match(/ (.*)$/);
@@ -42,7 +45,7 @@ function Game() {
   };
 
   self.destroyItem = function(item) {
-    self.items = _.without(self.items, item);
+    core.items = _.without(core.items, item);
   };
 
   self.overlapping = function(item) {
@@ -53,12 +56,12 @@ function Game() {
   };
 
   self.init = function(canvasId, defs) {
-    self.canvas = document.getElementById(canvasId);
-    center.graphics.init();
-    center.physics.init();
-    center.preload.init(defs, function() {
+    core.canvas = document.getElementById(canvasId);
+    core.graphics.init();
+    core.physics.init();
+    core.preload.init(defs, function() {
 
-      _.each(center.items, function(item) {
+      _.each(core.items, function(item) {
         self.createItem(item);
       });
 

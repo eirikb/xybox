@@ -1,7 +1,7 @@
-function Events(game) {
+function Events(core) {
   var listeners = {};
 
-  game.on = function(name, priority, cb) {
+  core.on = function(name, priority, cb) {
     if (arguments.length === 2) {
       cb = priority;
       priority = 1;
@@ -18,7 +18,7 @@ function Events(game) {
     });
   };
 
-  game.trigger = function(name) {
+  core.trigger = function(name) {
     var ret;
     var args = _.toArray(arguments).slice(1);
     _.each(listeners[name], function(listener) {

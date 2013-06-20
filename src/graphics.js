@@ -1,10 +1,10 @@
 // Graphics using EaselJS ( https://github.com/CreateJS/EaselJS/ )
-function Graphics(game, center) {
+function Graphics(core) {
   var self = this;
   var stage;
 
   function draw(item) {
-    var p = game.pos(item);
+    var p = core.pos(item);
     _.each(item.graphics, function(graphics) {
       graphics.x = p.x; // + (graphics.scaleX * graphics.w) / 2;
       graphics.y = p.y; // + (graphics.scaleY * graphics.h) / 2;
@@ -21,7 +21,7 @@ function Graphics(game, center) {
         g.onAnimationEnd = function() {
           g.loop--;
           if (g.loop === 0) {
-            if (item.body) game.destroyItem(item);
+            if (item.body) core.destroyItem(item);
             else stage.removeChild(g);
             return;
           }
@@ -37,7 +37,7 @@ function Graphics(game, center) {
 
     _.each(item.graphics, function(graphics) {
       if (!graphics.image) throw new Error('Missing graphics image: ' + item.def);
-      var img = center.assets[graphics.image];
+      var img = core.assets[graphics.image];
       if (!img) throw new Error('Unknown graphics image: ' + graphics.image);
       var shape;
 
@@ -47,8 +47,8 @@ function Graphics(game, center) {
         w = graphics.width || graphics.frames.width;
         h = graphics.height || graphics.frames.height;
         if (item.body) {
-          w = item.body.width * game.scale;
-          h = item.body.height * game.scale;
+          w = item.body.width * core.scale;
+          h = item.body.height * core.scale;
         }
         graphics.images = [img.src];
         var sheet = new createjs.SpriteSheet(graphics);
@@ -66,8 +66,8 @@ function Graphics(game, center) {
         w = graphics.width || img.width;
         h = graphics.height || img.height;
         if (item.body) {
-          w = item.body.width * game.scale;
-          h = item.body.height * game.scale;
+          w = item.body.width * core.scale;
+          h = item.body.height * core.scale;
         }
         shape = new createjs.Shape();
         var g = shape.graphics;
@@ -101,22 +101,22 @@ function Graphics(game, center) {
   }
 
   self.init = function() {
-    game.width = game.canvas.width;
-    game.height = game.canvas.height;
-    game.center = {
-      x: game.width / 2,
-      y: game.height / 2
+    core.width = core.canvas.width;
+    core.height = core.canvas.height;
+    core.center = {
+      x: core.width / 2,
+      y: core.height / 2
     };
-    stage = game.stage = new createjs.Stage(game.canvas);
+    stage = core.stage = new createjs.Stage(core.canvas);
 
     stage.onMouseMove = function(event) {
-      game.trigger('mouseMove', event);
+      core.trigger('mouseMove', event);
     };
     stage.onMouseDown = function(event) {
-      game.trigger('mouseDown', event);
+      core.trigger('mouseDown', event);
     };
     stage.onMouseUp = function(event) {
-      game.trigger('mouseUp', event);
+      core.trigger('mouseUp', event);
     };
   };
 
@@ -127,14 +127,14 @@ function Graphics(game, center) {
     });
   };
 
-  game.on('tick', 2, function() {
-    _.each(game.actives, draw);
+  core.on('tick', 2, function() {
+    _.each(core.actives, draw);
 
     for (var i = 0; i < stage.getNumChildren(); i++) {
       var shape = stage.getChildAt(i);
       var x = shape.x + stage.x;
       var y = shape.y + stage.y;
-      shape.visible = x >= 0 && x < game.canvas.width + shape.width && y >= 0 && y < game.canvas.height + shape.height;
+      shape.visible = x >= 0 && x < core.canvas.width + shape.width && y >= 0 && y < core.canvas.height + shape.height;
     }
 
     stage.update();
