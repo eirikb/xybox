@@ -28,9 +28,10 @@ function Game() {
     if (def) helpers.deepDefaults(item, def);
     if (item.name) self[item.name] = item;
     self.items.push(item);
-    if (def && def.body && !def.body.isStatic) self.actives.push(item);
     center.physics.createItem(item);
     center.graphics.createItem(item);
+
+    if (item && item.body && !item.body.isStatic) self.actives.push(item);
 
     if (item.code) {
       var f = item.code.match(/ (.*)$/);
