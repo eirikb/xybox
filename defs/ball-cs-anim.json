@@ -1,0 +1,46 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome-anim.png",
+      "frames": {
+        "width": 64,
+        "height": 64
+      },
+      "animations": {
+        "default": [0, 7]
+      }
+    }],
+    "x": 10,
+    "y": 0
+  }, {
+    "graphics": [{
+      "image": "img/chrome-anim.png",
+      "width": 16,
+      "height": 16,
+      "frames": {
+        "width": 64,
+        "height": 64
+      },
+      "animations": {
+        "default": [0, 7]
+      }
+    }],
+    "x": 100,
+    "y": 0
+  }, {
+    "graphics": [{
+      "image": "img/chrome-anim.png",
+      "width": 100,
+      "height": 100,
+      "frames": {
+        "width": 64,
+        "height": 64
+      },
+      "animations": {
+        "default": [0, 7]
+      }
+    }],
+    "x": 140,
+    "y": 0
+  }]
+}

@@ -1,0 +1,34 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "x": 10,
+    "y": 10
+  }, {
+    "graphics": [{
+      "image": "img/chrome.png",
+      "width": 16,
+      "height": 16
+    }],
+    "x": 100,
+    "y": 10
+  }, {
+    "graphics": [{
+      "image": "img/chrome.png",
+      "width": 100,
+      "height": 100
+    }],
+    "x": 140,
+    "y": 10
+  }, {
+    "graphics": [{
+      "image": "img/chrome.png",
+      "type": "repeat",
+      "width": 128,
+      "height": 128
+    }],
+    "x": 260,
+    "y": 10
+  }]
+}

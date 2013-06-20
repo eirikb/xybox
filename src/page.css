@@ -9,3 +9,7 @@ section {
 canvas {
   border: 1px solid;
 }
+
+p img {
+  vertical-align: bottom;
+}

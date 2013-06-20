@@ -1,0 +1,57 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome-anim.png",
+      "frames": {
+        "width": 64,
+        "height": 64
+      },
+      "animations": {
+        "default": [0, 7]
+      }
+    }],
+    "body": {
+      "circles": [{
+        "size": 4
+      }],
+      "x": 0,
+      "y": 0
+    }
+  }, {
+    "graphics": [{
+      "image": "img/chrome-anim.png",
+      "frames": {
+        "width": 64,
+        "height": 64
+      },
+      "animations": {
+        "default": [0, 7]
+      }
+    }],
+    "body": {
+      "circles": [{
+        "size": 1
+      }],
+      "x": 6,
+      "y": 0
+    }
+  }, {
+    "graphics": [{
+      "image": "img/chrome-anim.png",
+      "frames": {
+        "width": 64,
+        "height": 64
+      },
+      "animations": {
+        "default": [0, 7]
+      }
+    }],
+    "body": {
+      "circles": [{
+        "size": 6
+      }],
+      "x": 9,
+      "y": 0
+    }
+  }]
+}

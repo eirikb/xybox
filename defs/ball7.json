@@ -1,0 +1,14 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "body": {
+      "circles": [{
+        "size": 4
+      }],
+      "x": 4,
+      "y": 4
+    }
+  }]
+}

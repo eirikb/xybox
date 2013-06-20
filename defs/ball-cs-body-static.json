@@ -1,0 +1,48 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "body": {
+      "circles": [{
+        "size": 4
+      }],
+      "x": 0,
+      "y": 0
+    }
+  }, {
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "body": {
+      "circles": [{
+        "size": 1
+      }],
+      "x": 6,
+      "y": 0
+    }
+  }, {
+    "graphics": [{
+      "image": "img/chrome.png"
+    }],
+    "body": {
+      "circles": [{
+        "size": 6
+      }],
+      "x": 9,
+      "y": 0
+    }
+  }, {
+    "graphics": [{
+      "image": "img/chrome.png",
+      "type": "repeat"
+    }],
+    "body": {
+      "circles": [{
+        "size": 8
+      }],
+      "x": 16,
+      "y": 0
+    }
+  }]
+}

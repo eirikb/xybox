@@ -1,0 +1,37 @@
+.row
+  .span12
+    .row
+      .span6
+        h5 Static image
+        pre.prettyprint
+          include ../defs/ball-cs-static.json
+      .span6
+        h5 Output
+        canvas#ball-cs-static(width=400)
+
+    .row
+      .span6
+        h5 Animated image
+        pre.prettyprint
+          include ../defs/ball-cs-anim.json
+      .span6
+        h5 Output
+        canvas#ball-cs-anim(width=400)
+
+    .row
+      .span6
+        h5 Physical body with static image
+        pre.prettyprint
+          include ../defs/ball-cs-body-static.json
+      .span6
+        h5 Output
+        canvas#ball-cs-body-static(width=400)
+
+    .row
+      .span6
+        h5 Physical body with animated image
+        pre.prettyprint
+          include ../defs/ball-cs-body-anim.json
+      .span6
+        h5 Output
+        canvas#ball-cs-body-anim(width=400)
