@@ -16,7 +16,7 @@
     }
   },
   "items": [{
-    "code": "ball8.js onball8",
+    "code": "ball-physics-code.js onball8",
     "graphics": [{
       "image": "img/chrome.png"
     }],

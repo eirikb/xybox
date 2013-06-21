@@ -11,22 +11,23 @@
       First we need an image, like this one: 
       ![chrome logo](img/chrome.png) 
       _[(img/chrome.png)](img/chrome.png)_.  
-      Then we can define this in a _defs_ file like this (_ball1.json_):
+      Then we can define this in a _defs_ file like this:
     .row
       .span6
         h5 Input
+        a(href='defs/ball-item.json') ball-item.json
         pre.prettyprint
-          include ../defs/ball1.json
+          include ../defs/ball-item.json
       .span6
         h5 Output
-        canvas#ball1
+        canvas.ball#ball-item
 
     :markdown
       Here _items_ indicate the items we want to draw.
       The _images_ in _graphics_ will be preloaded (only once pr src).
 
     p Run like this with JavaScript:
-    pre.prettyprint game.init('ball1', 'defs/ball1.json');
+    pre.prettyprint game.init('ball-item', 'defs/ball-item.json');
     :markdown
       First argument, _ball1_, is _ID_ of canvas, and second argument is definition (_defs_) file.
 
@@ -35,16 +36,17 @@
       Now what if we would like to draw the same ball two times?  
       This is where we will use _defs_. Basically a _def_ will merge into items,
       so you only have can split the item definition from actual items.  
-      This can be setup like this (_ball2.json):
+      This can be setup like this:
 
     .row
       .span6
         h5 Input
+        a(href='defs/ball-items.json') ball-items.json
         pre.prettyprint
-          include ../defs/ball2.json
+          include ../defs/ball-items.json
       .span6
         h5 Output
-        canvas#ball2
+        canvas.ball#ball-items
 
     h3 Includes
     :markdown
@@ -55,32 +57,32 @@
     .row
       .span6
         h5 Input
-        strong ball3-defs.json
+        a(href='defs/ball-includes-defs.json') ball-includes-defs.json
         pre.prettyprint
-          include ../defs/ball3-defs.json
-        strong ball3.json
+          include ../defs/ball-includes-defs.json
+        a(href='defs/ball-includes.json') ball-includes.json
         pre.prettyprint
-          include ../defs/ball3.json
+          include ../defs/ball-includes.json
       .span6
         h5 Output
-        canvas#ball3
+        canvas.ball#ball-includes
  
     h4 Code/JavaScript
     :markdown
       To add behavior and logic to the game JavaScript is used.  
-      These files are linked through _code_ part, like this (_ball4.json_):
+      These files are linked through _code_ part, like this:
 
     .row
       .span6
         h5 Input
-        strong ball4.json
+        a(href='defs/ball-code.json') ball-code.json
         pre.prettyprint
-          include ../defs/ball4.json
-        strong ball4.js
-        pre.prettyprint= js.ball4
+          include ../defs/ball-code.json
+        a(href='ball-code.js') ball-code.js
+        pre.prettyprint= js['ball-code']
       .span6
         h5 Output
-        canvas#ball4
+        canvas.ball#ball-code
 
     :markdown
       The property consists of two parts separated with space.

@@ -4,7 +4,7 @@
 It is a way to describe an item, such as a car, player, house, ball or brick wall.<br/>The def define item <em>physics</em>, <em>graphics</em> and <em>behavior</em>.
 Physics and graphics are defined in <em>JSON</em> files, while the behavior and logic is defined in <em>JS</em> files.</p><h3>Items and graphics</h3><p>As an example we will try to make a ball with a <em>defs</em> file.<br/>First we need an image, like this one: 
 <img alt="chrome logo" src="img/chrome.png"/> 
-<em><a href="img/chrome.png">(img/chrome.png)</a></em>.<br/>Then we can define this in a <em>defs</em> file like this (<em>ball1.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+<em><a href="img/chrome.png">(img/chrome.png)</a></em>.<br/>Then we can define this in a <em>defs</em> file like this:</p><div class="row"><div class="span6"><h5>Input</h5><a href="defs/ball-item.json">ball-item.json</a><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome.png"
@@ -13,9 +13,9 @@ Physics and graphics are defined in <em>JSON</em> files, while the behavior and 
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball1"></canvas></div></div><p>Here <em>items</em> indicate the items we want to draw.
-The <em>images</em> in <em>graphics</em> will be preloaded (only once pr src).</p><p>Run like this with JavaScript:</p><pre class="prettyprint">game.init('ball1', 'defs/ball1.json');</pre><p>First argument, <em>ball1</em>, is <em>ID</em> of canvas, and second argument is definition (<em>defs</em>) file.</p><h3>Items and defs</h3><p>Now what if we would like to draw the same ball two times?<br/>This is where we will use <em>defs</em>. Basically a <em>def</em> will merge into items,
-so you only have can split the item definition from actual items.<br/>This can be setup like this (_ball2.json):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-item" class="ball"></canvas></div></div><p>Here <em>items</em> indicate the items we want to draw.
+The <em>images</em> in <em>graphics</em> will be preloaded (only once pr src).</p><p>Run like this with JavaScript:</p><pre class="prettyprint">game.init('ball-item', 'defs/ball-item.json');</pre><p>First argument, <em>ball1</em>, is <em>ID</em> of canvas, and second argument is definition (<em>defs</em>) file.</p><h3>Items and defs</h3><p>Now what if we would like to draw the same ball two times?<br/>This is where we will use <em>defs</em>. Basically a <em>def</em> will merge into items,
+so you only have can split the item definition from actual items.<br/>This can be setup like this:</p><div class="row"><div class="span6"><h5>Input</h5><a href="defs/ball-items.json">ball-items.json</a><pre class="prettyprint">{
   "defs": {
     "ball": {
       "graphics": [{
@@ -33,9 +33,9 @@ so you only have can split the item definition from actual items.<br/>This can b
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball2"></canvas></div></div><h3>Includes</h3><p>It could be preferable to move <em>defs</em> out into a separate file or files.
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-items" class="ball"></canvas></div></div><h3>Includes</h3><p>It could be preferable to move <em>defs</em> out into a separate file or files.
 Then in the file with <em>items</em> one add a property for <em>includes</em>,
-which will make sure that the <em>defs</em> file is also merged.</p><div class="row"><div class="span6"><h5>Input</h5><strong>ball3-defs.json</strong><pre class="prettyprint">{
+which will make sure that the <em>defs</em> file is also merged.</p><div class="row"><div class="span6"><h5>Input</h5><a href="defs/ball-includes-defs.json">ball-includes-defs.json</a><pre class="prettyprint">{
   "defs": {
     "ball": {
       "graphics": [{
@@ -44,8 +44,8 @@ which will make sure that the <em>defs</em> file is also merged.</p><div class="
     }
   }
 }
-</pre><strong>ball3.json</strong><pre class="prettyprint">{
-  "includes": ["ball3-defs"],
+</pre><a href="defs/ball-includes.json">ball-includes.json</a><pre class="prettyprint">{
+  "includes": ["ball-includes-defs"],
   "items": [{
     "def": "ball",
     "x": 10,
@@ -56,9 +56,9 @@ which will make sure that the <em>defs</em> file is also merged.</p><div class="
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball3"></canvas></div></div><h4>Code/JavaScript</h4><p>To add behavior and logic to the game JavaScript is used.<br/>These files are linked through <em>code</em> part, like this (<em>ball4.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><strong>ball4.json</strong><pre class="prettyprint">{
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-includes" class="ball"></canvas></div></div><h4>Code/JavaScript</h4><p>To add behavior and logic to the game JavaScript is used.<br/>These files are linked through <em>code</em> part, like this:</p><div class="row"><div class="span6"><h5>Input</h5><a href="defs/ball-code.json">ball-code.json</a><pre class="prettyprint">{
   "items": [{
-    "code": "ball4.js onball4",
+    "code": "ball-code.js onball4",
     "graphics": [{
       "image": "img/chrome.png"
     }],
@@ -66,7 +66,7 @@ which will make sure that the <em>defs</em> file is also merged.</p><div class="
     "y": 10
   }]
 }
-</pre><strong>ball4.js</strong><pre class="prettyprint">onball4 = function(ball, game) {
+</pre><a href="ball-code.js">ball-code.js</a><pre class="prettyprint">onball4 = function(ball, game) {
   var way = 1;
   var g = ball.graphics[0];
 
@@ -77,7 +77,7 @@ which will make sure that the <em>defs</em> file is also merged.</p><div class="
     else if (g.x &lt; 50) way = 1;
   });
 };
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball4"></canvas></div></div><p>The property consists of two parts separated with space.
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-code" class="ball"></canvas></div></div><p>The property consists of two parts separated with space.
 The first part is the actual JavaScript file, relative from <em>defs</em> file location.
 The second part is an optional function which will be called when an item is created.
 First argument would be the actual item, the second is game object (if needed).  </p></div></div></section><section id="animations"><div class="page-header"><h1>Animations</h1></div><div class="row"><div class="span12"><p>Animations in XYBox are defined inside the <em>JSON</em> files.<br/>All animations must be in form of sprites,
@@ -88,7 +88,7 @@ and easy to work with.<br/>The overall size and performance will not be
 that much affected. In the case of the ball it will be, but in a whole games
 most animations are more complex.</p>
 
-<p>The animations are defined in <em>defs</em> like this (<em>defs/ball4.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+<p>The animations are defined in <em>defs</em> like this:</p><div class="row"><div class="span6"><h5>Input</h5><a href="defs/ball-anim.json">ball-anim.json</a><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome-anim.png",
@@ -104,8 +104,8 @@ most animations are more complex.</p>
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball5"></canvas></div></div><p>Note that &quot;<em>default</em>&quot; will be run automatically. Simply call it something 
-different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look at <a href="http://www.createjs.com/Docs/EaselJS/classes/SpriteSheet.html">EaselJS SpriteSheet documentation</a> to see different methods to do animations.<br/>For example (<em>ball6.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-anim" class="ball"></canvas></div></div><p>Note that &quot;<em>default</em>&quot; will be run automatically. Simply call it something 
+different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look at <a href="http://www.createjs.com/Docs/EaselJS/classes/SpriteSheet.html">EaselJS SpriteSheet documentation</a> to see different methods to do animations.  </p><div class="row"><div class="span6"><h5>Input</h5><a href="defs/ball-anims.json">ball-anims.json</a><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome-anim.png",
@@ -126,7 +126,7 @@ different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball6"></canvas></div></div></div></div></section><section id="physics"><div class="page-header"><h1>Physics</h1></div><div class="row"><div class="span12"><p>XYBox let you combine physics and graphics in the same <em>JSON</em> file.<br/>Lets add some physics to our ball (<em>ball6.json</em>):</p><div class="row"><div class="span6"><h5>Input</h5><pre class="prettyprint">{
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-anims" class="ball"></canvas></div></div></div></div></section><section id="physics"><div class="page-header"><h1>Physics</h1></div><div class="row"><div class="span12"><p>XYBox let you combine physics and graphics in the same <em>JSON</em> file.<br/>Lets add some physics to our ball:</p><div class="row"><div class="span6"><h5>Input</h5><a href="defs/ball-physics.json">ball-physics.json</a><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome.png"
@@ -140,10 +140,10 @@ different to prevent it from executing.</p><h3>Animation definitions</h3><p>Look
     }
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball7"></canvas></div></div><p>That does not seem very fantastic, but that is a full blown physical object, trust me,
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-physics" class="ball"></canvas></div></div><p>That does not seem very fantastic, but that is a full blown physical object, trust me,
 it can do marvelous things.</p>
 
-<p>Lets add this brick wall: <img alt="Brick wall" src="img/brick-wall.png"/> and some behavior with JS:</p><div class="row"><div class="span6"><h5>Input</h5><strong>ball8.json</strong><pre class="prettyprint">{
+<p>Lets add this brick wall: <img alt="Brick wall" src="img/brick-wall.png"/> and some behavior with JS:</p><div class="row"><div class="span6"><h5>Input</h5><a href="defs/ball-physics-code.json">ball-physics-code.json</a><pre class="prettyprint">{
   "defs": {
     "wall": {
       "graphics": [{
@@ -161,7 +161,7 @@ it can do marvelous things.</p>
     }
   },
   "items": [{
-    "code": "ball8.js onball8",
+    "code": "ball-physics-code.js onball8",
     "graphics": [{
       "image": "img/chrome.png"
     }],
@@ -187,13 +187,13 @@ it can do marvelous things.</p>
     }
   }]
 }
-</pre><strong>ball8.js</strong><pre class="prettyprint">onball8 = function(ball, game) {
+</pre><a href="defs/ball-physics-code.js">ball-physics-code.js</a><pre class="prettyprint">onball8 = function(ball, game) {
   var b = ball.body;
   b.ApplyImpulse(new b2Vec2(0, 100), b.GetWorldCenter());
 };
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball8" height="300"></canvas></div></div></div></div></section><section id="cheatsheet"><div class="page-header"><h1>Cheat Sheet</h1></div><div class="row"><div class="span12"><p>This is a set of examples of how images can be used and rendered.
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-physics-code" height="300" class="ball"></canvas></div></div></div></div></section><section id="cheatsheet"><div class="page-header"><h1>Cheat Sheet</h1></div><div class="row"><div class="span12"><p>This is a set of examples of how images can be used and rendered.
 There are four main parts: Normal static image, animated image,
-physical body with static image and physical body with animated image.  </p><div class="row"><div class="span6"><h5>Static image</h5><pre class="prettyprint">{
+physical body with static image and physical body with animated image.  </p><div class="row"><div class="span6"><h5>Static image</h5><a href="defs/ball-cs-static.json">ball-cs-static.json</a><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome.png"
@@ -227,9 +227,9 @@ physical body with static image and physical body with animated image.  </p><div
     "y": 10
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-static" width="450"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at top left corner.  </p></dd><dt>Types</dt><dd><p>By setting <code>&quot;type&quot;: &quot;repeat&quot;</code> in <code>&quot;graphics&quot;</code> it is possible
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-static" width="450" class="ball"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at top left corner.  </p></dd><dt>Types</dt><dd><p>By setting <code>&quot;type&quot;: &quot;repeat&quot;</code> in <code>&quot;graphics&quot;</code> it is possible
 to make the image repeat itself. This is a nice feature for backgrounds.</p></dd><dt>Size</dt><dd><p>The image size can be set by <code>&quot;width&quot;</code> and <code>&quot;height&quot;</code> properties, 
-if not set the size will be default <code>&lt;img&gt;</code> size (original size).</p></dd></dl></div></div><div class="row"><div class="span6"><h5>Animated image</h5><pre class="prettyprint">{
+if not set the size will be default <code>&lt;img&gt;</code> size (original size).</p></dd></dl></div></div><div class="row"><div class="span6"><h5>Animated image</h5><a href="defs/ball-cs-anim.json">ball-cs-anim.json</a><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome-anim.png",
@@ -275,8 +275,8 @@ if not set the size will be default <code>&lt;img&gt;</code> size (original size
     "y": 0
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-anim" width="400"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at top left corner.  </p></dd><dt>Types</dt><dd><p>The <code>&quot;type&quot;: &quot;repeat&quot;</code> feature is not supported on animations.</p></dd><dt>Size</dt><dd><p>The image size can be set by <code>&quot;width&quot;</code> and <code>&quot;height&quot;</code> properties, 
-if not set the size will be default <code>&lt;img&gt;</code> size (original size).</p></dd></dl></div></div><div class="row"><div class="span6"><h5>Physical body with static image</h5><pre class="prettyprint">{
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-anim" width="400" class="ball"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at top left corner.  </p></dd><dt>Types</dt><dd><p>The <code>&quot;type&quot;: &quot;repeat&quot;</code> feature is not supported on animations.</p></dd><dt>Size</dt><dd><p>The image size can be set by <code>&quot;width&quot;</code> and <code>&quot;height&quot;</code> properties, 
+if not set the size will be default <code>&lt;img&gt;</code> size (original size).</p></dd></dl></div></div><div class="row"><div class="span6"><h5>Physical body with static image</h5><a href="defs/ball-cs-body-static.json">ball-cs-body-static.json</a><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome.png"
@@ -324,9 +324,9 @@ if not set the size will be default <code>&lt;img&gt;</code> size (original size
     }
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-body-static" width="400"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at bottom left corner.<br/>Physical body follows standard XY-coordinate system layout.  </p></dd><dt>Types</dt><dd><p>By setting <code>&quot;type&quot;: &quot;repeat&quot;</code> in <code>&quot;graphics&quot;</code> it is possible
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-body-static" width="400" class="ball"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at bottom left corner.<br/>Physical body follows standard XY-coordinate system layout.  </p></dd><dt>Types</dt><dd><p>By setting <code>&quot;type&quot;: &quot;repeat&quot;</code> in <code>&quot;graphics&quot;</code> it is possible
 to make the image repeat itself.</p></dd><dt>Size</dt><dd><p>The image size is determined by size of physical item multipled by a scale.<br/>The default <code>game.scale</code> is <strong>16</strong>, 
-this means an item with height <code>5</code> will be <code>80</code>px tall.</p></dd></dl></div></div><div class="row"><div class="span6"><h5>Physical body with animated image</h5><pre class="prettyprint">{
+this means an item with height <code>5</code> will be <code>80</code>px tall.</p></dd></dl></div></div><div class="row"><div class="span6"><h5>Physical body with animated image</h5><a href="defs/ball-cs-body-anim.json">ball-cs-body-anim.json</a><pre class="prettyprint">{
   "items": [{
     "graphics": [{
       "image": "img/chrome-anim.png",
@@ -383,7 +383,7 @@ this means an item with height <code>5</code> will be <code>80</code>px tall.</p
     }
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-body-anim" width="400"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at bottom left corner.<br/>Physical body follows standard XY-coordinate system layout.  </p></dd><dt>Types</dt><dd><p>The <code>&quot;type&quot;: &quot;repeat&quot;</code> feature is not supported on animations.</p></dd><dt>Size</dt><dd><p>The image size is determined by size of physical item multipled by a scale.<br/>The default <code>game.scale</code> is <strong>16</strong>, 
+</pre></div><div class="span6"><h5>Output</h5><canvas id="ball-cs-body-anim" width="400" class="ball"></canvas><dl><dt>Positioning</dt><dd><p><strong>X</strong> and <strong>Y</strong> coordinates start at bottom left corner.<br/>Physical body follows standard XY-coordinate system layout.  </p></dd><dt>Types</dt><dd><p>The <code>&quot;type&quot;: &quot;repeat&quot;</code> feature is not supported on animations.</p></dd><dt>Size</dt><dd><p>The image size is determined by size of physical item multipled by a scale.<br/>The default <code>game.scale</code> is <strong>16</strong>, 
 this means an item with height <code>5</code> will be <code>80px</code> tall.</p></dd></dl></div></div></div></div></section></div><footer><div class="container"><p>Built by <a href="https://github.com/eirikb">eirikb</a>.<br/>Source on <a href="https://github.com/eirikb/xybox">github</a>.</p>
 
 <p>The XYBox library is built on top of a set of existing libraries:<br/><a href="&#39;http://www.createjs.com/#!/EaselJS&#39;">EaselJS</a> 

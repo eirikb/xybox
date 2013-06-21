@@ -1,6 +1,6 @@
 {
   "items": [{
-    "code": "ball4.js onball4",
+    "code": "ball-code.js onball4",
     "graphics": [{
       "image": "img/chrome.png"
     }],

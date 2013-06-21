@@ -2,16 +2,17 @@
   .span12
     :markdown
       XYBox let you combine physics and graphics in the same _JSON_ file.  
-      Lets add some physics to our ball (_ball6.json_):
+      Lets add some physics to our ball:
 
     .row
       .span6
         h5 Input
+        a(href='defs/ball-physics.json') ball-physics.json
         pre.prettyprint
-          include ../defs/ball7.json
+          include ../defs/ball-physics.json
       .span6
         h5 Output
-        canvas#ball7
+        canvas.ball#ball-physics
 
     :markdown
       That does not seem very fantastic, but that is a full blown physical object, trust me,
@@ -22,11 +23,11 @@
     .row
       .span6
         h5 Input
-        strong ball8.json
+        a(href='defs/ball-physics-code.json') ball-physics-code.json
         pre.prettyprint
-          include ../defs/ball8.json
-        strong ball8.js
-        pre.prettyprint= js.ball8
+          include ../defs/ball-physics-code.json
+        a(href='defs/ball-physics-code.js') ball-physics-code.js
+        pre.prettyprint= js['ball-physics-code']
       .span6
         h5 Output
-        canvas#ball8(height=300)
+        canvas.ball#ball-physics-code(height=300)

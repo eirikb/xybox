@@ -33,7 +33,8 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         files: {
-          'index.html': 'jade/index.jade'
+          'index.html': 'jade/index.jade',
+          'tutorial.html': 'jade/tutorial.jade'
         },
         options: {
           data: {

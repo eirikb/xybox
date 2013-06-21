@@ -14,16 +14,17 @@
       that much affected. In the case of the ball it will be, but in a whole games
       most animations are more complex.
 
-      The animations are defined in _defs_ like this (_defs/ball4.json_):
+      The animations are defined in _defs_ like this:
 
     .row
       .span6
         h5 Input
+        a(href='defs/ball-anim.json') ball-anim.json
         pre.prettyprint
-          include ../defs/ball5.json
+          include ../defs/ball-anim.json
       .span6
         h5 Output
-        canvas#ball5
+        canvas.ball#ball-anim
 
     :markdown
       Note that "_default_" will be run automatically. Simply call it something 
@@ -32,13 +33,13 @@
     h3 Animation definitions
     :markdown
       Look at [EaselJS SpriteSheet documentation](http://www.createjs.com/Docs/EaselJS/classes/SpriteSheet.html) to see different methods to do animations.  
-      For example (_ball6.json_):
 
     .row
       .span6
         h5 Input
+        a(href='defs/ball-anims.json') ball-anims.json
         pre.prettyprint
-          include ../defs/ball6.json
+          include ../defs/ball-anims.json
       .span6
         h5 Output
-        canvas#ball6
+        canvas.ball#ball-anims
