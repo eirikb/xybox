@@ -455,5 +455,99 @@ This makes sense, as the fires will be created especially for bombs, and &quot;s
   });
 };
 </pre></div><div class="span6"><h5>Output</h5><canvas id="thebomb" class="tutorial well"></canvas><p>Click to add a bomb.</p>
-</div></div></div></div></section><section id="map"><div class="page-header"><h1>Map</h1></div><div class="row"><div class="span12"><p>Maps!</p>
-</div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
+</div></div></div></div></section><section id="map"><div class="page-header"><h1>Map</h1></div><div class="row"><div class="span12"><p>For the map we only need a couple of components, bricks and blocks.
+We could also need some stairs, to reach next level.
+The bricks are destroyable with bombs, while the blocks are not.<br>Also, bricks can be destroyed, and so they need some animation:<br><img src="defs/tutorial/map.png" alt="Map items"><br>(<em>block, brick with animation and some stairs</em>)</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/block.json">block.json</a><pre class="prettyprint">{
+  "defs": {
+    "block": {
+      "graphics": [{
+        "image": "defs/tutorial/map.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "default": 0
+        }
+      }],
+      "body": {
+        "isStatic": true,
+        "boxes": [{
+          "width": 2,
+          "height": 2
+        }]
+      }
+    }
+  }
+}
+</pre><a href="defs/tutorial/brick.json">brick.json</a><pre class="prettyprint">{
+  "defs": {
+    "brick": {
+      "armor": 1,
+      "graphics": [{
+        "image": "defs/tutorial/map.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "default": 1
+        }
+      }],
+      "body": {
+        "isStatic": true,
+        "boxes": [{
+          "width": 2,
+          "height": 2
+        }]
+      }
+    }
+  }
+}
+</pre><a href="defs/tutorial/stairs.json">stairs.json</a><pre class="prettyprint">{
+  "defs": {
+    "stairs": {
+      "graphics": [{
+        "image": "defs/tutorial/map.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "default": 4
+        }
+      }],
+      "body": {
+        "isStatic": true,
+        "boxes": [{
+          "width": 2,
+          "height": 2
+        }]
+      }
+    }
+  }
+}
+</pre><a href="defs/tutorial/map.json">maptest.json</a><pre class="prettyprint">{
+  "includes": ["block", "brick", "stairs"],
+  "items": [{
+    "def": "block",
+    "body": {
+      "x": 1,
+      "y": 1
+    }
+  }, {
+    "def": "brick",
+    "body": {
+      "x": 4,
+      "y": 1
+    }
+  }, {
+    "def": "stairs",
+    "body": {
+      "x": 7,
+      "y": 1
+    }
+  }]
+}
+</pre></div><div class="span6"><h5>Output</h5><canvas id="maptest" class="tutorial well"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>

@@ -1,0 +1,29 @@
+.row
+  .span12
+    :markdown
+      For the map we only need a couple of components, bricks and blocks.
+      We could also need some stairs, to reach next level.
+      The bricks are destroyable with bombs, while the blocks are not.  
+      Also, bricks can be destroyed, and so they need some animation:  
+      ![Map items](defs/tutorial/map.png)  
+      (_block, brick with animation and some stairs_)
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/block.json') block.json
+        pre.prettyprint
+          include ../../defs/tutorial/block.json
+        a(href='defs/tutorial/brick.json') brick.json
+        pre.prettyprint
+          include ../../defs/tutorial/brick.json
+        a(href='defs/tutorial/stairs.json') stairs.json
+        pre.prettyprint
+          include ../../defs/tutorial/stairs.json
+        a(href='defs/tutorial/map.json') maptest.json
+        pre.prettyprint
+          include ../../defs/tutorial/maptest.json
+
+      .span6
+        h5 Output
+        canvas.tutorial.well#maptest

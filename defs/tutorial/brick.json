@@ -1,0 +1,24 @@
+{
+  "defs": {
+    "brick": {
+      "armor": 1,
+      "graphics": [{
+        "image": "defs/tutorial/map.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "default": 1
+        }
+      }],
+      "body": {
+        "isStatic": true,
+        "boxes": [{
+          "width": 2,
+          "height": 2
+        }]
+      }
+    }
+  }
+}

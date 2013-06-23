@@ -1,0 +1,22 @@
+{
+  "includes": ["block", "brick", "stairs"],
+  "items": [{
+    "def": "block",
+    "body": {
+      "x": 1,
+      "y": 1
+    }
+  }, {
+    "def": "brick",
+    "body": {
+      "x": 4,
+      "y": 1
+    }
+  }, {
+    "def": "stairs",
+    "body": {
+      "x": 7,
+      "y": 1
+    }
+  }]
+}
