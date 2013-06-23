@@ -1,0 +1,34 @@
+{
+  "defs": {
+    "fire": {
+      "graphics": [{
+        "loop": 1,
+        "image": "defs/tutorial/fire.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "core": [0, 3, true, 2],
+          "down": [4, 7, true, 2],
+          "left": [8, 11, true, 2],
+          "right": [12, 15, true, 2],
+          "up": [16, 19, true, 2],
+          "horizontal": [20, 23, true, 2],
+          "vertical": [24, 28, true, 2]
+        }
+      }],
+      "body": {
+        "isStatic": true,
+        "options": {
+          "allowSleep": false,
+          "fixedRotation": true
+        },
+        "boxes": [{
+          "width": 1.6,
+          "height": 1.6
+        }]
+      }
+    }
+  }
+}

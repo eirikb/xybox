@@ -1,0 +1,19 @@
+{
+  "items": [{
+    "code": "cat-walk.js catWalk",
+    "graphics": [{
+      "image": "defs/tutorial/cat-walk.png"
+    }],
+    "body": {
+      "speed": 3,
+      "options": {
+        "allowSleep": false
+      },
+      "circles": [{
+        "size": 2
+      }],
+      "x": 4,
+      "y": 4
+    }
+  }]
+}

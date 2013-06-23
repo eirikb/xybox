@@ -1,13 +1,12 @@
 extends layout
 
-block scripts
-  script(src='dist/app.min.js')
-
 block content
   .navbar.navbar-fixed-top
     .navbar-inner
       .container
         ul.nav
+          li.active
+            a(href='/') XYBox home
           li
             a(href='#install') Install
           li

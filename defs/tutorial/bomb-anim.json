@@ -1,0 +1,16 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "defs/tutorial/bomb.png",
+      "frames": {
+        "width": 32,
+        "height": 32
+      },
+      "animations": {
+        "default": [0, 2, true, 3]
+      }
+    }],
+    "x": 30,
+    "y": 40
+  }]
+}

@@ -1,0 +1,19 @@
+{
+  "items": [{
+    "graphics": [{
+      "image": "defs/tutorial/cat.png",
+      "frames": {
+        "width": 32,
+        "height": 32
+      },
+      "animations": {
+        "default": {
+          "frames": [6, 7, 6, 8],
+          "frequency": 5
+        }
+      }
+    }],
+    "x": 50,
+    "y": 50
+  }]
+}

@@ -1,0 +1,23 @@
+{
+  "defs": {
+    "bomb": {
+      "power": 5,
+      "timer": 50,
+      "graphics": [{
+        "image": "defs/tutorial/bomb.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "default": [0, 2, true, 3]
+        }
+      }],
+      "body": {
+        "circles": [{
+          "size": 2
+        }]
+      }
+    }
+  }
+}

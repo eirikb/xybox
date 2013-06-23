@@ -1,0 +1,107 @@
+.row
+  .span12
+    :markdown
+      First of all we need a character, and since this will be called BOMBERCAT
+      a cat character would be fitting.  
+      So we need an image, a sprite really, with all the walking angles: 
+      _down_, _up_, _left_, _right_.
+
+      I have cheated, and here is the sprite: ![Cat character](defs/tutorial/cat.png)  
+      Note that it is a _32px * 32px_ sprite set with sufficient animations.
+
+      Animated it would look like this:
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/cat-anim.json') cat-anim.json
+        pre.prettyprint
+          include ../../defs/tutorial/cat-anim.json
+      .span6
+        h5 Output
+        canvas.tutorial.well#cat-anim
+        :markdown
+          Here `"frames"` under `"graphics"` defines the sprite sheet, defining
+          that the sprites has the size _32px * 32px_.
+
+          Names under `"animations"` are just used to reference them in code.
+          `"default"` animation will be executed instantly when item is created.
+
+    h3 Movement and body
+
+    :markdown
+      That looks about right, but we need to add a physical body to our little cat friend.
+      To make it easier for the character to round corners lets just use a simple circle as body.
+      We have to use size `2` on the circle, 
+      since the scale is `16` and the image is `32px` (wide/tall): `"circles":[{"size":2}]`.
+      Note that using any other size would just scale the image appropriately.
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/cat-walk.json') cat-walk.json
+        pre.prettyprint
+          include ../../defs/tutorial/cat-walk.json
+        a(href='defs/tutorial/cat.js') cat-walk.js
+        pre.prettyprint= dump('defs/tutorial/cat-walk.js')
+
+          include ../../defs/tutorial/cat-walk.js
+      .span6
+        h5 Output
+        canvas.tutorial.well#cat-walk
+        :markdown
+          Use 
+          <kbd>W</kbd>, 
+          <kbd>A</kbd>,
+          <kbd>S</kbd> and 
+          <kbd>D</kbd>
+          to move the cat.
+
+          This behavior is applied to player _item_ through a "code" property:
+          `"code": "cat-walk.js catWalk"`, here the first part is the actual JavaScript file 
+          where code is located, and last part is optional function which will be 
+          called when an item is created.
+
+          `"speed"` is used combined with `body.direction.x` and `body.direction.y`, which
+          will move the body (Velocity in Box2D is used).
+
+          `"allowSleep": false` makes sure that we don't have to wake up the object before
+          moving it. This just makes it easier to work with, and we don't need it to sleep.  
+          Sleeping objects help performance.  
+
+    h3 Moving animation
+    :markdown
+      By combining the _body_ item with the _animation_ part from earlier we get a 
+      moving animated little cool cat.
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/cat.json') cat.json
+        pre.prettyprint
+          include ../../defs/tutorial/cat.json
+        a(href='defs/tutorial/cat.js') cat.js
+        pre.prettyprint= dump('defs/tutorial/cat.js')
+
+          include ../../defs/tutorial/cat.js
+      .span6
+        h5 Output
+        canvas.tutorial.well#cat
+        :markdown
+          Use 
+          <kbd>W</kbd>, 
+          <kbd>A</kbd>,
+          <kbd>S</kbd> and 
+          <kbd>D</kbd>
+          to move the cat.
+
+          Note the different way to define animations, 
+          where `"frames"` and "`frequency"` are separate properties.
+          By doing this we can define that some sprites should re-occur,
+          so the animation becomes more real.  
+          Like `0` is the _middle_ animation where the cat is "standing",
+          so the sequence would be `[0, 1, 0, 2]`.
+
+          The main difference in the code part (_cat.js_) is the `gotoAndPlay` call.  
+          This is used on the only graphics object, `cat.graphics[0]`, and tells
+          XYBox which animation to play. `gotoAndStop` just stops the animation.

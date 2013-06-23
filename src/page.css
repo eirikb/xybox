@@ -21,3 +21,47 @@ footer {
   border-top: 1px solid #e5e5e5;
   background-color: #f5f5f5;
 }
+
+canvas.well {
+  padding: 0;
+  margin-top: 20px;
+  border: 1px solid #888;
+}
+
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.blue {color:blue;}
+.violet {color:violet;}
+.orange {color:orange;}
+.indigo {color:indigo;}
+.red {color:red;}
+.green {color:green;}
+.coral {color:coral;}
+.pink {color:pink;}
+.cyan {color:cyan;}
+
+.name {
+  font-family: 'Sniglet', cursive;
+  font-size: 48px;
+}
+
+canvas {
+}

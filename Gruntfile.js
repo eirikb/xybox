@@ -39,7 +39,10 @@ module.exports = function(grunt) {
         options: {
           data: {
             pkg: '<%= pkg %>',
-            js: js
+            js: js,
+            dump: function(name) {
+              return fs.readFileSync(name)
+            }
           }
         }
       }

@@ -1,0 +1,438 @@
+<!DOCTYPE html><html><head><title>xybox - Game engine</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"><link rel="stylesheet" href="dist/app.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Sniglet:800"><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--></head><body data-spy="scroll" data-target=".navbar" data-offet="1000"><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="/"><i class="icon-chevron-left"></i>XYBox home</a></li><li><a href="#intro">Intro</a></li><li><a href="#character">Character</a></li><li><a href="#bombsaway">Bombs away</a></li></ul></div></div></div><div class="container"><section id="intro"><div class="page-header"><h1>Intro</h1></div><div class="row"><div class="span12"><p>Lets make a game!<br>Get your <i class="icon-coffee"></i> or your <i class="icon-beer"></i>
+and get ready to watch the birth of a game - using XYBox!</p>
+<p>For this tutorial we will make a simple copy of a well known classis: <em>BOMBERMAN</em>.<br>Like the rest of the internet I love cats, and so we will call this version </p>
+<h2 class="name"><span class="blue">B</span><span class="violet">O</span><span class="orange">M</span><span class="indigo">B</span><span class="red">E</span><span class="green">R</span><span class="blue">C</span><span class="cyan">A</span><span class="coral">T</span></h2></div></div></section><section id="character"><div class="page-header"><h1>Character</h1></div><div class="row"><div class="span12"><p>First of all we need a character, and since this will be called BOMBERCAT
+a cat character would be fitting.<br>So we need an image, a sprite really, with all the walking angles: 
+<em>down</em>, <em>up</em>, <em>left</em>, <em>right</em>.</p>
+<p>I have cheated, and here is the sprite: <img src="defs/tutorial/cat.png" alt="Cat character"><br>Note that it is a <em>32px * 32px</em> sprite set with sufficient animations.</p>
+<p>Animated it would look like this:</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/cat-anim.json">cat-anim.json</a><pre class="prettyprint">{
+  "items": [{
+    "graphics": [{
+      "image": "defs/tutorial/cat.png",
+      "frames": {
+        "width": 32,
+        "height": 32
+      },
+      "animations": {
+        "default": {
+          "frames": [6, 7, 6, 8],
+          "frequency": 5
+        }
+      }
+    }],
+    "x": 50,
+    "y": 50
+  }]
+}
+</pre></div><div class="span6"><h5>Output</h5><canvas id="cat-anim" class="tutorial well"></canvas><p>Here <code>&quot;frames&quot;</code> under <code>&quot;graphics&quot;</code> defines the sprite sheet, defining
+that the sprites has the size <em>32px * 32px</em>.</p>
+<p>Names under <code>&quot;animations&quot;</code> are just used to reference them in code.
+<code>&quot;default&quot;</code> animation will be executed instantly when item is created.</p>
+</div></div><h3>Movement and body</h3><p>That looks about right, but we need to add a physical body to our little cat friend.
+To make it easier for the character to round corners lets just use a simple circle as body.
+We have to use size <code>2</code> on the circle, 
+since the scale is <code>16</code> and the image is <code>32px</code> (wide/tall): <code>&quot;circles&quot;:[{&quot;size&quot;:2}]</code>.
+Note that using any other size would just scale the image appropriately.</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/cat-walk.json">cat-walk.json</a><pre class="prettyprint">{
+  "items": [{
+    "code": "cat-walk.js catWalk",
+    "graphics": [{
+      "image": "defs/tutorial/cat-walk.png"
+    }],
+    "body": {
+      "speed": 3,
+      "options": {
+        "allowSleep": false
+      },
+      "circles": [{
+        "size": 2
+      }],
+      "x": 4,
+      "y": 4
+    }
+  }]
+}
+</pre><a href="defs/tutorial/cat.js">cat-walk.js</a><pre class="prettyprint">catWalk = function(cat, game) {
+
+  var keys = ['w', 'a', 's', 'd'];
+  var dirs = {
+    '65': [-1, 0, 'left'],
+    '68': [1, 0, 'right'],
+    '87': [0, 1, 'up'],
+    '83': [0, -1, 'down']
+  };
+
+  var dir = {};
+  cat.body.direction = dir;
+
+  game.keys.down(keys, function(e) {
+    var d = dirs['' + e.keyCode];
+    dir.x = d[0];
+    dir.y = d[1];
+  }).up(keys, function(e) {
+    var d = dirs['' + e.keyCode];
+    if (d[0] !== 0) dir.x = 0;
+    if (d[1] !== 0) dir.y = 0;
+  });
+};
+<script type="text/javascript">
+catWalk = function(cat, game) {
+
+  var keys = ['w', 'a', 's', 'd'];
+  var dirs = {
+    '65': [-1, 0, 'left'],
+    '68': [1, 0, 'right'],
+    '87': [0, 1, 'up'],
+    '83': [0, -1, 'down']
+  };
+
+  var dir = {};
+  cat.body.direction = dir;
+
+  game.keys.down(keys, function(e) {
+    var d = dirs['' + e.keyCode];
+    dir.x = d[0];
+    dir.y = d[1];
+  }).up(keys, function(e) {
+    var d = dirs['' + e.keyCode];
+    if (d[0] !== 0) dir.x = 0;
+    if (d[1] !== 0) dir.y = 0;
+  });
+};
+</script></pre></div><div class="span6"><h5>Output</h5><canvas id="cat-walk" class="tutorial well"></canvas><p>Use 
+<kbd>W</kbd>, 
+<kbd>A</kbd>,
+<kbd>S</kbd> and 
+<kbd>D</kbd>
+to move the cat.</p>
+<p>This behavior is applied to player <em>item</em> through a &quot;code&quot; property:
+<code>&quot;code&quot;: &quot;cat-walk.js catWalk&quot;</code>, here the first part is the actual JavaScript file 
+where code is located, and last part is optional function which will be 
+called when an item is created.</p>
+<p><code>&quot;speed&quot;</code> is used combined with <code>body.direction.x</code> and <code>body.direction.y</code>, which
+will move the body (Velocity in Box2D is used).</p>
+<p><code>&quot;allowSleep&quot;: false</code> makes sure that we don&#39;t have to wake up the object before
+moving it. This just makes it easier to work with, and we don&#39;t need it to sleep.<br>Sleeping objects help performance.  </p>
+</div></div><h3>Moving animation</h3><p>By combining the <em>body</em> item with the <em>animation</em> part from earlier we get a 
+moving animated little cool cat.</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/cat.json">cat.json</a><pre class="prettyprint">{
+  "items": [{
+    "code": "cat.js oncat",
+    "graphics": [{
+      "image": "defs/tutorial/cat.png",
+      "frames": {
+        "width": 32,
+        "height": 32
+      },
+      "animations": {
+        "default": 0,
+        "down": {
+          "frequency": 4,
+          "frames": [0, 1, 0, 2]
+        },
+        "up": {
+          "frequency": 4,
+          "frames": [3, 4, 3, 5]
+        },
+        "left": {
+          "frequency": 4,
+          "frames": [6, 7, 6, 8]
+        },
+        "right": {
+          "frequency": 4,
+          "frames": [9, 10, 9, 11]
+        }
+      }
+    }],
+    "body": {
+      "speed": 3,
+      "options": {
+        "allowSleep": false
+      },
+      "circles": [{
+        "size": 2
+      }],
+      "x": 4,
+      "y": 4
+    }
+  }]
+}
+</pre><a href="defs/tutorial/cat.js">cat.js</a><pre class="prettyprint">oncat = function(cat, game) {
+
+  var keys = ['w', 'a', 's', 'd'];
+  var dirs = {
+    '65': [-1, 0, 'left'],
+    '68': [1, 0, 'right'],
+    '87': [0, 1, 'up'],
+    '83': [0, -1, 'down']
+  };
+
+  var g = cat.graphics[0];
+  var dir = {};
+  cat.body.direction = dir;
+
+  game.keys.down(keys, function(e) {
+    var d = dirs['' + e.keyCode];
+    if (d[0] === dir.x &amp;&amp; d[1] === dir.y) return;
+
+    dir.x = d[0];
+    dir.y = d[1];
+
+    g.gotoAndPlay(d[2]);
+  }).up(keys, function(e) {
+    var d = dirs['' + e.keyCode];
+    if (d[0] !== 0) dir.x = 0;
+    if (d[1] !== 0) dir.y = 0;
+
+    if (dir.x === 0 &amp;&amp; dir.y === 0) g.gotoAndStop();
+  });
+};
+<script type="text/javascript">
+oncat = function(cat, game) {
+
+  var keys = ['w', 'a', 's', 'd'];
+  var dirs = {
+    '65': [-1, 0, 'left'],
+    '68': [1, 0, 'right'],
+    '87': [0, 1, 'up'],
+    '83': [0, -1, 'down']
+  };
+
+  var g = cat.graphics[0];
+  var dir = {};
+  cat.body.direction = dir;
+
+  game.keys.down(keys, function(e) {
+    var d = dirs['' + e.keyCode];
+    if (d[0] === dir.x && d[1] === dir.y) return;
+
+    dir.x = d[0];
+    dir.y = d[1];
+
+    g.gotoAndPlay(d[2]);
+  }).up(keys, function(e) {
+    var d = dirs['' + e.keyCode];
+    if (d[0] !== 0) dir.x = 0;
+    if (d[1] !== 0) dir.y = 0;
+
+    if (dir.x === 0 && dir.y === 0) g.gotoAndStop();
+  });
+};
+</script></pre></div><div class="span6"><h5>Output</h5><canvas id="cat" class="tutorial well"></canvas><p>Use 
+<kbd>W</kbd>, 
+<kbd>A</kbd>,
+<kbd>S</kbd> and 
+<kbd>D</kbd>
+to move the cat.</p>
+<p>Note the different way to define animations, 
+where <code>&quot;frames&quot;</code> and &quot;<code>frequency&quot;</code> are separate properties.
+By doing this we can define that some sprites should re-occur,
+so the animation becomes more real.<br>Like <code>0</code> is the <em>middle</em> animation where the cat is &quot;standing&quot;,
+so the sequence would be <code>[0, 1, 0, 2]</code>.</p>
+<p>The main difference in the code part (<em>cat.js</em>) is the <code>gotoAndPlay</code> call.<br>This is used on the only graphics object, <code>cat.graphics[0]</code>, and tells
+XYBox which animation to play. <code>gotoAndStop</code> just stops the animation.</p>
+</div></div></div></div></section><section id="bombsaway"><div class="page-header"><h1>Bombs away</h1></div><div class="row"><div class="span12"><p>We can&#39;t have a proper bombercat without bombs, and fancy explosions.</p>
+<p>First of all we need some bomb animation sprites, and these should work just fine:<br><img src="defs/tutorial/bomb.png" alt="Bombs"><br>Then we need some blazing flames:<br><img src="defs/tutorial/fire.png" alt="Flames"><br>(Core, down, left, right, up, horizontal and vertical).<br>The vertical and horizontal types helps make infinite humongous bombs, which is cool.</p>
+<h3>The bomb</h3><p>Lets make the actual bomb first, just a simple looping forever animation and a circle.</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/bomb.json">bomb.json</a><pre class="prettyprint">{
+  "defs": {
+    "bomb": {
+      "power": 5,
+      "timer": 50,
+      "graphics": [{
+        "image": "defs/tutorial/bomb.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "default": [0, 2, true, 3]
+        }
+      }],
+      "body": {
+        "circles": [{
+          "size": 2
+        }]
+      }
+    }
+  }
+}
+</pre><a href="defs/tutorial/bomb-anim.json">bomb-anim.json</a><pre class="prettyprint">{
+  "items": [{
+    "graphics": [{
+      "image": "defs/tutorial/bomb.png",
+      "frames": {
+        "width": 32,
+        "height": 32
+      },
+      "animations": {
+        "default": [0, 2, true, 3]
+      }
+    }],
+    "x": 30,
+    "y": 40
+  }]
+}
+</pre></div><div class="span6"><h5>Output</h5><canvas id="bomb-anim" class="tutorial well"></canvas><p>We are going to create several bombs, so it makes sense to create a definition 
+(under <code>&quot;defs&quot;</code>) of the bomb.
+This definition can be reused by calling <code>&quot;def&quot;:&quot;bomb&quot;</code> in <code>&quot;items&quot;</code> where <em>bomb</em>
+is the definition name.</p>
+<p>We also move the bomb definition out in a separate file,
+this way we can re-include the same definition later in the tutorial.<br>This is done with <code>&quot;includes&quot;: [&quot;bomb&quot;]</code> where <em>bomb</em> is the JSON file name.</p>
+<p>As with the cat character the bomb consists of a <code>&quot;circle&quot;</code> with the <code>&quot;size&quot;</code> of <code>2</code>.</p>
+</div></div><h3>Blazing flames</h3><p>Now lets make some fires!</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/fire.json">fire.json</a><pre class="prettyprint">{
+  "defs": {
+    "fire": {
+      "graphics": [{
+        "loop": 1,
+        "image": "defs/tutorial/fire.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "core": [0, 3, true, 2],
+          "down": [4, 7, true, 2],
+          "left": [8, 11, true, 2],
+          "right": [12, 15, true, 2],
+          "up": [16, 19, true, 2],
+          "horizontal": [20, 23, true, 2],
+          "vertical": [24, 28, true, 2]
+        }
+      }],
+      "body": {
+        "isStatic": true,
+        "options": {
+          "allowSleep": false,
+          "fixedRotation": true
+        },
+        "boxes": [{
+          "width": 1.6,
+          "height": 1.6
+        }]
+      }
+    }
+  }
+}
+</pre><a href="defs/tutorial/fire-disp.json">fire-disp.json</a><pre class="prettyprint">{
+  "includes": ["fire"],
+  "code": "fire-disp.js onFireDisp"
+}
+</pre><a href="defs/tutorial/fire-disp.js">fire-disp.js</a><pre class="prettyprint">onFireDisp = function(game) {
+
+  function fire(x, y, type) {
+    var item = game.createItem({
+      def: 'fire',
+      body: {
+        x: x,
+        y: y
+      }
+    });
+    item.graphics[0].gotoAndPlay(type);
+  }
+
+  setInterval(function() {
+    fire(1, 4, 'left');
+    fire(2, 4, 'horizontal');
+    fire(3, 4, 'core');
+    fire(4, 4, 'horizontal');
+    fire(5, 4, 'right');
+
+    fire(3, 2, 'down');
+    fire(3, 3, 'vertical');
+    fire(3, 5, 'vertical');
+    fire(3, 6, 'up');
+  }, 1000);
+};
+</pre></div><div class="span6"><h5>Output</h5><canvas id="fire-disp" class="tutorial well"></canvas><p>As with <em>bomb</em> the fire is also a <em>def</em>.<br>All fires are the same, just with different animations, and no default animation.</p>
+<p>The body is a rectangle which is slightly smaller than a full-sized one (2).<br>This to make it easier for our sweet little cat to stay alive.</p>
+<p>Here <code>&quot;loop&quot;: 1</code> is a bit special. 
+This ensures that once the animation have run <em>1</em> times it should terminate the item.
+By terminate I mean destroy completely, both the physical body and graphics.</p>
+<p>The <code>&quot;code&quot;</code> part in <em>fire-disp</em> is not set on any item, 
+instead it is set on top-most level of the <em>JSON</em> file.<br>This means that the function <code>window.onFireDisp</code> will be called when the game is ready.
+First argument is the actual game.</p>
+<p>In <em>fire-disp.js</em> we call <code>game.createItem</code> directly, this is similar to using
+<code>&quot;items&quot;</code> in <em>JSON</em> but through code.
+This makes sense, as the fires will be created especially for bombs, and &quot;surrounding&quot; them.</p>
+<p>A new fire will be created every 1 second (actually 9 fires).</p>
+</div></div><h3>The bomb</h3><p>So by combining the bomb with the fire we get this:</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/thebomb.json">thebomb.json</a><pre class="prettyprint">{
+  "includes": ["bomb", "fire"],
+  "code": ["thebomb.js theBomb", "thefire.js theFire"]
+}
+</pre><a href="defs/tutorial/thebomb.js">thebomb.js</a><pre class="prettyprint">theBomb = function(game) {
+
+  function rand(wh) {
+    return Math.floor(Math.random() * ((wh / game.scale) - 1));
+  }
+
+  setInterval(function() {
+    game.createItem({
+      def: 'bomb',
+      power: Math.floor(Math.random() * 7) + 3,
+      body: {
+        x: rand(game.width),
+        y: rand(game.height)
+      }
+    });
+  }, 1000);
+
+  game.on('tick', function() {
+    _.each(game.itemByDef.bomb, function(bomb) {
+      if (--bomb.timer &lt;= 0) game.destroyItem(bomb);
+    });
+  });
+};
+</pre><a href="defs/tutorial/thefire.js">thefire.js</a><pre class="prettyprint">theFire = function(game) {
+
+  game.on('destroy:bomb', function(bomb) {
+    var pos = game.posBox(bomb);
+    addFire(bomb, pos.x, pos.y, 'core', bomb.power);
+  });
+
+  var ways = {
+    left: [-1, 0],
+    up: [0, 1],
+    right: [1, 0],
+    down: [0, -1]
+  };
+
+  function addFire(bomb, x, y, type, power) {
+    power = power - 1;
+    if (power &lt;= 0) return;
+    var playType = type;
+    if (power &gt; 1) {
+      if (type === 'left' || type === 'right') playType = 'horizontal';
+      if (type === 'up' || type === 'down') playType = 'vertical';
+    }
+    var f = game.createItem({
+      def: 'fire',
+      type: type,
+      power: power,
+      bomb: bomb,
+      body: {
+        x: x,
+        y: y
+      }
+    });
+
+    f.graphics[0].gotoAndPlay(playType);
+
+    if (type === 'core') {
+      _.each(ways, function(w, n) {
+        addFire(bomb, x + w[0], y + w[1], n, power);
+      });
+      return;
+    }
+    var w = ways[type];
+    addFire(bomb, x + w[0], y + w[1], type, power);
+  }
+
+  game.onCollide('fire', function(fire, b) {
+    if (b.def === 'bomb') b.timer = 0;
+  });
+};
+</pre></div><div class="span6"><h5>Output</h5><canvas id="thebomb" class="tutorial well"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>

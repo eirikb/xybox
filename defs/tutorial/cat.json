@@ -1,0 +1,42 @@
+{
+  "items": [{
+    "code": "cat.js oncat",
+    "graphics": [{
+      "image": "defs/tutorial/cat.png",
+      "frames": {
+        "width": 32,
+        "height": 32
+      },
+      "animations": {
+        "default": 0,
+        "down": {
+          "frequency": 4,
+          "frames": [0, 1, 0, 2]
+        },
+        "up": {
+          "frequency": 4,
+          "frames": [3, 4, 3, 5]
+        },
+        "left": {
+          "frequency": 4,
+          "frames": [6, 7, 6, 8]
+        },
+        "right": {
+          "frequency": 4,
+          "frames": [9, 10, 9, 11]
+        }
+      }
+    }],
+    "body": {
+      "speed": 3,
+      "options": {
+        "allowSleep": false
+      },
+      "circles": [{
+        "size": 2
+      }],
+      "x": 4,
+      "y": 4
+    }
+  }]
+}

@@ -1,0 +1,100 @@
+.row
+  .span12
+    :markdown
+      We can't have a proper bombercat without bombs, and fancy explosions.
+
+      First of all we need some bomb animation sprites, and these should work just fine:  
+      ![Bombs](defs/tutorial/bomb.png)  
+      Then we need some blazing flames:  
+      ![Flames](defs/tutorial/fire.png)   
+      (Core, down, left, right, up, horizontal and vertical).  
+      The vertical and horizontal types helps make infinite humongous bombs, which is cool.
+
+    h3 The bomb
+    :markdown
+      Lets make the actual bomb first, just a simple looping forever animation and a circle.
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/bomb.json') bomb.json
+        pre.prettyprint
+          include ../../defs/tutorial/bomb.json
+        a(href='defs/tutorial/bomb-anim.json') bomb-anim.json
+        pre.prettyprint
+          include ../../defs/tutorial/bomb-anim.json
+      .span6
+        h5 Output
+        canvas.tutorial.well#bomb-anim
+
+        :markdown
+          We are going to create several bombs, so it makes sense to create a definition 
+          (under `"defs"`) of the bomb.
+          This definition can be reused by calling `"def":"bomb"` in `"items"` where _bomb_
+          is the definition name.
+
+          We also move the bomb definition out in a separate file,
+          this way we can re-include the same definition later in the tutorial.  
+          This is done with `"includes": ["bomb"]` where _bomb_ is the JSON file name.
+
+          As with the cat character the bomb consists of a `"circle"` with the `"size"` of `2`.
+
+    h3 Blazing flames
+    :markdown
+      Now lets make some fires!
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/fire.json') fire.json
+        pre.prettyprint
+          include ../../defs/tutorial/fire.json
+        a(href='defs/tutorial/fire-disp.json') fire-disp.json
+        pre.prettyprint
+          include ../../defs/tutorial/fire-disp.json
+        a(href='defs/tutorial/fire-disp.js') fire-disp.js
+        pre.prettyprint= dump('defs/tutorial/fire-disp.js')
+      .span6
+        h5 Output
+        canvas.tutorial.well#fire-disp
+
+        :markdown
+          As with _bomb_ the fire is also a _def_.  
+          All fires are the same, just with different animations, and no default animation.
+
+          The body is a rectangle which is slightly smaller than a full-sized one (2).  
+          This to make it easier for our sweet little cat to stay alive.
+
+          Here `"loop": 1` is a bit special. 
+          This ensures that once the animation have run _1_ times it should terminate the item.
+          By terminate I mean destroy completely, both the physical body and graphics.
+
+          The `"code"` part in _fire-disp_ is not set on any item, 
+          instead it is set on top-most level of the _JSON_ file.  
+          This means that the function `window.onFireDisp` will be called when the game is ready.
+          First argument is the actual game.
+
+          In _fire-disp.js_ we call `game.createItem` directly, this is similar to using
+          `"items"` in _JSON_ but through code.
+          This makes sense, as the fires will be created especially for bombs, and "surrounding" them.
+
+          A new fire will be created every 1 second (actually 9 fires).
+
+
+    h3 The bomb
+    :markdown
+      So by combining the bomb with the fire we get this:
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/thebomb.json') thebomb.json
+        pre.prettyprint
+          include ../../defs/tutorial/thebomb.json
+        a(href='defs/tutorial/thebomb.js') thebomb.js
+        pre.prettyprint= dump('defs/tutorial/thebomb.js')
+        a(href='defs/tutorial/thefire.js') thefire.js
+        pre.prettyprint= dump('defs/tutorial/thefire.js')
+      .span6
+        h5 Output
+        canvas.tutorial.well#thebomb

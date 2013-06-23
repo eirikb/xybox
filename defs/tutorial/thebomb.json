@@ -1,0 +1,4 @@
+{
+  "includes": ["bomb", "fire"],
+  "code": ["thebomb.js theBomb", "thefire.js theFire"]
+}

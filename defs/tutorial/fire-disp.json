@@ -1,0 +1,4 @@
+{
+  "includes": ["fire"],
+  "code": "fire-disp.js onFireDisp"
+}
