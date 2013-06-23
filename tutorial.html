@@ -1,4 +1,11 @@
-<!DOCTYPE html><html><head><title>xybox - Game engine</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"><link rel="stylesheet" href="dist/app.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Sniglet:800"><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--></head><body data-spy="scroll" data-target=".navbar" data-offet="1000"><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="index.html"><i class="icon-chevron-left"></i>XYBox home</a></li><li><a href="#intro">Intro</a></li><li><a href="#character">Character</a></li><li><a href="#bombsaway">Bombs away</a></li></ul></div></div></div><div class="container"><section id="intro"><div class="page-header"><h1>Intro</h1></div><div class="row"><div class="span12"><p>Lets make a game!<br>Get your <i class="icon-coffee"></i> or your <i class="icon-beer"></i>
+<!DOCTYPE html><html><head><title>xybox - Game engine</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css"><link rel="stylesheet" href="dist/app.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Sniglet:800"><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--></head><body data-spy="scroll" data-target=".navbar" data-offet="1000"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-41968117-1', 'github.com');
+ga('send', 'pageview');
+</script><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="index.html"><i class="icon-chevron-left"></i>XYBox home</a></li><li><a href="#intro">Intro</a></li><li><a href="#character">Character</a></li><li><a href="#bombsaway">Bombs away</a></li><li><a href="#map">Map</a></li></ul></div></div></div><div class="container"><section id="intro"><div class="page-header"><h1>Intro</h1></div><div class="row"><div class="span12"><p>Lets make a game!<br>Get your <i class="icon-coffee"></i> or your <i class="icon-beer"></i>
 and get ready to watch the birth of a game - using XYBox!</p>
 <p>For this tutorial we will make a simple copy of a well known classis: <em>BOMBERMAN</em>.<br>Like the rest of the internet I love cats, and so we will call this version </p>
 <h2 class="name"><span class="blue">B</span><span class="violet">O</span><span class="orange">M</span><span class="indigo">B</span><span class="red">E</span><span class="green">R</span><span class="blue">C</span><span class="cyan">A</span><span class="coral">T</span></h2></div></div></section><section id="character"><div class="page-header"><h1>Character</h1></div><div class="row"><div class="span12"><p>First of all we need a character, and since this will be called BOMBERCAT
@@ -365,25 +372,37 @@ This makes sense, as the fires will be created especially for bombs, and &quot;s
 }
 </pre><a href="defs/tutorial/thebomb.js">thebomb.js</a><pre class="prettyprint">theBomb = function(game) {
 
-  function rand(wh) {
-    return Math.floor(Math.random() * ((wh / game.scale) - 1));
+  function rand(x) {
+    return Math.floor(Math.random() * x);
+  }
+
+  function scale(x) {
+    return Math.floor((x / game.scale) - 1);
+  }
+
+  function createBomb(x, y) {
+    game.createItem({
+      def: 'bomb',
+      power: rand(7) + 3,
+      body: {
+        x: scale(x),
+        y: scale(y)
+      }
+    });
   }
 
   setInterval(function() {
-    game.createItem({
-      def: 'bomb',
-      power: Math.floor(Math.random() * 7) + 3,
-      body: {
-        x: rand(game.width),
-        y: rand(game.height)
-      }
-    });
+    createBomb(rand(game.width), rand(game.height));
   }, 1000);
 
   game.on('tick', function() {
     _.each(game.itemByDef.bomb, function(bomb) {
       if (--bomb.timer &lt;= 0) game.destroyItem(bomb);
     });
+  });
+
+  game.on('mouseDown', function(e) {
+    createBomb(e.stageX, game.height - e.stageY);
   });
 };
 </pre><a href="defs/tutorial/thefire.js">thefire.js</a><pre class="prettyprint">theFire = function(game) {
@@ -435,4 +454,6 @@ This makes sense, as the fires will be created especially for bombs, and &quot;s
     if (b.def === 'bomb') b.timer = 0;
   });
 };
-</pre></div><div class="span6"><h5>Output</h5><canvas id="thebomb" class="tutorial well"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
+</pre></div><div class="span6"><h5>Output</h5><canvas id="thebomb" class="tutorial well"></canvas><p>Click to add a bomb.</p>
+</div></div></div></div></section><section id="map"><div class="page-header"><h1>Map</h1></div><div class="row"><div class="span12"><p>Maps!</p>
+</div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
