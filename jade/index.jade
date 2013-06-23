@@ -1,5 +1,8 @@
 extends layout
 
+block css
+  link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css')
+
 block content
   .navbar.navbar-fixed-top
     .navbar-inner
@@ -28,6 +31,9 @@ block content
       p
         a.btn.btn-primary.btn-large(href='tutorial.html') Tutorial 
           i.icon-chevron-right.icon-white
+      p
+        a.btn.btn-large(href='https://github.com/eirikb/xybox') Source 
+          i.icon-github
       p
         a.btn.btn-large(href='#cheatsheet') Cheat sheet 
           i.icon-chevron-down
