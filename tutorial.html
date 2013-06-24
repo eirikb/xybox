@@ -5,7 +5,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-41968117-1', 'github.com');
 ga('send', 'pageview');
-</script><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="index.html"><i class="icon-chevron-left"></i>XYBox home</a></li><li><a href="#intro">Intro</a></li><li><a href="#character">Character</a></li><li><a href="#bombsaway">Bombs away</a></li><li><a href="#map">Map</a></li></ul></div></div></div><div class="container"><section id="intro"><div class="page-header"><h1>Intro</h1></div><div class="row"><div class="span12"><p>Lets make a game!<br>Get your <i class="icon-coffee"></i> or your <i class="icon-beer"></i>
+</script><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="index.html"><i class="icon-chevron-left"></i>XYBox home</a></li><li><a href="#intro">Intro</a></li><li><a href="#character">Character</a></li><li><a href="#bombsaway">Bombs away</a></li><li><a href="#map">Map</a></li><li><a href="#evilcreatures">Evil creatures</a></li></ul></div></div></div><div class="container"><section id="intro"><div class="page-header"><h1>Intro</h1></div><div class="row"><div class="span12"><p>Lets make a game!<br>Get your <i class="icon-coffee"></i> or your <i class="icon-beer"></i>
 and get ready to watch the birth of a game - using XYBox!</p>
 <p>For this tutorial we will make a simple copy of a well known classis: <em>BOMBERMAN</em>.<br>Like the rest of the internet I love cats, and so we will call this version </p>
 <h2 class="name"><span class="blue">B</span><span class="violet">O</span><span class="orange">M</span><span class="indigo">B</span><span class="red">E</span><span class="green">R</span><span class="blue">C</span><span class="cyan">A</span><span class="coral">T</span></h2></div></div></section><section id="character"><div class="page-header"><h1>Character</h1></div><div class="row"><div class="span12"><p>First of all we need a character, and since this will be called BOMBERCAT
@@ -591,4 +591,46 @@ The bricks are destroyable with bombs, while the blocks are not.<br>Also, bricks
     });
   });
 };
-</pre></div><div class="span6"><h5>Output</h5><canvas id="map-blocks" width="416" height="480" class="tutorial well"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
+</pre></div><div class="span6"><h5>Output</h5><canvas id="map-blocks" width="416" height="480" class="tutorial well"></canvas></div></div></div></div></section><section id="evilcreatures"><div class="page-header"><h1>Evil creatures</h1></div><div class="row"><div class="span12"><p>We can&#39;t have a proper game without some scary villains.<br>What does cats hate the most, beside locked doors? -water.
+At least those I have met.</p>
+<p>So lets make a water monster of pure evil.</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/water.json">water.json</a><pre class="prettyprint">{
+  "defs": {
+    "water": {
+      "graphics": [{
+        "image": "defs/tutorial/water.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "default": {
+            "frequency": 3,
+            "frames": [0, 1, 0, 2]
+          },
+          "die": [3, 4, false, 2]
+        }
+      }],
+      "body": {
+        "speed": 4,
+        "options": {
+          "allowSleep": false
+        },
+        "circles": [{
+          "size": 2
+        }]
+      }
+    }
+  }
+}
+</pre><a href="defs/tutorial/water-test.json">water-test.json</a><pre class="prettyprint">{
+  "includes": ["water"],
+  "items": [{
+    "def": "water",
+    "body": {
+      "x": 1,
+      "y": 1
+    }
+  }]
+}
+</pre></div><div class="span6"><h5>Output</h5><canvas id="water-test" class="tutorial well"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>

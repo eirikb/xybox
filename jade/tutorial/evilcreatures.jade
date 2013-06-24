@@ -1,0 +1,22 @@
+.row
+  .span12
+    :markdown
+      We can't have a proper game without some scary villains.  
+      What does cats hate the most, beside locked doors? -water.
+      At least those I have met.
+
+      So lets make a water monster of pure evil.
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/water.json') water.json
+        pre.prettyprint
+          include ../../defs/tutorial/water.json
+        a(href='defs/tutorial/water-test.json') water-test.json
+        pre.prettyprint
+          include ../../defs/tutorial/water-test.json
+
+      .span6
+        h5 Output
+        canvas.tutorial.well#water-test

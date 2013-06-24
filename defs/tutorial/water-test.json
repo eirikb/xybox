@@ -1,0 +1,10 @@
+{
+  "includes": ["water"],
+  "items": [{
+    "def": "water",
+    "body": {
+      "x": 1,
+      "y": 1
+    }
+  }]
+}

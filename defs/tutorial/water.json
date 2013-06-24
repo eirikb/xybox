@@ -1,0 +1,29 @@
+{
+  "defs": {
+    "water": {
+      "graphics": [{
+        "image": "defs/tutorial/water.png",
+        "frames": {
+          "width": 32,
+          "height": 32
+        },
+        "animations": {
+          "default": {
+            "frequency": 3,
+            "frames": [0, 1, 0, 2]
+          },
+          "die": [3, 4, false, 2]
+        }
+      }],
+      "body": {
+        "speed": 4,
+        "options": {
+          "allowSleep": false
+        },
+        "circles": [{
+          "size": 2
+        }]
+      }
+    }
+  }
+}
