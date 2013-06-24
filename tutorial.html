@@ -550,4 +550,45 @@ The bricks are destroyable with bombs, while the blocks are not.<br>Also, bricks
     }
   }]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="maptest" class="tutorial well"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
+</pre></div><div class="span6"><h5>Output</h5><canvas id="maptest" class="tutorial well"></canvas></div></div><h3>Randomness</h3><p>We would have to generate the maps randomly.<br>All <em>blocks</em> have to be aligned on a <code>2 x 2</code> pattern.</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/map-blocks.json">map-blocks.json</a><pre class="prettyprint">{
+  "includes": ["block", "brick"],
+  "code": "map-blocks.js initBlocks"
+}
+</pre><a href="defs/tutorial/map-blocks.js">map-blocks.js</a><pre class="prettyprint">initBlocks = function(game) {
+
+  function create(type, x, y) {
+    last = game.createItem({
+      def: type,
+      body: {
+        x: x * 2,
+        y: y * 2
+      }
+    });
+  }
+
+  var width = game.width / game.scale / 2;
+  var height = game.height / game.scale / 2;
+
+  _(width).times(function(x) {
+    create('block', x, 0);
+    create('block', x, height - 1);
+  });
+
+  _(height).times(function(y) {
+    create('block', 0, y);
+    create('block', width - 1, y);
+  });
+
+  _.each(_.range(1, height - 1), function(y) {
+    _.each(_.range(1, width - 1), function(x) {
+      var addBrick = Math.random() &lt; 0.5;
+
+      if (x % 2 === 0 &amp;&amp; y % 2 === 0) create('block', x, y);
+      if ((x &lt; 3 || x &gt; width - 4) &amp;&amp; (y &lt; 3 || y &gt; height - 4)) return;
+
+      if (addBrick &amp;&amp; (x % 2 === 1 || y % 2 === 1)) create('brick', x, y);
+    });
+  });
+};
+</pre></div><div class="span6"><h5>Output</h5><canvas id="map-blocks" width="416" height="480" class="tutorial well"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>

@@ -27,3 +27,21 @@
       .span6
         h5 Output
         canvas.tutorial.well#maptest
+
+    h3 Randomness
+    :markdown
+      We would have to generate the maps randomly.  
+      All _blocks_ have to be aligned on a `2 x 2` pattern.
+
+    .row
+      .span6
+        h5 Input
+        a(href='defs/tutorial/map-blocks.json') map-blocks.json
+        pre.prettyprint
+          include ../../defs/tutorial/map-blocks.json
+        a(href='defs/tutorial/map-blocks.js') map-blocks.js
+        pre.prettyprint= dump('defs/tutorial/map-blocks.js')
+
+      .span6
+        h5 Output
+        canvas.tutorial.well#map-blocks(width=416, height=480)

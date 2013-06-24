@@ -1,0 +1,4 @@
+{
+  "includes": ["block", "brick"],
+  "code": "map-blocks.js initBlocks"
+}
