@@ -18,7 +18,8 @@
       "body": {
         "speed": 4,
         "options": {
-          "allowSleep": false
+          "allowSleep": false,
+          "fixedRotation": true
         },
         "circles": [{
           "size": 2

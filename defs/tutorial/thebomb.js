@@ -19,10 +19,6 @@ theBomb = function(game) {
     });
   }
 
-  setInterval(function() {
-    createBomb(rand(game.width), rand(game.height));
-  }, 1000);
-
   game.on('tick', function() {
     _.each(game.itemByDef.bomb, function(bomb) {
       if (--bomb.timer <= 0) game.destroyItem(bomb);

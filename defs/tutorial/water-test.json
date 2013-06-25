@@ -1,10 +1,4 @@
 {
   "includes": ["water"],
-  "items": [{
-    "def": "water",
-    "body": {
-      "x": 1,
-      "y": 1
-    }
-  }]
+  "code": "water-test.js initWaterTest"
 }

@@ -391,10 +391,6 @@ This makes sense, as the fires will be created especially for bombs, and &quot;s
     });
   }
 
-  setInterval(function() {
-    createBomb(rand(game.width), rand(game.height));
-  }, 1000);
-
   game.on('tick', function() {
     _.each(game.itemByDef.bomb, function(bomb) {
       if (--bomb.timer &lt;= 0) game.destroyItem(bomb);
@@ -614,7 +610,8 @@ At least those I have met.</p>
       "body": {
         "speed": 4,
         "options": {
-          "allowSleep": false
+          "allowSleep": false,
+          "fixedRotation": true
         },
         "circles": [{
           "size": 2
@@ -625,12 +622,6 @@ At least those I have met.</p>
 }
 </pre><a href="defs/tutorial/water-test.json">water-test.json</a><pre class="prettyprint">{
   "includes": ["water"],
-  "items": [{
-    "def": "water",
-    "body": {
-      "x": 1,
-      "y": 1
-    }
-  }]
+  "code": "water-test.js initWaterTest"
 }
 </pre></div><div class="span6"><h5>Output</h5><canvas id="water-test" class="tutorial well"></canvas></div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
