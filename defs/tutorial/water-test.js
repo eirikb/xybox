@@ -6,11 +6,10 @@ initWaterTest = function(game) {
   }
 
   var items = [];
-  var state = 0;
   var pos = 0;
-  var states = [
 
-  function(e) {
+
+  function createItem(e) {
     var x = e.stageX;
     var y = game.height - e.stageY;
 
@@ -20,20 +19,15 @@ initWaterTest = function(game) {
         x: scale(x),
         y: scale(y)
       }
-    }))
-  },
-
-  function(e) {
-    move = e.stageX;
-  }];
+    }));
+  }
 
   game.on('mouseDown', function(e) {
-    states[state](e);
-    state = (state + 1) % states.length;
+    createItem(e);
   })
 
   game.on('mouseMove', function(e) {
-    pos = [e.stageX, e.stageY];
+    pos = [e.stageX - 20, e.stageY - 20];
   });
 
   function dir(item, x, y) {
