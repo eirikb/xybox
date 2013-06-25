@@ -27,7 +27,7 @@
         pre.prettyprint
           include ../defs/ball-physics-code.json
         a(href='defs/ball-physics-code.js') ball-physics-code.js
-        pre.prettyprint= js['ball-physics-code']
+        pre.prettyprint= read('defs/ball-physics-code.js')
       .span6
         h5 Output
         canvas.ball#ball-physics-code(height=300)
