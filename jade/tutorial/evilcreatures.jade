@@ -16,9 +16,12 @@
         a(href='defs/tutorial/water-test.json') water-test.json
         pre.prettyprint
           include ../../defs/tutorial/water-test.json
+        a(href='defs/tutorial/water-test.js') water-test.js
+        pre.prettyprint= read('defs/tutorial/water-test.js')
 
       .span6
         h5 Output
         canvas.tutorial.well#water-test(width=400, height=400)
         :markdown
           Click to add a waterthingy, it will follow your mouse movement.
+          If they hit the fire they will die.

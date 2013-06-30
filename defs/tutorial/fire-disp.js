@@ -12,15 +12,15 @@ onFireDisp = function(game) {
   }
 
   setInterval(function() {
-    fire(1, 4, 'left');
-    fire(2, 4, 'horizontal');
-    fire(3, 4, 'core');
-    fire(4, 4, 'horizontal');
-    fire(5, 4, 'right');
+    fire(6, 4, 'left');
+    fire(7, 4, 'horizontal');
+    fire(8, 4, 'core');
+    fire(9, 4, 'horizontal');
+    fire(10, 4, 'right');
 
-    fire(3, 2, 'down');
-    fire(3, 3, 'vertical');
-    fire(3, 5, 'vertical');
-    fire(3, 6, 'up');
+    fire(8, 2, 'down');
+    fire(8, 3, 'vertical');
+    fire(8, 5, 'vertical');
+    fire(8, 6, 'up');
   }, 1000);
 };

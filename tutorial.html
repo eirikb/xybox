@@ -5,7 +5,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-41968117-1', 'github.com');
 ga('send', 'pageview');
-</script><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="index.html"><i class="icon-chevron-left"></i>XYBox home</a></li><li><a href="#intro">Intro</a></li><li><a href="#character">Character</a></li><li><a href="#bombsaway">Bombs away</a></li><li><a href="#map">Map</a></li><li><a href="#evilcreatures">Evil creatures</a></li></ul></div></div></div><div class="container"><section id="intro"><div class="page-header"><h1>Intro</h1></div><div class="row"><div class="span12"><p>Lets make a game!<br>Get your <i class="icon-coffee"></i> or your <i class="icon-beer"></i>
+</script><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><ul class="nav"><li><a href="index.html"><i class="icon-chevron-left"></i>XYBox home</a></li><li><a href="#intro">Intro</a></li><li><a href="#character">Character</a></li><li><a href="#bombsaway">Bombs away</a></li><li><a href="#map">Map</a></li><li><a href="#evilcreatures">Evil creatures</a></li><!--li<a href="#thegame">The game</a>--></ul></div></div></div><div class="container"><section id="intro"><div class="page-header"><h1>Intro </h1></div><div class="row"><div class="span12"><h4><a href="#thegame"> TL;DR try the game</a></h4><p>Lets make a game!<br>Get your <i class="icon-coffee"></i> or your <i class="icon-beer"></i>
 and get ready to watch the birth of a game - using XYBox!</p>
 <p>For this tutorial we will make a simple copy of a well known classis: <em>BOMBERMAN</em>.<br>Like the rest of the internet I love cats, and so we will call this version </p>
 <h2 class="name"><span class="blue">B</span><span class="violet">O</span><span class="orange">M</span><span class="indigo">B</span><span class="red">E</span><span class="green">R</span><span class="blue">C</span><span class="cyan">A</span><span class="coral">T</span></h2></div></div></section><section id="character"><div class="page-header"><h1>Character</h1></div><div class="row"><div class="span12"><p>First of all we need a character, and since this will be called BOMBERCAT
@@ -341,16 +341,16 @@ this way we can re-include the same definition later in the tutorial.<br>This is
   }
 
   setInterval(function() {
-    fire(1, 4, 'left');
-    fire(2, 4, 'horizontal');
-    fire(3, 4, 'core');
-    fire(4, 4, 'horizontal');
-    fire(5, 4, 'right');
+    fire(6, 4, 'left');
+    fire(7, 4, 'horizontal');
+    fire(8, 4, 'core');
+    fire(9, 4, 'horizontal');
+    fire(10, 4, 'right');
 
-    fire(3, 2, 'down');
-    fire(3, 3, 'vertical');
-    fire(3, 5, 'vertical');
-    fire(3, 6, 'up');
+    fire(8, 2, 'down');
+    fire(8, 3, 'vertical');
+    fire(8, 5, 'vertical');
+    fire(8, 6, 'up');
   }, 1000);
 };
 </pre></div><div class="span6"><h5>Output</h5><canvas id="fire-disp" class="tutorial well"></canvas><p>As with <em>bomb</em> the fire is also a <em>def</em>.<br>All fires are the same, just with different animations, and no default animation.</p>
@@ -621,8 +621,72 @@ At least those I have met.</p>
   }
 }
 </pre><a href="defs/tutorial/water-test.json">water-test.json</a><pre class="prettyprint">{
-  "includes": ["water"],
-  "code": "water-test.js initWaterTest"
+  "includes": ["water", "fire"],
+  "code": ["water-test.js initWaterTest", "fire-disp.js onFireDisp"]
 }
-</pre></div><div class="span6"><h5>Output</h5><canvas id="water-test" width="400" height="400" class="tutorial well"></canvas><p>Click to add a waterthingy, it will follow your mouse movement.</p>
-</div></div></div></div></section></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>
+</pre><a href="defs/tutorial/water-test.js">water-test.js</a><pre class="prettyprint">initWaterTest = function(game) {
+
+
+  function scale(x) {
+    return Math.floor((x / game.scale) - 1);
+  }
+
+  var pos = 0;
+
+  function createItem(e) {
+    var x = e.stageX;
+    var y = game.height - e.stageY;
+
+    game.createItem({
+      def: 'water',
+      body: {
+        x: scale(x),
+        y: scale(y)
+      }
+    });
+  }
+
+  game.on('mouseDown', function(e) {
+    createItem(e);
+  })
+
+  game.on('mouseMove', function(e) {
+    pos = [e.stageX - 20, e.stageY - 20];
+  });
+
+  function dir(item, x, y) {
+    item.body.direction = {
+      x: x,
+      y: y
+    };
+  }
+
+  game.on('tick', function() {
+    _.each(game.itemByDef.water, function(item) {
+      var p = game.pos(item);
+      var diff = pos[0] - p.x;
+      if (Math.abs(diff) &gt; 10) return dir(item, diff / Math.abs(diff), 0);
+      var diff = pos[1] - p.y;
+      if (Math.abs(diff) &gt; 10) return dir(item, 0, -diff / Math.abs(diff));
+      dir(item, 0, 0);
+
+    });
+  });
+
+  game.onCollide('fire', function(fire, item) {
+    if (item.def !== 'water') return;
+    item.dying = true;
+    var g = item.graphics[0];
+    g.gotoAndPlay('die');
+    item.setLoop(g, 1);
+    return false;
+  });
+};
+</pre></div><div class="span6"><h5>Output</h5><canvas id="water-test" width="400" height="400" class="tutorial well"></canvas><p>Click to add a waterthingy, it will follow your mouse movement.
+If they hit the fire they will die.</p>
+</div></div></div></div></section><!--section#thegame<div class="page-header"><h1>The game</h1></div><div class="row"><div class="span12"><p>Now we will put it all together into a working game!</p>
+<div class="row"><div class="span6"><h5>Input</h5><a href="defs/tutorial/game.json">game.json</a><pre class="prettyprint">{
+  "includes": ["block", "brick", "water"],
+  "code": "map-blocks.js initBlocks"
+}
+</pre><a href="defs/tutorial/game.js">game.js</a><pre class="prettyprint"></pre></div><div class="span6"><h5>Output</h5><canvas id="game" width="416" height="480" class="tutorial well"></canvas></div></div></div></div>--></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script><script src="lib/xybox-all.js"></script><script src="dist/app.min.js"></script></body></html>

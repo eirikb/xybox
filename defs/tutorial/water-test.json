@@ -1,4 +1,4 @@
 {
-  "includes": ["water"],
-  "code": "water-test.js initWaterTest"
+  "includes": ["water", "fire"],
+  "code": ["water-test.js initWaterTest", "fire-disp.js onFireDisp"]
 }
