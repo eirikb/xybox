@@ -2,6 +2,7 @@
 function Graphics(core) {
   var self = this;
   var stage;
+  var sheetCache = {};
 
   function draw(item) {
     var p = core.pos(item);
@@ -51,7 +52,9 @@ function Graphics(core) {
           h = item.body.height * core.scale;
         }
         graphics.images = [img.src];
-        var sheet = new createjs.SpriteSheet(graphics);
+        var sheet;
+        if (!sheetCache[img.src]) cheetCache[img.src] = new createjs.SpriteSheet(graphics);
+        sheet = sheetCache[img.src];
         shape = new createjs.BitmapAnimation(sheet);
         if (item.animation) graphics.animation = item.animation;
         if (!graphics.animation) graphics.animation = 'default';
