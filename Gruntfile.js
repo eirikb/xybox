@@ -31,7 +31,7 @@ module.exports = function(grunt) {
           data: {
             pkg: '<%= pkg %>',
             read: function(name) {
-              return fs.readFileSync(name)
+              return fs.readFileSync(name);
             }
           }
         }
@@ -57,7 +57,13 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-jade');
 
   grunt.registerTask('default', ['jade', 'cssmin', 'concat', 'uglify']);
 
